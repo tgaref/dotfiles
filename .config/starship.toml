@@ -1,0 +1,57 @@
+# Don't print a new line at the start of the prompt
+add_newline = true
+
+format = """
+$time $username$hostname$directory$git_branch\
+\n$character"""
+
+[git_branch]
+symbol = " "
+truncation_length = 4
+truncation_symbol = ""
+disabled = false
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[❯](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[time]
+format = '[\[$time\]](bold #fffee5)'
+disabled = false
+
+# shows the hostname on new lines
+[hostname]
+ssh_only = false
+format = "[@$hostname]($style) "
+disabled = false
+style = "bold blue"
+
+[username]
+style_user = "blue bold"
+style_root = "red bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[battery]
+full_symbol = ""
+charging_symbol = "⚡"
+discharging_symbol = ""
+format = "[$symbol$percentage]($style)"
+disabled = false
+
+[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
+threshold = 10
+style = "bold red"
+
+[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
+threshold = 30
+style = "bold yellow"
+
+[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
+threshold = 100
+style = "bold green"

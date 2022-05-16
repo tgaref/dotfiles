@@ -1,0 +1,45 @@
+Config { font = "xft:Noto Sans Mono:size=15:medium:antialias=true"
+       , additionalFonts = [ "xft:FontAwesome:pixelsize=18" ]
+       , bgColor = "#2f343f"
+       , fgColor = "grey"
+       , alpha = 244
+       , position = Static { xpos = 0 , ypos = 0, width = 1805, height = 23 }  
+       , commands = [ Run Date "%a %d-%m-%Y  %H:%M" "date" 10
+                    , Run Cpu [ "--Low"       , "3"
+		              , "--High"       , "50"
+			      , "--normal" , "green"
+			      , "--high"   , "#FF4000"
+			      , "--minwidth", "2"
+			      , "--template", "<fn=1>\xf085</fn> <total>%"
+			      ] 20
+                    , Run Memory [ "--template"    , "<fn=1>\xf1c0</fn> <usedratio>%"
+		                 , "--minwidth"    , "2"
+				 ] 20
+                    , Run BatteryP ["BAT0"]
+		                   [ "--template" , "<fn=1> \xf240</fn> <acstatus>"
+                                   , "--Low"      , "10"        -- units: %
+                                   , "--High"     , "80"        -- units: %
+                                   , "--low"      , "#FF4000"
+                                   , "--normal"   , "orange"
+                                   , "--high"     , "green"
+                                   , "--" -- battery specific options
+                                   -- discharging status
+                                   , "-o"   , "<left>%"
+                                   -- AC "on" status
+                                   , "-O"   , "<fc=orange>Charging</fc>" -- dAA520
+                                   -- charged status
+                                   , "-i"   , "<fc=green>Charged</fc>" -- #006000
+                                   ] 50
+		    , Run Volume "default" "Master" ["--template", "<fn=1>\xf028</fn> <volume>%"
+		                                    ,"--ppad"    , "3"
+						    ] 5		                                     
+		    -- keyboard layout indicator
+                    , Run Kbd            [ ("gr", "gr")
+                                         , ("us", "us")
+                                         ]
+                    , Run StdinReader
+                    ]		     
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{  %kbd% | %cpu% | %memory% | %battery% | %default:Master% | <fc=#00ff00>%date%</fc>"
+       }

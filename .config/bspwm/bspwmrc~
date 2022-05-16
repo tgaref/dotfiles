@@ -1,0 +1,32 @@
+#! /bin/sh
+
+sxhkd &
+polybar bspwm &
+emacs -daemon
+setxkbmap -layout \"us,gr\" -option grp:win_space_toggle -option grp_led:scroll :2
+xset r rate 200 30
+picom &
+nm-applet &
+megasync &
+urxvtd &
+xfce4-power-manager &
+udiskie &
+
+bspc monitor -d 1 2 3 4 5 6 7 8
+
+bspc config border_width         2
+bspc config window_gap           2
+
+bspc config split_ratio                 0.50
+bspc config borderless_monocle          true
+bspc config gapless_monocle             false
+bspc config focus_follows_pointer       false
+bspc config history_aware_focus         true
+
+bspc rule -a Gimp            desktop='^8'      state=floating follow=on
+bspc rule -a Firefox         desktop='^2'      state=tiled    follow=on
+bspc rule -a Google-Chrome   desktop='^2'      state=tiled    follow=on
+bspc rule -a brave-browser   desktop='^2'      state=tiled    follow=on
+bspc rule -a Emacs                             state=tiled    follow=on
+
+hsetroot -fill /home/tgaref/Pictures/pexels-steve-johnson-1292241.jpg

@@ -1,0 +1,62 @@
+;; -*-lisp-*-
+;;
+
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+(in-package :stumpwm)
+(setf *default-package* :stumpwm)
+
+;; prompt the user for an interactive command. The first arg is an
+;; optional initial contents.
+(defcommand colon1 (&optional (initial "")) (:rest)
+  (let ((cmd (read-one-line (current-screen) ": " :initial-input initial)))
+    (when cmd
+      (eval-command cmd t))))
+
+
+;; set module directory (if not already set)
+(set-module-dir "/home/tgaref/.config/stumpwm/modules/")
+(setf *startup-message* nil)
+
+(load "~/.config/stumpwm/commands.lisp")
+(load "~/.config/stumpwm/placement.lisp")
+(load "~/.config/stumpwm/keybindings.lisp")
+(load "~/.config/stumpwm/theme.lisp")
+(load "~/.config/stumpwm/modeline.lisp")
+
+
+
+;;; Startup Programs
+;;; Set Background
+(run-shell-command "hsetroot -fill /home/tgaref/Pictures/arch-logo-1.jpg")
+(run-shell-command "emacs --daemon")
+(run-shell-command "picom")
+(run-shell-command "xfce4-power-manager")
+(run-shell-command "udiskie")
+(run-shell-command "xset r rate 200 30")
+(run-shell-command "xsetroot -cursor_name left_ptr")
+(run-shell-command "urxvtd")
+(run-shell-command "megasync")
+(run-shell-command "nm-applet")
+(run-shell-command "dropbox start")
+
+;;; Set keyboard 
+(run-shell-command "setxkbmap -layout \"us,gr\" -option grp:win_space_toggle -option grp_led:scroll :2")
+
+(load-module "stumptray")
+(stumptray:stumptray)
+
+
+
+(setf *mouse-focus-policy*    :click
+      *float-window-modifier* :SUPER)
+
+(load-module "beckon")
+(load-module "end-session")
+(load-module "globalwindows")
+(load-module "stump-backlight")
+(load-module "urgentwindows")

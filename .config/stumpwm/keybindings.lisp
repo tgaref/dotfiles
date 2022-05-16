@@ -1,0 +1,67 @@
+(in-package :stumpwm)
+
+;; Double check prefix-key is set correctly
+(set-prefix-key (kbd "C-z"))
+
+(which-key-mode)
+
+(defvar *my-applications-keymap*
+  (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "b") "firefox")
+    (define-key m (kbd "e") "exec emacsclient -c")
+    (define-key m (kbd "t") "exec alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml --class term")
+    m))
+
+(define-key *root-map* (kbd "r") '*my-applications-keymap*)
+
+(defvar *my-frames-float-keymap*
+  (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "f") "float-this")
+    (define-key m (kbd "u") "unfloat-this")
+    (define-key m (kbd "C-f") "flatten-floats")
+    m))
+
+(defvar *my-frames-management-keymap*
+  (let ((m (make-sparse-keymap)))
+    (define-key m (kbd "r") "iresize")
+    (define-key m (kbd "+") "balance-frames")
+    (define-key m (kbd "d") "remove-split")
+    (define-key m (kbd "D") "only")
+    (define-key m (kbd "e") "expose")
+    (define-key m (kbd "f") "fullscreen")
+    (define-key m (kbd "F") '*my-frames-float-keymap*)
+    (define-key m (kbd "i") "info")
+    (define-key m (kbd "I") "show-window-properties")
+    (define-key m (kbd "m") "gmove")
+    (define-key m (kbd "s") "sibling")
+    (define-key m (kbd "u") "unmaximize")
+    m))
+
+(define-key *root-map* (kbd "w") '*my-frames-management-keymap*)
+
+(define-key *top-map* (kbd "C-M-Right") "gnext")
+(define-key *top-map* (kbd "C-M-Left") "gprev")
+(define-key *top-map* (kbd "C-S-Right") "gnext-with-wondow")
+(define-key *top-map* (kbd "C-S-Left") "gprev-with-wondow")
+(define-key *top-map* (kbd "s-Left") "move-focus left")
+(define-key *top-map* (kbd "s-Down") "move-focus down")
+(define-key *top-map* (kbd "s-Up") "move-focus up")
+(define-key *top-map* (kbd "s-Right") "move-focus right")
+(define-key *top-map* (kbd "s-S-Left") "move-window left")
+(define-key *top-map* (kbd "s-S-Down") "move-window down")
+(define-key *top-map* (kbd "s-S-Up") "move-window up")
+(define-key *top-map* (kbd "s-S-Right") "move-window right")
+(define-key *top-map* (kbd "s-M-Left") "exchange-direction left")
+(define-key *top-map* (kbd "s-M-Down") "exchange-direction down")
+(define-key *top-map* (kbd "s-M-Up") "exchange-direction up")
+(define-key *top-map* (kbd "s-M-Right") "exchange-direction right")
+(define-key *top-map* (kbd "s-/") "hsplit")
+(define-key *top-map* (kbd "s--") "vsplit")
+(define-key *top-map* (kbd "s-Q") "exec /home/tgaref/local/bin/rofi-system.fish")
+(define-key *top-map* (kbd "F1") "exec rofi -show run -no-fixed-num-lines -theme Arthur")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer -q set Master 2%+ unmute")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer -q set Master 2%- unmute")
+(define-key *top-map* (kbd "XF86AudioMute") "exec amixer -q set Master 1+ toggle")
+(define-key *top-map* (kbd "F2") "scratch-term")
+(define-key *top-map* (kbd "F3") "scratch-emacs")
+(define-key *top-map* (kbd "s-Tab") "next-in-frame")

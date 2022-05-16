@@ -86,7 +86,7 @@ myConfig dbus = def
   , ((0          , xF86XK_AudioMute), spawn "amixer set Master toggle")
   , ((0          , xK_F12), spawn "amixer set Master toggle")
   , ((0          , xK_F3), namedScratchpadAction scratchpads "emacsdrop")
-  , ((0          , xK_F2), namedScratchpadAction scratchpads "tmuxdrop")
+  , ((0          , xK_F2), namedScratchpadAction scratchpads "termdrop")
   , ((0          , xK_F1), spawn "rofi -show run -lines 5 -theme Arthur -no-fixed-num-lines")
   , ((altMask    , xK_Tab), spawn "rofi -show window -theme Arthur -no-fixed-num-lines")
   , ((altMask .|. controlMask  , xK_Left  ), moveTo Prev (WSIs notSP))
@@ -182,7 +182,7 @@ scratchpads = [ NS "emacsdrop" "emacsclient --alternate-editor='' --no-wait --cr
 --              , NS "ranger" "alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml -t ranger -e ranger"
                  (title =? "emacsdrop") (customFloating $ RationalRect (1/10) (1/40) (4/5) (3/4))
 --              , NS "tmux" "urxvtc -e tmux" (title =? "tmux")
-              , NS "tmuxdrop" "alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml -t scratchdrop -e tmux"
+              , NS "termdrop" "alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml -t scratchdrop"
                 (title =? "scratchdrop") (customFloating $ RationalRect (1/10) (1/40) (4/5) (4/5))
               ]
 

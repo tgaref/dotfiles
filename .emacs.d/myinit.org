@@ -38,88 +38,102 @@
 #+END_SRC
 
 * org-mode settings
-#+BEGIN_SRC emacs-lisp 
-    (use-package org
-      :init (progn
-              (bind-key "\C-cl" 'org-store-link)
-              (bind-key "\C-ca" 'org-agenda)
-              (bind-key "\C-cc" 'org-capture)
-              (bind-key "\C-cb" 'org-iswitchb))
-      :config (progn
-                (setq org-todo-keyword-faces
-                      '(("TODO" . org-warning) ("PROGRESS" . "yellow")))
-                (setq org-enforce-todo-dependencies t)
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :init (progn
+            (bind-key "\C-cl" 'org-store-link)
+            (bind-key "\C-ca" 'org-agenda)
+            (bind-key "\C-cc" 'org-capture)
+            (bind-key "\C-cb" 'org-iswitchb))
+    :config (progn
+              (setq org-todo-keyword-faces
+                    '(("TODO" . org-warning) ("PROGRESS" . "yellow")))
+              (setq org-enforce-todo-dependencies t)
               (setq org-list-allow-alphabetical t)
-              (setq org-hide-leading-stars t)))
+              (setq org-hide-leading-stars t)
+              (setq org-ellipsis " ▾")
+              (setq org-hide-emphasis-markers t)
+              (variable-pitch-mode 1)))
 
-    (use-package org-bullets
-      :ensure t
-      :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (use-package org-bullets
+    :ensure t
+    :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-    (add-hook 'org-mode-hook 'org-indent-mode)
-    (setq org-agenda-default-appointment-duration 60)
-    (setq org-icalendar-store-UID t)
-    (setq org-agenda-files
-      (quote
-        ("~/org/agenda/uoc.org" "~/org/agenda/eap.org" "~/org/agenda/personal.org" "~/org/agenda/notes.org")))
-     (setq org-capture-templates
-       (quote
-        (("e" "ΕΑΠ templates")
-         ("et" "ΕΑΠ TODO" entry
-          (file+headline "~/org/agenda/eap.org" "Capture")
-          (file "~/org/templates/todo.tmpl")
-          :empty-lines-before 1)
-         ("ee" "ΕΑΠ Εξέταση" entry
-          (file+headline "~/org/agenda/eap.org" "Capture")
-          (file "~/org/templates/eap-exam.tmpl")
-          :empty-lines-before 1)
-         ("ep" "ΕΑΠ ΟΔΠ" entry
-          (file+headline "~/org/agenda/eap.org" "Capture")
-          (file "~/org/templates/eap-odp.tmpl")
-          :empty-lines-before 1)
-         ("es" "ΕΑΠ ΟΣΣ" entry
-          (file+headline "~/org/agenda/eap.org" "Capture")
-          (file "~/org/templates/eap-oss.tmpl")
-          :empty-lines-before 1)
-         ("u" "UoC templates")
-         ("ut" "UoC TODO" entry
-          (file+headline "~/org/agenda/uoc.org" "Capture")
-          (file "~/org/templates/todo.tmpl")
-          :empty-lines-before 1)
-         ("ue" "UoC Event" entry
-          (file+headline "~/org/agenda/uoc.org" "Capture")
-          (file "~/org/templates/event.tmpl")
-          :empty-lines-before 1)
-         ("p" "Personal templates")
-         ("pt" "Personal TODO" entry
-          (file+headline "~/org/agenda/personal.org" "Capture")
-          (file "~/org/templates/todo.tmpl")
-          :empty-lines-before 1)
-         ("pe" "Personal Event" entry
-          (file+headline "~/org/agenda/personal.org" "Capture")
-          (file "~/org/templates/event.tmpl")
-          :empty-lines-before 1)
-         ("n" "Note" entry
-          (file "~/org/agenda/notes.org")
-          (file "~/org/templates/notes.tmpl")
-          :empty-lines-before 1))))
-     (setq org-refile-allow-creating-parent-nodes (quote confirm))
-     (setq org-refile-targets (quote ((org-agenda-files :level . 1))))
-     (setq org-refile-use-outline-path (quote file))
+  (add-hook 'org-mode-hook 'org-indent-mode)
+  (setq org-agenda-default-appointment-duration 60)
+  (setq org-icalendar-store-UID t)
+  (setq org-agenda-files
+    (quote
+      ("~/org/agenda/uoc.org" "~/org/agenda/eap.org" "~/org/agenda/personal.org" "~/org/agenda/notes.org")))
+   (setq org-capture-templates
+     (quote
+      (("e" "ΕΑΠ templates")
+       ("et" "ΕΑΠ TODO" entry
+        (file+headline "~/org/agenda/eap.org" "Capture")
+        (file "~/org/templates/todo.tmpl")
+        :empty-lines-before 1)
+       ("ee" "ΕΑΠ Εξέταση" entry
+        (file+headline "~/org/agenda/eap.org" "Capture")
+        (file "~/org/templates/eap-exam.tmpl")
+        :empty-lines-before 1)
+       ("ep" "ΕΑΠ ΟΔΠ" entry
+        (file+headline "~/org/agenda/eap.org" "Capture")
+        (file "~/org/templates/eap-odp.tmpl")
+        :empty-lines-before 1)
+       ("es" "ΕΑΠ ΟΣΣ" entry
+        (file+headline "~/org/agenda/eap.org" "Capture")
+        (file "~/org/templates/eap-oss.tmpl")
+        :empty-lines-before 1)
+       ("u" "UoC templates")
+       ("ut" "UoC TODO" entry
+        (file+headline "~/org/agenda/uoc.org" "Capture")
+        (file "~/org/templates/todo.tmpl")
+        :empty-lines-before 1)
+       ("ue" "UoC Event" entry
+        (file+headline "~/org/agenda/uoc.org" "Capture")
+        (file "~/org/templates/event.tmpl")
+        :empty-lines-before 1)
+       ("p" "Personal templates")
+       ("pt" "Personal TODO" entry
+        (file+headline "~/org/agenda/personal.org" "Capture")
+        (file "~/org/templates/todo.tmpl")
+        :empty-lines-before 1)
+       ("pe" "Personal Event" entry
+        (file+headline "~/org/agenda/personal.org" "Capture")
+        (file "~/org/templates/event.tmpl")
+        :empty-lines-before 1)
+       ("n" "Note" entry
+        (file "~/org/agenda/notes.org")
+        (file "~/org/templates/notes.tmpl")
+        :empty-lines-before 1))))
+   (setq org-refile-allow-creating-parent-nodes (quote confirm))
+   (setq org-refile-targets (quote ((org-agenda-files :level . 1))))
+   (setq org-refile-use-outline-path (quote file))
 
-     (defun org-convert-csv-table (beg end)
-       (interactive (list (mark) (point)))
-       (org-table-convert-region beg end ","))
+   (defun org-convert-csv-table (beg end)
+     (interactive (list (mark) (point)))
+     (org-table-convert-region beg end ","))
 
-    (add-hook 'org-mode-hook
-      (lambda ()
-      (define-key org-mode-map (kbd "C-c t") 'org-convert-csv-table)))
-    (add-hook 'org-mode-hook (lambda ()
-      (progn
-      (set-face-attribute 'org-level-1 nil :height 1.1)
-      (set-face-attribute 'org-level-2 nil :height 1.0)
-      (set-face-attribute 'org-level-3 nil :height 1.0)
-      (set-face-attribute 'org-level-4 nil :height 0.8))))
+  (add-hook 'org-mode-hook
+    (lambda ()
+    (define-key org-mode-map (kbd "C-c t") 'org-convert-csv-table)))
+
+  (set-face-attribute 'org-document-title nil :font "Ubuntu" :weight 'bold :height 1.3)
+
+  (add-hook 'org-mode-hook (lambda ()
+    (dolist (face '((org-level-1 . 1.1)
+                    (org-level-2 . 1.05)
+                    (org-level-3 . 1.00)
+                    (org-level-4 . 1.00)
+                    (org-level-5 . 0.90)
+                    (org-level-6 . 0.80)
+                    (org-level-7 . 0.80)
+                    (org-level-8 . 0.80)))
+      (set-face-attribute (car face) nil :font "Ubuntu" :weight 'medium :height (cdr face)))))
+      ;(set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'medium :height (cdr face)))))
+
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 
 #+END_SRC
 
@@ -279,13 +293,13 @@
            (propertize (concat (user-login-name) "@" (system-name)) 'face `(:foreground "deep sky blue" :weight bold))
 	   (propertize (concat " " (eshell/pwd) "\n") 'face `(:foreground "spring green"))
 	   (if (= 0 (eshell-prompt-last-command-status))
-                (propertize "❯" 'face `(:foreground "spring green" :weight bold))
-                (propertize "❯" 'face `(:foreground "red" :weight bold)))
+                (propertize "❱" 'face `(:foreground "spring green" :weight bold))
+                (propertize "❱" 'face `(:foreground "red" :weight bold)))
            (propertize " " 'face `(:foreground "white")))))
 
   (setq eshell-highlight-prompt t)
 
-  (setq eshell-prompt-regexp "^❯ ")
+  (setq eshell-prompt-regexp "^❱ ")
 
 (defun eshell-new()
   "Open a new instance of eshell."
@@ -321,37 +335,65 @@
 #+END_SRC
 * Theme
 #+begin_src emacs-lisp
+  (use-package doom-themes 
+    :ensure t
+    :init
+      (load-theme 'doom-snazzy t)
+      ;(load-theme 'doom-palenight t)
+      ;(load-theme 'doom-gruvbox t)
+      ;(load-theme 'doom-vibrant t)
+      (doom-themes-visual-bell-config))
 
-  (set-frame-font "FiraCode Nerd Font Medium 15" nil t)
-  ;(set-frame-font "Ubuntu Mono 18" nil t)
-
-         ;(use-package atom-one-dark-theme
-         ;  :ensure t
-         ;  :init
-         ;  (load-theme 'atom-one-dark t))
-
-         ;(use-package spacemacs-theme
-         ;  :defer t
-         ;  :init (load-theme 'spacemacs-dark t))
-
-     (use-package doom-themes 
-       :ensure t
-       :init
-       (load-theme 'doom-snazzy t)
-       (doom-themes-visual-bell-config))
-
-    (menu-bar-mode -1)
-    (tool-bar-mode -1)
-    (scroll-bar-mode -1)
-    (blink-cursor-mode 0)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (blink-cursor-mode 0)
 
 #+end_src
 * Fira Code Mode
 #+begin_src emacs-lisp
-(use-package fira-code-mode
-  :ensure t
-  :custom (fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
-  :hook prog-mode) ;; Enables fira-code-mode automatically for programming major modes
+;(use-package fira-code-mode
+;  :ensure t
+;  :custom (fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
+;  :hook prog-mode) ;; Enables fira-code-mode automatically for programming major modes
+#+end_src
+
+* Ligatures
+#+begin_src emacs-lisp
+  (let ((ligatures `((?-  . ,(regexp-opt '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->")))
+                     (?/  . ,(regexp-opt '("/**" "/*" "///" "/=" "/==" "/>" "//")))
+                     (?*  . ,(regexp-opt '("*>" "***" "*/")))
+                     (?<  . ,(regexp-opt '("<-" "<<-" "<=>" "<=" "<|" "<||" "<|||::=" "<|>" "<:" "<>" "<-<"
+                                           "<<<" "<==" "<<=" "<=<" "<==>" "<-|" "<<" "<~>" "<=|" "<~~" "<~"
+                                           "<$>" "<$" "<+>" "<+" "</>" "</" "<*" "<*>" "<->" "<!--")))
+                     (?:  . ,(regexp-opt '(":>" ":<" ":::" "::" ":?" ":?>" ":=")))
+                     (?=  . ,(regexp-opt '("=>>" "==>" "=/=" "=!=" "=>" "===" "=:=" "==")))
+                     (?!  . ,(regexp-opt '("!==" "!!" "!=")))
+                     (?>  . ,(regexp-opt '(">]" ">:" ">>-" ">>=" ">=>" ">>>" ">-" ">=")))
+                     (?&  . ,(regexp-opt '("&&&" "&&")))
+                     (?|  . ,(regexp-opt '("|||>" "||>" "|>" "|]" "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||")))
+                     (?.  . ,(regexp-opt '(".." ".?" ".=" ".-" "..<" "...")))
+                     (?+  . ,(regexp-opt '("+++" "+>" "++")))
+                     (?\[ . ,(regexp-opt '("[||]" "[<" "[|")))
+                     (?\{ . ,(regexp-opt '("{|")))
+                     (?\? . ,(regexp-opt '("??" "?." "?=" "?:")))
+                     (?#  . ,(regexp-opt '("####" "###" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" "##")))
+                     (?\; . ,(regexp-opt '(";;")))
+                     (?_  . ,(regexp-opt '("_|_" "__")))
+                     (?\\ . ,(regexp-opt '("\\" "\\/")))
+                     (?~  . ,(regexp-opt '("~~" "~~>" "~>" "~=" "~-" "~@")))
+                     (?$  . ,(regexp-opt '("$>")))
+                     (?^  . ,(regexp-opt '("^=")))
+                     (?\] . ,(regexp-opt '("]#"))))))
+    (dolist (char-regexp ligatures)
+      (set-char-table-range composition-function-table (car char-regexp)
+                            `([,(cdr char-regexp) 0 font-shape-gstring]))))
+
+  (use-package composite
+  :hook (prog-mode . auto-composition-mode)
+  :init (global-auto-composition-mode -1))
+#+end_src
+
 #+end_src
 
 * Modeline
@@ -380,9 +422,9 @@
 ;(use-package smart-mode-line-atom-one-dark-theme
 ;  :ensure t)
 
-(custom-set-faces
-  '(mode-line ((t (:family "Fira Sans Mono" :height 150))))
-  '(mode-line-inactive ((t (:family "Fira Sans Mono" :height 150)))))
+;(custom-set-faces
+;  '(mode-line ((t (:family "Fira Sans Mono" :height 150))))
+;  '(mode-line-inactive ((t (:family "Fira Sans Mono" :height 150)))))
 
 (display-battery-mode 1)
 (setq display-time-format "%H:%M %a, %d %b %Y")
@@ -557,15 +599,22 @@
     :ensure t
     :mode "\\.jl\\'")
 
-  (use-package julia-repl
-    :ensure t
-    :after julia-mode
-    :bind (:map julia-mode-map
-               ("C-c C-n" . 'julia-repl))
-    :config 
-     (add-hook 'julia-mode-hook 'julia-repl-mode)
-     (setq julia-repl-executable-records
-        '((default "~/.juliaup/bin/julia")))) ;; always use minor mode
+  (use-package julia-snail
+  :ensure t
+  :after julia-mode
+  :bind (:map julia-mode-map
+              ("C-c C-n" . 'julia-snail))
+  :hook (julia-mode . julia-snail-mode))
+
+  ;(use-package julia-repl
+  ;  :ensure t
+  ;  :after julia-mode
+  ;  :bind (:map julia-mode-map
+  ;             ("C-c C-n" . 'julia-repl))
+  ;  :config 
+  ;   (add-hook 'julia-mode-hook 'julia-repl-mode)
+  ;   (setq julia-repl-executable-records
+  ;      '((default "~/.juliaup/bin/julia")))) ;; always use minor mode
 #+END_SRC
 
 * Flycheck, company, lsp-mode
@@ -651,65 +700,64 @@
 
 * Dired
 #+BEGIN_SRC emacs-lisp
-;;narrow dired to match filter
+  ;;narrow dired to match filter
 
-(use-package dired
- :config 
-   (setq dired-listing-switches "-al --group-directories-first")
-   (setq dired-omit-files "^\\..*"))
+  (use-package dired
+   :config
+     (put 'dired-find-alternate-file 'disabled nil)
+     (setq dired-dwim-target t)
+     (setq dired-listing-switches "-alv --group-directories-first")
+     (require 'dired-x)
+     (setq-default dired-omit-files-p t) ; Buffer-local variable
+     (setq dired-omit-files "^\\..*[^\.]+$"))
 
-
-(use-package dired-narrow
-  :ensure t
-  :bind (:map dired-mode-map
-              ("/" . dired-narrow)))
-
-(use-package dired-subtree
-  :ensure t
-  :after dired
-  :config
-    (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
-    (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map))
-
-(put 'dired-find-alternate-file 'disabled nil)
-(setq dired-dwim-target t)
-(setq dired-listing-switches "-alv --group-directories-first")
-
-(require 'dired-x)
-(setq-default dired-omit-files-p t) ; Buffer-local variable
-(setq dired-omit-files "^\\..*[^\.]+$")
-
-(setq wdired-allow-to-change-permissions t)
-
-(defvar v-dired-omit t
-     "If dired-omit-mode enabled by default. Don't setq me.")
-(defun dired-omit-switch ()
-  "This function is a small enhancement for `dired-omit-mode', which will
-\"remember\" omit state across Dired buffers."
-  (interactive)
-  (if (eq v-dired-omit t)
-      (setq v-dired-omit nil)
-    (setq v-dired-omit t))
-  (dired-omit-caller)
-  (revert-buffer))
-
-(defun dired-omit-caller ()
-     (if v-dired-omit
-         (setq dired-omit-mode t)
-       (setq dired-omit-mode nil)))
+  ;(use-package dirvish
+  ;:ensure t
+  ;:init
+  ;; Let Dirvish take over Dired globally
+  ;(dirvish-override-dired-mode))
    
-(define-key dired-mode-map (kbd ")") 'dired-omit-switch)
-(add-hook 'dired-mode-hook 'dired-omit-caller)
+  (use-package dired-narrow
+    :ensure t
+    :bind (:map dired-mode-map
+                ("/" . dired-narrow)))
 
-(use-package wdired
-  :after dired
-  :commands wdired-change-to-wdired-mode
-  :config
+  (use-package dired-subtree
+    :ensure t
+    :after dired
+    :config
+      (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
+      (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map))
+
+
   (setq wdired-allow-to-change-permissions t)
-  (setq wdired-create-parent-directories t))
 
+  (defvar v-dired-omit t
+       "If dired-omit-mode enabled by default. Don't setq me.")
+  (defun dired-omit-switch ()
+    "This function is a small enhancement for `dired-omit-mode', which will
+  \"remember\" omit state across Dired buffers."
+    (interactive)
+    (if (eq v-dired-omit t)
+        (setq v-dired-omit nil)
+      (setq v-dired-omit t))
+    (dired-omit-caller)
+    (revert-buffer))
 
+  (defun dired-omit-caller ()
+       (if v-dired-omit
+           (setq dired-omit-mode t)
+         (setq dired-omit-mode nil)))
 
+  (define-key dired-mode-map (kbd ")") 'dired-omit-switch)
+  (add-hook 'dired-mode-hook 'dired-omit-caller)
+
+  (use-package wdired
+    :after dired
+    :commands wdired-change-to-wdired-mode
+    :config
+    (setq wdired-allow-to-change-permissions t)
+    (setq wdired-create-parent-directories t))
 
 #+END_SRC
 
@@ -736,20 +784,20 @@
 
 * PDF-tools
 #+BEGIN_SRC emacs-lisp 
-;;(use-package pdf-tools
-;; :ensure t
-;; :config (pdf-tools-install))
+;(use-package pdf-tools
+; :ensure 
+; :config (pdf-tools-install))
 
-;;(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+;(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
 
-;;(use-package org-pdfview
-;; :ensure t)
+;(use-package org-pdfview
+; :ensure t)
 
-;;(eval-after-load 'org '(require 'org-pdfview))
+;(eval-after-load 'org '(require 'org-pdfview))
 
-;;(add-to-list 'org-file-apps 
-;;             '("\\.pdf\\'" . (lambda (file link)
-;;                                     (org-pdfview-open link))))
+;(add-to-list 'org-file-apps 
+;             '("\\.pdf\\'" . (lambda (file link)
+;                                     (org-pdfview-open link))))
 
 
 #+END_SRC

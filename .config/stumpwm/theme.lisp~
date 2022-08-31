@@ -4,8 +4,8 @@
 (load-module "ttf-fonts")
 (xft:cache-fonts)
 
-(set-font `(,(make-instance 'xft:font :family "Fira Code Medium" :subfamily "Regular" :size 12 :antialias t)
-            ,(make-instance 'xft:font :family "FontAwesome" :subfamily "Regular" :size 12 :antialias t)))
+(set-font `(,(make-instance 'xft:font :family "Fira Code Medium" :subfamily "Regular" :size 14 :antialias t)
+            ,(make-instance 'xft:font :family "FontAwesome" :subfamily "Regular" :size 14 :antialias t)))
 
 
 (set-border-color        tg-nord1)
@@ -32,7 +32,7 @@
 
 (setf swm-gaps:*head-gaps-size*  0
       swm-gaps:*inner-gaps-size* 2
-      swm-gaps:*outer-gaps-size* 2)
+      swm-gaps:*outer-gaps-size* 0)
 
-(when *initializing*
-  (swm-gaps:toggle-gaps))
+;(when *initializing*
+;  (swm-gaps:toggle-gaps))

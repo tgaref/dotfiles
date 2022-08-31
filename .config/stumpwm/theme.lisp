@@ -6,6 +6,8 @@
 
 (set-font `(,(make-instance 'xft:font :family "Fira Code Medium" :subfamily "Regular" :size 14 :antialias t)
             ,(make-instance 'xft:font :family "FontAwesome" :subfamily "Regular" :size 14 :antialias t)))
+;(set-font `(,(make-instance 'xft:font :family "Ubuntu Mono" :subfamily "Regular" :size 16 :antialias t)
+;            ,(make-instance 'xft:font :family "FontAwesome" :subfamily "Regular" :size 14 :antialias t)))
 
 
 (set-border-color        tg-nord1)

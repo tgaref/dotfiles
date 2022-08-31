@@ -87,8 +87,8 @@ myConfig dbus = def
   , ((0          , xK_F12), spawn "amixer set Master toggle")
   , ((0          , xK_F3), namedScratchpadAction scratchpads "emacsdrop")
   , ((0          , xK_F2), namedScratchpadAction scratchpads "termdrop")
-  , ((0          , xK_F1), spawn "rofi -show run -lines 5 -theme Arthur -no-fixed-num-lines")
-  , ((altMask    , xK_Tab), spawn "rofi -show window -theme Arthur -no-fixed-num-lines")
+  , ((0          , xK_F1), spawn "rofi -show run -no-fixed-num-lines -theme launcher")
+  , ((altMask    , xK_Tab), spawn "rofi -show window -theme launcher -no-fixed-num-lines")
   , ((altMask .|. controlMask  , xK_Left  ), moveTo Prev (WSIs notSP))
   , ((altMask .|. controlMask  , xK_Right ), moveTo Next (WSIs notSP))
   , ((controlMask .|. shiftMask, xK_Right),  shiftToNext)
@@ -182,7 +182,7 @@ scratchpads = [ NS "emacsdrop" "emacsclient --alternate-editor='' --no-wait --cr
 --              , NS "ranger" "alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml -t ranger -e ranger"
                  (title =? "emacsdrop") (customFloating $ RationalRect (1/10) (1/40) (4/5) (3/4))
 --              , NS "tmux" "urxvtc -e tmux" (title =? "tmux")
-              , NS "termdrop" "alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml -t scratchdrop"
+              , NS "termdrop" "alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml -t scratchdrop -e tmux"
                 (title =? "scratchdrop") (customFloating $ RationalRect (1/10) (1/40) (4/5) (4/5))
               ]
 
@@ -196,7 +196,7 @@ myStartupHook = do
   spawn "picom"
   spawn "nm-applet"
   spawn "megasync"
-  spawn "dropbox start"
+--  spawn "dropbox start"
   spawn "xfce4-power-manager"
   spawn "udiskie"
   spawn "setxkbmap -layout \"us,gr\" -option grp:win_space_toggle -option grp_led:scroll :2"

@@ -53,7 +53,8 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Noto Sans Mono:pixelsize=15:antialias=true;1
+font-0 = Fira Code Medium:pixelsize=15:antialias=true;1
+;font-0 = Iosevka Term SS02:pixelsize=16:antialias=true;1
 font-1 = Noto Sans:fontformat=truetype:size=14:antialias=true;1
 font-2 = siji:pixelsize=10;1
 font-3 = FontAwesome:size=14;1
@@ -392,8 +393,8 @@ format-prefix = 
 
 label = %date% %time%
 
-label-foreground = #8ec07c
-;#00ff00
+;label-foreground = #8ec07c
+label-foreground = #41fb93
 
 [module/alsa]
 type = internal/alsa

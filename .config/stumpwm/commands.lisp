@@ -20,13 +20,13 @@
 (load-module "scratchpad")
 
 (defcommand scratch-term () ()
-  (scratchpad:toggle-floating-scratchpad "term" "alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml --class term"
+  (scratchpad:toggle-floating-scratchpad "term" "alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml --class term -e tmux"
                                          :initial-gravity :center
-                                         :initial-width 1200
-                                         :initial-height 700))
+                                         :initial-width 1400
+                                         :initial-height 800))
 
 (defcommand scratch-emacs () ()
   (scratchpad:toggle-floating-scratchpad "scratch-emacs" "emacsclient -c"
                                          :initial-gravity :center
-                                         :initial-width 1200
+                                         :initial-width 1400
                                          :initial-height 800))

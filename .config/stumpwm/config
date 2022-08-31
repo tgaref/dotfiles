@@ -42,7 +42,7 @@
 (run-shell-command "urxvtd")
 (run-shell-command "megasync")
 (run-shell-command "nm-applet")
-(run-shell-command "dropbox start")
+;(run-shell-command "dropbox start")
 
 ;;; Set keyboard 
 (run-shell-command "setxkbmap -layout \"us,gr\" -option grp:win_space_toggle -option grp_led:scroll :2")

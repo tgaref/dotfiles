@@ -1,0 +1,11 @@
+/* Message Dialog */
+
+@import "Arthur.rasi"
+
+window {
+    width:      	260px;
+    padding:    	1px;
+    border:		1px;
+    border-radius:      18px;
+    location:           center;
+}

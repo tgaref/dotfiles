@@ -1,0 +1,15 @@
+/* Message Dialog */
+
+/* @import "Arthur.rasi" */
+
+@import "rounded-nord-dark.rasi"
+
+/*
+window {
+    width:      	400px;
+    padding:    	10px;
+    border:		2px;
+    border-radius:      14px;
+    location:           center;
+}
+*/

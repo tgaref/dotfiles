@@ -153,25 +153,25 @@ mode "launch" {
 
 bindsym $mod+r mode "launch"
 
-#mode "resize" {
+mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.	
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-#	bindsym Left resize shrink width 5px
-#        bindsym Down resize grow height 5px
-#        bindsym Up resize shrink height 5px
-#        bindsym Right resize grow width 5px
+	bindsym Left resize shrink width 5px
+        bindsym Down resize grow height 5px
+        bindsym Up resize shrink height 5px
+        bindsym Right resize grow width 5px
 
         # back to normal: Enter or Escape or $mod+r
-#        bindsym Return mode "default"
-#        bindsym Escape mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 #        bindsym $mod+r mode "default"	
-#}
+}
 
-#bindsym Control+r mode "resize"
+bindsym Control+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -192,12 +192,11 @@ bindsym $mod+r mode "launch"
 
 new_window 1pixel
 
-bindsym F1 exec rofi -show run -lines 5 -theme Paper -font "Fira Mono 18"
-bindsym $mod+Tab exec rofi -show window -theme Paper -font "Fira Mono 18"
+bindsym F1 exec rofi -show run -no-fixed-num-lines -theme launcher
+bindsym $mod+Tab exec rofi -show window -theme launcher -no-fixed-num-lines
 bindsym $mod+e exec emacsclient -c
 bindsym $mod+b exec firefox
 bindsym $mod+t exec alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml
-bindsym $mod+u exec urxvtc -e tmux
 #bindsym control+F2 exec urxvtc -name scratch -e tmux
 #bindsym control+F3 exec urxvtc -name ranger -e ranger
 #bindsym control+F3 exec alacritty --class ranger --config-file /home/tgaref/.config/alacritty/alacritty.yml --command ranger

@@ -13,7 +13,7 @@ import XMonad.Actions.CycleWS (nextWS, prevWS, moveTo, shiftToNext, shiftToPrev,
 import XMonad.Actions.Navigation2D (windowGo, windowSwap, switchLayer, withNavigation2DConfig, Direction2D ( D,U,L,R ))
 import XMonad.Layout.LayoutCombinators ((|||))
 import XMonad.Actions.CycleSelectedLayouts 
-import XMonad.StackSet (tag, focusDown, RationalRect (..), sink, float, floating)
+import XMonad.StackSet (tag, focusDown, RationalRect (..), sink, float, floating, shift)
 import XMonad.Layout.ResizableTile (MirrorResize (MirrorShrink, MirrorExpand), ResizableTall (..)) 
 import XMonad.ManageHook
 import XMonad.Util.NamedScratchpad (namedScratchpadManageHook, customFloating,
@@ -73,10 +73,10 @@ myConfig dbus = def
   , focusedBorderColor = myFocusedBorderColor      
   }
   `removeKeys`
-  [ (myModMask             , xK_space)
+  [ (myModMask              , xK_space)
   , (myModMask .|. shiftMask, xK_q)
-  , (myModMask, xK_j)
-  , (myModMask, xK_k)
+  , (myModMask              , xK_j)
+  , (myModMask              , xK_k)
   ]          
   `additionalKeys`
   [ ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
@@ -93,8 +93,12 @@ myConfig dbus = def
   , ((altMask .|. controlMask  , xK_Right ), moveTo Next (WSIs notSP))
   , ((controlMask .|. shiftMask, xK_Right),  shiftToNext)
   , ((controlMask .|. shiftMask, xK_Left),   shiftToPrev)
-    -- Switch between layers
-  , ((myModMask             , xK_l ),    cycleThroughLayouts ["Full", "ResizableTall"])
+  ] `additionalKeys`
+  [ ((controlMask .|. shiftMask, k), windows $ shift i)
+  | (i, k) <- zip (fmap show [1 .. 9]) [xK_1 .. xK_9] --(workspaces conf) workspaceKeys
+  ] `additionalKeys`
+  [ -- Switch between layers
+    ((myModMask             , xK_l ),    cycleThroughLayouts ["Full", "ResizableTall"])
   , ((myModMask             , xK_n), windows focusDown)
     -- Directional navigation of windows
   , ((myModMask,                 xK_Right), windowGo R False)

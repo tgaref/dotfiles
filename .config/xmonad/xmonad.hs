@@ -87,8 +87,8 @@ myConfig dbus = def
   , ((0          , xK_F12), spawn "amixer set Master toggle")
   , ((0          , xK_F3), namedScratchpadAction scratchpads "emacsdrop")
   , ((0          , xK_F2), namedScratchpadAction scratchpads "termdrop")
-  , ((0          , xK_F1), spawn "rofi -show run -no-fixed-num-lines -theme launcher")
-  , ((altMask    , xK_Tab), spawn "rofi -show window -theme launcher -no-fixed-num-lines")
+  , ((0          , xK_F1), spawn "rofi -show drun -no-fixed-num-lines -show-icons -theme launcher")
+  , ((altMask    , xK_Tab), spawn "rofi -show window -theme launcher -show-icons -no-fixed-num-lines")
   , ((altMask .|. controlMask  , xK_Left  ), moveTo Prev (WSIs notSP))
   , ((altMask .|. controlMask  , xK_Right ), moveTo Next (WSIs notSP))
   , ((controlMask .|. shiftMask, xK_Right),  shiftToNext)
@@ -199,8 +199,8 @@ myStartupHook = do
   spawn "/home/tgaref/.config/polybar/launch-xmonad.sh"
   spawn "picom"
   spawn "nm-applet"
-  spawn "megasync"
---  spawn "dropbox start"
+--  spawn "megasync"
+  spawn "dropbox start"
   spawn "xfce4-power-manager"
   spawn "udiskie"
   spawn "setxkbmap -layout \"us,gr\" -option grp:win_space_toggle -option grp_led:scroll :2"

@@ -2,7 +2,9 @@
 
 /* @import "Arthur.rasi" */
 
-@import "rounded-nord-dark.rasi"
+/* @import "rounded-nord-dark.rasi" */
+
+@import "simple-tokyonight.rasi"
 
 /*
 window {

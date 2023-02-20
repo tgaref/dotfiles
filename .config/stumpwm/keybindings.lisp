@@ -58,7 +58,7 @@
 (define-key *top-map* (kbd "s-/") "hsplit")
 (define-key *top-map* (kbd "s--") "vsplit")
 (define-key *top-map* (kbd "s-Q") "exec /home/tgaref/local/bin/rofi-system.fish")
-(define-key *top-map* (kbd "F1") "exec rofi -show run -no-fixed-num-lines -theme launcher")
+(define-key *top-map* (kbd "F1") "exec rofi -show drun -no-fixed-num-lines -theme launcher")
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer -q set Master 2%+ unmute")
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer -q set Master 2%- unmute")
 (define-key *top-map* (kbd "XF86AudioMute") "exec amixer -q set Master 1+ toggle")

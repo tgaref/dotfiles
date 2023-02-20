@@ -7,7 +7,7 @@ setxkbmap -layout \"us,gr\" -option grp:win_space_toggle -option grp_led:scroll 
 xset r rate 200 30
 picom &
 nm-applet &
-megasync &
+dropbox start &
 urxvtd &
 xfce4-power-manager &
 udiskie &

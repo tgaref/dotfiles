@@ -25,5 +25,3 @@
 ;(load "~/.emacs.d/myexwm")
 
 (provide 'init)
-
-;;; init.el ends here

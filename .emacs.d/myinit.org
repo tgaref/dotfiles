@@ -333,6 +333,17 @@
   ;; :hook (eshell-mode-hook . esh-autosuggest-mode)
   :ensure t)
 #+END_SRC
+
+* Yasnippet
+#+BEGIN_SRC emacs-lisp
+    (use-package yasnippet
+      :ensure t
+      :config
+        (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+        (yas-reload-all)
+        (add-hook 'prog-mode-hook #'yas-minor-mode))
+#+END_SRC
+
 * Theme
 #+begin_src emacs-lisp
   (use-package doom-themes 
@@ -500,9 +511,9 @@
   ; :ensure t
   ; :config (load (expand-file-name "~/.roswell/helper.el")))
 
-  (use-package sly
-   :ensure t
-   :config (load (expand-file-name "~/.roswell/helper.el")))
+  ;(use-package sly
+  ; :ensure t
+  ; :config (load (expand-file-name "~/.roswell/helper.el")))
 
 #+END_SRC
 
@@ -578,8 +589,6 @@
 (use-package merlin
   :ensure t
   :config
-  (with-eval-after-load 'company
-    (add-to-list 'company-backends 'merlin-company-backend))
   (add-hook 'tuareg-mode-hook 'merlin-mode)
   (add-hook 'merlin-mode-hook 'company-mode)
   (setq merlin-error-after-save nil))
@@ -619,58 +628,88 @@
 
 * Flycheck, company, lsp-mode
 #+BEGIN_SRC emacs-lisp
-(use-package flycheck
-  :ensure t
-  :hook (prog-mode . flycheck-mode))
+  (use-package flycheck
+    :ensure t
+    :hook (prog-mode . flycheck-mode))
 
-(use-package company
-  :ensure t
-  :hook (prog-mode . company-mode)
-  :config (setq company-tooltip-align-annotations t)
-          (setq company-minimum-prefix-length 1))
+  (use-package company
+    :ensure t
+    :hook (prog-mode . company-mode)
+    :config (setq company-tooltip-align-annotations t)
+            (setq company-minimum-prefix-length 1))
 
-(use-package lsp-mode
-  :ensure t
-  :commands lsp)
+  (use-package lsp-mode
+    :ensure t
+    :commands lsp
+    :custom
+    ;; what to use when checking on-save. "check" is default, I prefer clippy
+    (lsp-rust-analyzer-cargo-watch-command "clippy")
+    (lsp-eldoc-render-all t)
+    (lsp-idle-delay 0.6)
+    ;; enable / disable the hints as you prefer:
+    (lsp-rust-analyzer-server-display-inlay-hints t)
+    (lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
+    (lsp-rust-analyzer-display-chaining-hints t)
+    (lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
+    (lsp-rust-analyzer-display-closure-return-type-hints t)
+    (lsp-rust-analyzer-display-parameter-hints t)
+    (lsp-rust-analyzer-display-reborrow-hints nil)
+    :config
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode
+    :custom
+    (lsp-ui-peek-always-show t)
+    (lsp-ui-sideline-show-hover t)
+    (lsp-ui-doc-enable nil))
 #+END_SRC
+
+#+RESULTS:
+: t
 
 * Rust
 
 #+BEGIN_SRC emacs-lisp 
-(use-package toml-mode
-  :ensure t)
+  (use-package toml-mode
+    :ensure t)
 
-(use-package rust-mode
-  :ensure t
-  :mode "\\.rs\\'"
-  :hook (rust-mode . lsp))
+  (use-package rust-mode
+    :ensure t
+    :mode "\\.rs\\'"
+    :hook (rust-mode . lsp))
 
-(use-package cargo
-  :ensure t
-  :after rust-mode
-  :hook (rust-mode . cargo-minor-mode))
+  (use-package cargo
+    :ensure t
+    :after rust-mode
+    :hook (rust-mode . cargo-minor-mode))
 
-(use-package flycheck-rust
-  :ensure t
-  :after rust-mode
-  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+  (use-package flycheck-rust
+    :ensure t
+    :after rust-mode
+    :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
-(use-package racer
-  :ensure t
-  :after rust-mode
-  :init
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-  (add-hook 'racer-mode-hook #'company-mode)
-  (require 'rust-mode)
-  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-  (define-key rust-mode-map (kbd "C-c r") #'rust-run)
-  (define-key rust-mode-map (kbd "C-c c") #'rust-compile)
-  (define-key rust-mode-map (kbd "C-c f") #'rust-format-buffer)
-  (define-key rust-mode-map (kbd "C-c t") #'rust-test)
-  (define-key rust-mode-map (kbd "C-c d") #'rust-dbg-wrap-or-unwrap)
-  (setq company-tooltip-align-annotations t))
+  (use-package rustic
+    :ensure t
+    :after rust-mode
+    :bind (:map rustic-mode-map
+                ("M-j" . lsp-ui-imenu)
+                ("M-?" . lsp-find-references)
+                ("C-c C-c l" . flycheck-list-errors)
+                ("C-c C-c a" . lsp-execute-code-action)
+                ("C-c C-c r" . lsp-rename)
+                ("C-c C-c q" . lsp-workspace-restart)
+                ("C-c C-c Q" . lsp-workspace-shutdown)
+                ("C-c C-c s" . lsp-rust-analyzer-status))
+    :config 
+    ;; uncomment for less flashiness
+    ;; (setq lsp-eldoc-hook nil)
+    ;; (setq lsp-enable-symbol-highlighting nil)
+    (setq lsp-signature-auto-activate t)
+    ;(setq rustic-analyzer-command '("~/.cargo/bin/rust-analyzer"))
+    ;;(add-hook 'rustic-mode-hook))
+    (setq rustic-format-on-save t))
 
 #+END_SRC
 
@@ -936,7 +975,7 @@ This function is meant to be mapped to a key in `rg-mode-map'."
     (setq dashboard-center-content t))    
  :config (dashboard-setup-startup-hook))
 
-(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 #+END_SRC
 * Eterm-256color
 
@@ -984,15 +1023,19 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 #+END_SRC
 * vterm
 #+BEGIN_SRC emacs-lisp
-  (use-package vterm
-   :ensure t
-   :commands vterm
-   :config
-    (setq vterm-max-scrollback 10000))
+      (use-package vterm
+       :ensure t
+       :commands vterm
+       :config
+        (setq vterm-max-scrollback 10000))
 
-  (use-package multi-vterm 
-    :ensure t
-    :init (bind-key "C-c r v" 'multi-vterm))
+      (use-package multi-vterm 
+        :ensure t
+        :init
+         (bind-key "C-c r v" 'multi-vterm)
+         (bind-key "C-`" 'multi-vterm-dedicated-toggle)
+        :config
+         (setq multi-vterm-dedicated-window-height 50))
 #+END_SRC
 
 * Weblorg

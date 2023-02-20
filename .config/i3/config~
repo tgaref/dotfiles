@@ -192,7 +192,7 @@ bindsym Control+r mode "resize"
 
 new_window 1pixel
 
-bindsym F1 exec rofi -show drun -no-fixed-num-lines -theme launcher
+bindsym F1 exec rofi -show run -no-fixed-num-lines -theme launcher
 bindsym $mod+Tab exec rofi -show window -theme launcher -no-fixed-num-lines
 bindsym $mod+e exec emacsclient -c
 bindsym $mod+b exec firefox

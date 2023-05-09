@@ -1,0 +1,118 @@
+#
+# wm independent hotkeys
+#
+
+# window switcher
+alt + Tab
+    rofi -show window -theme launcher
+
+# toggle dropdown terminal
+#F2
+#        tdrop -a -w 70% -h 70% -y 4% -x 15% alacritty -e tmux
+
+# toggle dropdown emacsclient
+#F3
+#        tdrop -a -w 70% -h 70% -y 4% -x 15% emacsclient -c
+
+# toggle dropdown emacsclient
+F2
+        herbstclient spawn ~/.config/herbstluftwm/scripts/scratchpad.sh
+
+# terminal emulator
+super + r; t
+        alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml &
+
+super + r; b
+        firefox &
+
+super + r; e
+        emacsclient -c &
+
+super + r; c
+        code &
+
+# program launcher
+F1
+        rofi -show drun -no-fixed-num-lines -theme launcher
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# hlwm hotkeys
+#
+
+# quit/restart bspwm
+super + shift + q
+	/home/tgaref/local/bin/rofi-system.fish
+
+# Audiokeys
+XF86AudioMute
+	amixer sset Master toggle; pkill -RTMIN+10 blocks
+XF86Audio{Raise,Lower}Volume
+	amixer sset Master 5%{+,-}; pkill -RTMIN+10 blocks
+
+# alternate between the tiled and monocle layout
+super + l
+        herbstclient or , and . compare tags.focus.curframe_wcount = 2                   \
+                              . cycle_layout +1 vertical horizontal max vertical grid    \
+                        , cycle_layout +1
+
+
+#
+# state/flags
+#
+
+# set the window state
+super + shift + f
+        herbstclient floating toggle
+
+super + f
+        herbstclient fullscreen toggle
+
+super + t
+        herbstclient pseudotime toggle
+
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+super + {Left,Down,Up,Right}
+        herbstclient focus {left, down, up, right}
+
+super + shift + {Left,Down,Up,Right}
+        herbstclient shift {left, down, up, right} 
+
+super + Tab
+        herbstclient cycle 1
+
+# focus the next/previous desktop in the current monitor
+control + alt + {Left,Right}
+        herbstclient use_index {-1, +1} --skip-visible
+
+# move window to next/pervious desktop
+control + shift + {Left,Right}
+	herbstclient move_index {-1, +1}
+
+#
+# preselect
+#
+
+# preselect the direction
+super + c; {Down,Right}
+        herbstclient split {bottom, right} 0.5 
+
+# cancel the preselection for the focused node
+super + c; space
+	herbstclient remove
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+super + e : {Left,Down,Up,Right}
+        herbstclient resize {left, down, up, right} 0.02

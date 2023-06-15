@@ -49,20 +49,20 @@
         (id (exwm--buffer->id (window-buffer))))
     (exwm-workspace-move-window frame id)))
 
-(defun tg/setup-window-by-class ()
-  (interactive)
-  (pcase exwm-class-name
-    ("Emacs" (call-interactively #'exwm-input-toggle-keyboard))
-    ("Microsoft Teams - Preview" (exwm-workspace-move-window 0))
-    ("firefox" (exwm-workspace-move-window 1))
-    ("brave" (exwm-workspace-move-window 1))
-    ("mpv" (exwm-floating-toggle-floating))))
+;(defun tg/setup-window-by-class ()
+;  (interactive)
+;  (pcase exwm-class-name
+;    ("Emacs" (call-interactively #'exwm-input-toggle-keyboard))
+;    ("Microsoft Teams - Preview" (exwm-workspace-move-window 0))
+;    ("firefox" (exwm-workspace-move-window 1))
+;    ("brave" (exwm-workspace-move-window 1))
+;    ("mpv" (exwm-floating-toggle-floating))))
 
 ;; Manipulate windows as they're created
-(add-hook 'exwm-manage-finish-hook
-          (lambda ()
+;(add-hook 'exwm-manage-finish-hook
+;          (lambda ()
             ;; Send the window where it belongs
-            (tg/setup-window-by-class)))
+;            (tg/setup-window-by-class)))
 
 ;; Hide the modeline on all floating windows
 (add-hook 'exwm-floating-setup-hook
@@ -162,19 +162,20 @@
 ;; uncommenting the following line.
 ;(setq exwm-workspace-minibuffer-position 'bottom)
 
+(desktop-environment-mode)
+
 ;; Do not forget to enable EXWM. It will start by itself when things are
 ;; ready.  You can put it _anywhere_ in your configuration.
-(exwm-enable)
 
-(desktop-environment-mode)
+(exwm-enable)
 
 (start-process "" nil "/usr/bin/picom")
 (start-process-shell-command "" nil "/usr/bin/xset r rate 200 30")
 (start-process-shell-command "" nil "/usr/bin/setxkbmap -layout \"us,gr\" -option grp:win_space_toggle -option grp_led:scroll :2")
 ;;(start-process-shell-command "" nil "/usr/bin/setxkbmap -layout \"us,gr\" -option grp:alt_shift_toggle -option grp_led:scroll :2")
 (start-process "" nil "/usr/bin/nm-applet")
-(start-process "" nil "/usr/bin/megasync")
-;; (start-process "" nil "/usr/bin/dropbox start")
+;; (start-process "" nil "/usr/bin/megasync")
+(start-process "" nil "/usr/bin/dropbox start")
 (start-process "" nil "/usr/bin/udiskie")
 (start-process "" nil "/usr/bin/xfce4-power-manager")
 

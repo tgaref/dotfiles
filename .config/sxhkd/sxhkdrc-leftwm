@@ -1,0 +1,52 @@
+#
+# wm independent hotkeys
+#
+
+# window switcher
+alt + Tab
+    rofi -show window -theme launcher
+
+# toggle dropdown terminal
+F2
+        tdrop -a -w 70% -h 70% -y 4% -x 15% alacritty -e tmux
+
+# toggle dropdown emacsclient
+F3
+        tdrop -a -w 70% -h 70% -y 4% -x 15% emacsclient -c
+
+
+# terminal emulator
+super + r; u
+	urxvtc
+
+super + r; t
+        alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml &
+
+super + r; b
+        firefox &
+
+super + r; e
+        emacsclient -c &
+
+super + r; c
+        code &
+
+# program launcher
+F1
+        rofi -show drun -no-fixed-num-lines -theme launcher
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+
+# quit/restart bspwm
+super + shift + q
+	/home/tgaref/local/bin/rofi-system.fish
+
+# Audiokeys
+XF86AudioMute
+	amixer sset Master toggle; pkill -RTMIN+10 blocks
+XF86Audio{Raise,Lower}Volume
+	amixer sset Master 5%{+,-}; pkill -RTMIN+10 blocks
+

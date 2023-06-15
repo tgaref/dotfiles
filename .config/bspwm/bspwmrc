@@ -1,5 +1,6 @@
 #! /bin/sh
 
+xsetroot -cursor_name left_ptr
 sxhkd &
 polybar bspwm &
 emacs -daemon
@@ -29,4 +30,5 @@ bspc rule -a Google-Chrome   desktop='^2'      state=tiled    follow=on
 bspc rule -a brave-browser   desktop='^2'      state=tiled    follow=on
 bspc rule -a Emacs                             state=tiled    follow=on
 
-hsetroot -fill /home/tgaref/Pictures/604102-data-science-wallpaper.jpg 
+# hsetroot -fill /home/tgaref/Pictures/604102-data-science-wallpaper.jpg 
+hsetroot -fill /home/tgaref/Pictures/nord-wallpaper.jpg

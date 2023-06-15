@@ -22,12 +22,20 @@ background = #222
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
+;foreground = #cccccc
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 gray = #2f343f
 gray-trans = #cc2f343f
+
+my-green = #2de1a9
+; aurora
+a-magenta = #b48ead
+a-orange = #d08770
+a-red = #bf616a
+
 
 [bar/base]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -83,21 +91,52 @@ inherit = bar/base
 
 modules-left = i3 xwindow
 modules-center = 
-modules-right = xbacklight xkeyboard cpu memory battery wlan alsa date
+modules-right = xbacklight xkeyboard cpu memory battery wlan alsa date time
+
+[bar/leftwmbar]
+monitor = ${env:MONITOR}
+width = 100%
+height = 22
+modules-left = ewmh xwindow
+modules-center =
+modules-right = xkeyboard cpu memory battery alsa date time
+
+[bar/hlwm]
+inherit = bar/base
+monitor = ${env:MONITOR}
+width = 100%
+height = 22
+modules-left = hlwm xwindow
+modules-center =
+modules-right = xkeyboard cpu memory battery alsa date time
+
+[module/hlwm]
+type = custom/script
+
+exec-if = ps -C herbstluftwm >/dev/null 2>&1
+exec = MONITOR=HDMI-0 ~/.config/polybar/herbstluftwm.sh
+tail = true
+
+[bar/penrosebar]
+inherit = bar/base
+
+modules-left = ewmh xwindow
+modules-center = 
+modules-right = xkeyboard cpu memory battery alsa date time
 
 [bar/xmonadbar]
 inherit = bar/base
 
 modules-left = xmonad
 modules-center = 
-modules-right = xkeyboard cpu memory battery alsa date
+modules-right = xkeyboard cpu memory battery alsa date time
 
 [bar/bspwm]
 inherit = bar/base
 
 modules-left = bspwm xwindow
 modules-center = 
-modules-right = xkeyboard cpu memory battery wlan alsa date
+modules-right = xkeyboard cpu memory battery wlan alsa date time
 
 [module/bspwm]
 type = internal/bspwm
@@ -245,7 +284,6 @@ exec = /home/tgaref/.cabal/bin/xmonad-dbus
 
 tail = true
 
-
 [module/xwindow]
 type = internal/xwindow
 format = <label>
@@ -379,22 +417,27 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
+[module/time]
+type = internal/date
+date = "%H:%M"
+format-foreground = ${colors.my-green}
+
 [module/date]
 type = internal/date
-interval = 5
+date = "%a, %b %d"
+format-foreground = ${colors.a-magenta}
 
-date = " %d-%m-%Y"
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
-time-alt = %H:%M:%S
-
-format-prefix = 
-
-label = %date% %time%
-
+;[module/date]
+;type = internal/date
+;interval = 5
+;date = " %d-%m-%Y"
+;date-alt = " %Y-%m-%d"
+;time = %H:%M
+;time-alt = %H:%M:%S
+;format-prefix = 
+;label = %date% %time%
 ;label-foreground = #8ec07c
-label-foreground = #41fb93
+;label-foreground = #41fb93
 
 [module/alsa]
 type = internal/alsa

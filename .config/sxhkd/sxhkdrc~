@@ -33,7 +33,7 @@ super + r; c
 
 # program launcher
 F1
-        rofi -show run -no-fixed-num-lines -theme launcher
+        rofi -show drun -no-fixed-num-lines -theme launcher
 
 # make sxhkd reload its configuration files:
 super + Escape

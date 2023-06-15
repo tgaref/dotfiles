@@ -113,7 +113,7 @@ super + {grave,Tab}
 #	bspc wm -h on
 
 # send to the given desktop
-ctrl + shift + {1-8}
+control + shift + {1-8}
 	bspc node -d '^{1-8}'
 
 # move window to next/pervious desktop

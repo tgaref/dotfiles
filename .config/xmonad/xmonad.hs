@@ -97,9 +97,8 @@ myConfig dbus = def
   [ ((controlMask .|. shiftMask, k), windows $ shift i)
   | (i, k) <- zip (fmap show [1 .. 9]) [xK_1 .. xK_9] --(workspaces conf) workspaceKeys
   ] `additionalKeys`
-  [ -- Switch between layers
+  [ -- Switch between layouts
     ((myModMask             , xK_l ),    cycleThroughLayouts ["Full", "ResizableTall"])
-  , ((myModMask             , xK_n), windows focusDown)
     -- Directional navigation of windows
   , ((myModMask,                 xK_Right), windowGo R False)
   , ((myModMask,                 xK_Left ), windowGo L False)
@@ -206,8 +205,8 @@ myStartupHook = do
   spawn "setxkbmap -layout \"us,gr\" -option grp:win_space_toggle -option grp_led:scroll :2"
   spawn "xset r rate 200 30"
   spawn "xsetroot -cursor_name left_ptr"
-  spawn "hsetroot -fill /home/tgaref/Pictures/604102-data-science-wallpaper.jpg"
---  spawn "hsetroot -fill /home/tgaref/Pictures/arch-logo.jpg"
+--  spawn "hsetroot -fill /home/tgaref/Pictures/604102-data-science-wallpaper.jpg"
+  spawn "hsetroot -fill /home/tgaref/Pictures/nord-wallpaper.jpg"
 --  spawn "urxvtd"
   spawn "emacs --daemon"
  

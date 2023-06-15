@@ -27,14 +27,14 @@
 
 * Window controls
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c <left>") 'windmove-left)
-  (global-set-key (kbd "C-c <right>") 'windmove-right)         ; move to right window
-  (global-set-key (kbd "C-c <up>") 'windmove-up)              ; move to upper window
-  (global-set-key (kbd "C-c <down>") 'windmove-down)          ; move to lower window
+  (global-set-key (kbd "C-x <left>") 'windmove-left)
+  (global-set-key (kbd "C-x <right>") 'windmove-right)         ; move to right window
+  (global-set-key (kbd "C-x <up>") 'windmove-up)              ; move to upper window
+  (global-set-key (kbd "C-x <down>") 'windmove-down)          ; move to lower window
   (global-set-key (kbd "s-[") 'shrink-window-horizontally)
   (global-set-key (kbd "s-]") 'enlarge-window-horizontally)
-  (global-set-key (kbd "s-}") 'shrink-window)
-  (global-set-key (kbd "s-{") 'enlarge-window)
+  (global-set-key (kbd "s-{") 'shrink-window)
+  (global-set-key (kbd "s-}") 'enlarge-window)
 #+END_SRC
 
 * org-mode settings
@@ -136,6 +136,35 @@
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 
 #+END_SRC
+
+* restclient
+#+BEGIN_SRC emacs-lisp
+  (use-package restclient
+   :ensure t)
+  (use-package ob-restclient
+    :ensure t)
+#+END_SRC
+
+* org-babel
+#+BEGIN_SRC emacs-lisp
+
+  ;; active Babel languages
+  (org-babel-do-load-languages
+  'org-babel-load-languages
+  '((shell     . t)
+   (emacs-lisp . t)
+   (perl       . t)
+   (python     . t)
+   (ruby       . t)
+   (css        . t)
+   (restclient . t)
+   (julia      . t)
+   (latex      . t)))
+
+      (setq org-confirm-babel-evaluate nil)
+#+END_SRC
+
+#+RESULTS:
 
 * quelpa
 
@@ -336,12 +365,13 @@
 
 * Yasnippet
 #+BEGIN_SRC emacs-lisp
-    (use-package yasnippet
-      :ensure t
-      :config
-        (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-        (yas-reload-all)
-        (add-hook 'prog-mode-hook #'yas-minor-mode))
+  (use-package yasnippet
+    :ensure t
+    :config
+      (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+      (yas-reload-all)
+      (yas-global-mode 1)
+      (add-hook 'prog-mode-hook #'yas-minor-mode))
 #+END_SRC
 
 * Theme
@@ -807,6 +837,17 @@
 (diredful-mode 1)
 #+END_SRC
 
+* Dired-sidebar
+#+BEGIN_SRC emacs-lisp
+  (use-package dired-sidebar
+    :ensure t
+    :commands (dired-sidebar-toggle-sidebar)
+    :bind (("C-b" . dired-sidebar-toggle-sidebar))
+    :config (setq dired-sidebar-subtree-line-prefix "__")
+            (setq dired-sidebar-theme 'vscode)
+            (setq dired-sidebar-use-term-integration t))
+#+END_SRC
+
 * Which key
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
@@ -1023,19 +1064,21 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 #+END_SRC
 * vterm
 #+BEGIN_SRC emacs-lisp
-      (use-package vterm
-       :ensure t
-       :commands vterm
-       :config
-        (setq vterm-max-scrollback 10000))
+  (use-package vterm
+   :ensure t
+   :commands vterm
+   :config
+    (setq vterm-max-scrollback 10000))
 
-      (use-package multi-vterm 
-        :ensure t
-        :init
-         (bind-key "C-c r v" 'multi-vterm)
-         (bind-key "C-`" 'multi-vterm-dedicated-toggle)
-        :config
-         (setq multi-vterm-dedicated-window-height 50))
+  (use-package multi-vterm 
+    :ensure t
+    :init
+     (bind-key "C-c r v" 'multi-vterm)
+     (bind-key "C-`" 'multi-vterm-dedicated-toggle)
+     (bind-key "C-<prior>" 'multi-vterm-next) ; Control - PageUp
+     (bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
+    :config
+     (setq multi-vterm-dedicated-window-height 50))
 #+END_SRC
 
 * Weblorg

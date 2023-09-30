@@ -117,7 +117,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Iosevka Term SS12" :foundry "UKWN" :slant normal :weight normal :height 173 :width normal))))
+ '(default ((t (:family "Iosevka Term SS12" :foundry "UKWN" :slant normal :weight medium :height 166 :width normal))))
  '(eterm-256color-blue ((t (:foreground "#268bd2"))))
  '(eterm-256color-bright-black ((t (:foreground "#fdf6e3" :weight semi-bold))))
  '(eterm-256color-bright-blue ((t (:foreground "DodgerBlue1" :weight semi-bold))))

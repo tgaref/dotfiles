@@ -20,7 +20,7 @@ F2
 
 # terminal emulator
 super + r; t
-        alacritty --config-file /home/tgaref/.config/alacritty/alacritty.yml &
+        alacritty &
 
 super + r; b
         firefox &

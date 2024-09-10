@@ -12,17 +12,22 @@
 
   ;; Revert Dired and other buffers
   (setq global-auto-revert-non-file-buffers t)
+  (setq scroll-step            1
+        scroll-conservatively  10000)
 
+  (setq frame-title-format "%b - emacs")
 
 #+END_SRC
 
 * Desktop environment
 
 #+BEGIN_SRC emacs-lisp 
-
-(use-package desktop-environment
-  :ensure t)
+  (use-package exwm
+    :straight t)
   
+  (use-package desktop-environment
+    :straight t)
+
 #+END_SRC
 
 * Window controls
@@ -40,128 +45,254 @@
 * org-mode settings
 
 #+BEGIN_SRC emacs-lisp
-  (use-package org
-    :init (progn
-            (bind-key "\C-cl" 'org-store-link)
-            (bind-key "\C-ca" 'org-agenda)
-            (bind-key "\C-cc" 'org-capture)
-            (bind-key "\C-cb" 'org-iswitchb))
-    :config (progn
-              (setq org-todo-keyword-faces
-                    '(("TODO" . org-warning) ("PROGRESS" . "yellow")))
-              (setq org-enforce-todo-dependencies t)
-              (setq org-list-allow-alphabetical t)
-              (setq org-hide-leading-stars t)
-              (setq org-ellipsis " ▾")
-              (setq org-hide-emphasis-markers t)
-              (variable-pitch-mode 1)))
+    (use-package org
+      :straight nil
+      :init (progn
+              (bind-key "\C-cl" 'org-store-link)
+              (bind-key "\C-ca" 'org-agenda)
+              (bind-key "\C-cc" 'org-capture)
+              (bind-key "\C-cb" 'org-iswitchb))
+      :config (progn
+                (setq org-todo-keyword-faces
+                      '(("TODO" . org-warning) ("PROGRESS" . "yellow")))
+                (setq org-enforce-todo-dependencies t)
+                (setq org-list-allow-alphabetical t)
+                (setq org-hide-leading-stars t)
+                (setq org-ellipsis " ▾")
+                (setq org-hide-emphasis-markers t)
+                (setq org-startup-indented t)
+                (variable-pitch-mode 1)))
 
-  (use-package org-bullets
-    :ensure t
-    :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+    ;(use-package org-modern
+    ;  :straight t
+    ;  :config (setq
+               ;; Edit settings
+    ;           org-auto-align-tags nil
+    ;           org-tags-column 0
+    ;           org-catch-invisible-edits 'show-and-error
+    ;           org-special-ctrl-a/e t
+    ;           org-insert-heading-respect-content t
 
-  (add-hook 'org-mode-hook 'org-indent-mode)
-  (setq org-agenda-default-appointment-duration 60)
-  (setq org-icalendar-store-UID t)
-  (setq org-agenda-files
-    (quote
-      ("~/org/agenda/uoc.org" "~/org/agenda/eap.org" "~/org/agenda/personal.org" "~/org/agenda/notes.org")))
-   (setq org-capture-templates
-     (quote
-      (("e" "ΕΑΠ templates")
-       ("et" "ΕΑΠ TODO" entry
-        (file+headline "~/org/agenda/eap.org" "Capture")
-        (file "~/org/templates/todo.tmpl")
-        :empty-lines-before 1)
-       ("ee" "ΕΑΠ Εξέταση" entry
-        (file+headline "~/org/agenda/eap.org" "Capture")
-        (file "~/org/templates/eap-exam.tmpl")
-        :empty-lines-before 1)
-       ("ep" "ΕΑΠ ΟΔΠ" entry
-        (file+headline "~/org/agenda/eap.org" "Capture")
-        (file "~/org/templates/eap-odp.tmpl")
-        :empty-lines-before 1)
-       ("es" "ΕΑΠ ΟΣΣ" entry
-        (file+headline "~/org/agenda/eap.org" "Capture")
-        (file "~/org/templates/eap-oss.tmpl")
-        :empty-lines-before 1)
-       ("u" "UoC templates")
-       ("ut" "UoC TODO" entry
-        (file+headline "~/org/agenda/uoc.org" "Capture")
-        (file "~/org/templates/todo.tmpl")
-        :empty-lines-before 1)
-       ("ue" "UoC Event" entry
-        (file+headline "~/org/agenda/uoc.org" "Capture")
-        (file "~/org/templates/event.tmpl")
-        :empty-lines-before 1)
-       ("p" "Personal templates")
-       ("pt" "Personal TODO" entry
-        (file+headline "~/org/agenda/personal.org" "Capture")
-        (file "~/org/templates/todo.tmpl")
-        :empty-lines-before 1)
-       ("pe" "Personal Event" entry
-        (file+headline "~/org/agenda/personal.org" "Capture")
-        (file "~/org/templates/event.tmpl")
-        :empty-lines-before 1)
-       ("n" "Note" entry
-        (file "~/org/agenda/notes.org")
-        (file "~/org/templates/notes.tmpl")
-        :empty-lines-before 1))))
-   (setq org-refile-allow-creating-parent-nodes (quote confirm))
-   (setq org-refile-targets (quote ((org-agenda-files :level . 1))))
-   (setq org-refile-use-outline-path (quote file))
+               ;; Org styling, hide markup etc.
+    ;           org-hide-emphasis-markers t
+    ;           org-pretty-entities t
+    ;           org-ellipsis "…"
 
-   (defun org-convert-csv-table (beg end)
-     (interactive (list (mark) (point)))
-     (org-table-convert-region beg end ","))
+               ;; Agenda styling
+    ;           org-agenda-tags-column 0
+    ;           org-agenda-block-separator ?─
+    ;           org-agenda-time-grid
+    ;           '((daily today require-timed)
+    ;             (800 1000 1200 1400 1600 1800 2000)
+    ;             " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+    ;           org-agenda-current-time-string
+    ;           "◀── now ─────────────────────────────────────────────────")
+
+    ;  (global-org-modern-mode))
+
+
+    (use-package org-bullets
+      :straight t
+      :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+    (add-hook 'org-mode-hook 'org-indent-mode)
 
   (add-hook 'org-mode-hook
-    (lambda ()
-    (define-key org-mode-map (kbd "C-c t") 'org-convert-csv-table)))
+          (lambda ()
+            (push '("[ ]" .  "⭕") prettify-symbols-alist)
+            (push '("[X]" . "✔" ) prettify-symbols-alist)
+            (push '("[-]" . "⋯" ) prettify-symbols-alist)
+            (prettify-symbols-mode)))
 
-  (set-face-attribute 'org-document-title nil :font "Ubuntu" :weight 'bold :height 1.3)
+  (setq org-agenda-default-appointment-duration 60)
+    (setq org-icalendar-store-UID t)
+    (setq org-agenda-files
+      (quote
+        ("~/notes/agenda/uoc.org" "~/notes/agenda/eap.org" "~/notes/agenda/personal.org" "~/notes/agenda/notes.org")))
+     (setq org-capture-templates
+       (quote
+        (("e" "ΕΑΠ templates")
+         ("et" "ΕΑΠ TODO" entry
+          (file+headline "~/notes/agenda/eap.org" "Capture")
+          (file "~/notes/templates/todo.tmpl")
+          :empty-lines-before 1)
+         ("ee" "ΕΑΠ Εξέταση" entry
+          (file+headline "~/notes/agenda/eap.org" "Capture")
+          (file "~/notes/templates/eap-exam.tmpl")
+          :empty-lines-before 1)
+         ("ep" "ΕΑΠ ΟΔΠ" entry
+          (file+headline "~/notes/agenda/eap.org" "Capture")
+          (file "~/notes/templates/eap-odp.tmpl")
+          :empty-lines-before 1)
+         ("es" "ΕΑΠ ΟΣΣ" entry
+          (file+headline "~/notes/agenda/eap.org" "Capture")
+          (file "~/notes/templates/eap-oss.tmpl")
+          :empty-lines-before 1)
+         ("u" "UoC templates")
+         ("ut" "UoC TODO" entry
+          (file+headline "~/notes/agenda/uoc.org" "Capture")
+          (file "~/notes/templates/todo.tmpl")
+          :empty-lines-before 1)
+         ("ue" "UoC Event" entry
+          (file+headline "~/notes/agenda/uoc.org" "Capture")
+          (file "~/notes/templates/event.tmpl")
+          :empty-lines-before 1)
+         ("p" "Personal templates")
+         ("pt" "Personal TODO" entry
+          (file+headline "~/notes/agenda/personal.org" "Capture")
+          (file "~/notes/templates/todo.tmpl")
+          :empty-lines-before 1)
+         ("pe" "Personal Event" entry
+          (file+headline "~/notes/agenda/personal.org" "Capture")
+          (file "~/notes/templates/event.tmpl")
+          :empty-lines-before 1)
+         ("n" "Note" entry
+          (file "~/notes/agenda/notes.org")
+          (file "~/notes/templates/notes.tmpl")
+          :empty-lines-before 1))))
+     (setq org-refile-allow-creating-parent-nodes (quote confirm))
+     (setq org-refile-targets (quote ((org-agenda-files :level . 1))))
+     (setq org-refile-use-outline-path (quote file))
 
-  (add-hook 'org-mode-hook (lambda ()
-    (dolist (face '((org-level-1 . 1.1)
-                    (org-level-2 . 1.05)
-                    (org-level-3 . 1.00)
-                    (org-level-4 . 1.00)
-                    (org-level-5 . 0.90)
-                    (org-level-6 . 0.80)
-                    (org-level-7 . 0.80)
-                    (org-level-8 . 0.80)))
-      (set-face-attribute (car face) nil :font "Ubuntu" :weight 'medium :height (cdr face)))))
-      ;(set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'medium :height (cdr face)))))
+     (defun org-convert-csv-table (beg end)
+       (interactive (list (mark) (point)))
+       (org-table-convert-region beg end ","))
 
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+    (add-hook 'org-mode-hook
+      (lambda ()
+      (define-key org-mode-map (kbd "C-c t") 'org-convert-csv-table)))
+
+    ; (set-face-attribute 'org-document-title nil :font "Ubuntu" :weight 'bold :height 1.3)
+
+    (add-hook 'org-mode-hook (lambda ()
+      (dolist (face '((org-level-1 . 1.1)
+                      (org-level-2 . 1.05)
+                      (org-level-3 . 1.00)
+                      (org-level-4 . 1.00)
+                      (org-level-5 . 0.90)
+                      (org-level-6 . 0.80)
+                      (org-level-7 . 0.80)
+                      (org-level-8 . 0.80)))
+        (set-face-attribute (car face) nil :font "Ubuntu" :weight 'medium :height (cdr face)))))
+        ;(set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'medium :height (cdr face)))))
+
+    (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+
+    (setq org-latex-default-packages-alist
+        '(("" "graphicx" t)
+          ("" "grffile" t)
+          ("" "longtable" nil)
+          ("" "wrapfig" nil)
+          ("" "rotating" nil)
+          ("normalem" "ulem" t)
+          ("" "amsmath" t)
+          ("" "textcomp" t)
+          ("" "amssymb" t)
+          ("" "capt-of" nil)
+          ("" "hyperref" nil)
+          ("shortlabels" "enumitem")
+          ("no-math" "fontspec")
+          ("" "xunicode")
+          ("" "polyglossia")))          
+
+    (setq org-latex-classes
+          '(("article"
+             "\\documentclass[a4paper, 11pt]{article}
+              \\usepackage[top=1.5cm,bottom=1.5cm,left=2.5cm,right=2.5cm]{geometry}
+              [DEFAULT-PACKAGES]
+              [PACKAGES]
+              [EXTRA]
+              \\defaultfontfeatures{Ligatures=TeX}
+              \\setmainfont{Minion Pro}
+              \\setmainlanguage{greek}
+              \\setotherlanguage{english}
+
+              \\usepackage[autostyle,english=american]{csquotes}
+              \\MakeOuterQuote{\"}"
+             ("\\section{%s}" . "\\section*{%s}")
+             ("\\subsection{%s}" . "\\subsection*{%s}")
+             ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+             ("\\paragraph{%s}" . "\\paragraph*{%s}")
+             ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 #+END_SRC
 
+* org-mermaid
+#+begin_src emacs-lisp
+  (use-package ob-mermaid
+    :straight t)
+#+end_src
+
+* org-tree-slide
+[[https://github.com/takaxp/org-tree-slide]]
+
+#+begin_src emacs-lisp
+  (use-package org-tree-slide
+    :straight t
+    :custom
+    (org-image-actual-width nil))  
+#+end_src
+
+Run =org-tree-slide-mode=
+Navigate slides with =C-<= and =C->=
+
+* Typst
+#+BEGIN_SRC emacs-lisp
+(use-package typst-mode
+  :straight (:type git :host github :repo "Ziqi-Yang/typst-mode.el"))
+#+END_SRC
+* denote
+#+BEGIN_SRC emacs-lisp
+  (use-package denote
+    :straight t
+    :bind
+    ("C-c n n" . 'denote)    
+    ("C-c n i" . 'denote-link)
+    ("C-c n I" . 'denote-link-add-links)
+    ("C-c n b" . 'denote-link-backlinks)
+    ("C-c n r" . 'denote-dired-rename-file)
+    :config
+    ;(require 'denote-journal-extras.el)
+    (setq denote-directory (expand-file-name "~/notes/denote/"))
+    (setq denote-file-type nil)
+    (setq denote-known-keywords '("research" "teaching" "eps"))
+    (setq denote-dired-directories (list denote-directory
+                                         (expand-file-name "~/notes/denote/journal")))
+    (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories))
+
+
+#+END_SRC
 * restclient
 #+BEGIN_SRC emacs-lisp
   (use-package restclient
-   :ensure t)
+   :straight t)
   (use-package ob-restclient
-    :ensure t)
+    :straight t)
 #+END_SRC
 
 * org-babel
 #+BEGIN_SRC emacs-lisp
+    (use-package ob-julia-vterm
+      :straight t)
+    ;; active Babel languages
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((shell       . t)
+       (emacs-lisp  . t)
+       (perl        . t)
+       (python      . t)
+       (ruby        . t)
+       (css         . t)
+       (restclient  . t)
+       (julia-vterm . t)
+       (latex       . t)
+       (mermaid     . t)
+       (scheme      . t)))
 
-  ;; active Babel languages
-  (org-babel-do-load-languages
-  'org-babel-load-languages
-  '((shell     . t)
-   (emacs-lisp . t)
-   (perl       . t)
-   (python     . t)
-   (ruby       . t)
-   (css        . t)
-   (restclient . t)
-   (julia      . t)
-   (latex      . t)))
+  (defalias 'org-babel-execute:julia 'org-babel-execute:julia-vterm)
+  (defalias 'org-babel-variable-assignments:julia 'org-babel-variable-assignments:julia-vterm)
 
-      (setq org-confirm-babel-evaluate nil)
+    (setq org-confirm-babel-evaluate nil)
 #+END_SRC
 
 #+RESULTS:
@@ -170,16 +301,254 @@
 
 #+BEGIN_SRC emacs-lisp
 (use-package quelpa
-  :ensure t)
+  :straight t)
 #+END_SRC
 
+* Vertico, marginalia, consult
+;;#+BEGIN_SRC emacs-lisp
+      ;; Enable vertico
+      (use-package vertico
+        :straight t
+        :init
+        (vertico-mode)
+
+        ;; Different scroll margin
+        (setq vertico-scroll-margin 0)
+
+        ;; Show more candidates
+        (setq vertico-count 20)
+
+        ;; Grow and shrink the Vertico minibuffer
+        (setq vertico-resize t)
+
+        ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+        (setq vertico-cycle t))
+
+      ;; Persist history over Emacs restarts. Vertico sorts by history position.
+      (use-package savehist
+        :straight nil
+        :init
+        (savehist-mode))
+
+      ;; A few more useful configurations...
+      (use-package emacs
+        :straight t
+        :init
+        ;; Add prompt indicator to `completing-read-multiple'.
+        ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+        (defun crm-indicator (args)
+          (cons (format "[CRM%s] %s"
+                        (replace-regexp-in-string
+                         "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                         crm-separator)
+                        (car args))
+                (cdr args)))
+        (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+        ;; Do not allow the cursor in the minibuffer prompt
+        (setq minibuffer-prompt-properties
+              '(read-only t cursor-intangible t face minibuffer-prompt))
+        (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+        ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
+        ;; Vertico commands are hidden in normal buffers.
+        ;; (setq read-extended-command-predicate
+        ;;       #'command-completion-default-include-p)
+
+        ;; Enable recursive minibuffers
+        (setq enable-recursive-minibuffers t))
+
+      (use-package orderless
+        :straight t
+        :init
+        ;; Configure a custom style dispatcher (see the Consult wiki)
+        ;; (setq orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch)
+        ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+        (setq completion-styles '(orderless basic)
+              completion-category-defaults nil
+              completion-category-overrides '((file (styles partial-completion)))))
+
+
+      ;; Enable rich annotations using the Marginalia package
+      (use-package marginalia
+        :straight nil
+        ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
+        ;; available in the *Completions* buffer, add it to the
+        ;; `completion-list-mode-map'.
+        :bind (:map minibuffer-local-map
+                    ("M-A" . marginalia-cycle))
+
+        ;; The :init section is always executed.
+        :init
+
+        ;; Marginalia must be activated in the :init section of use-package such that
+        ;; the mode gets enabled right away. Note that this forces loading the
+        ;; package.
+        (marginalia-mode))
+
+    (use-package consult
+      ;; Replace bindings. Lazily loaded due by `use-package'.
+      :straight t
+      :bind (;; C-c bindings in `mode-specific-map'
+             ("C-c M-x" . consult-mode-command)
+             ("C-c h" . consult-history)
+             ("C-c k" . consult-kmacro)
+             ("C-c m" . consult-man)
+             ("C-c i" . consult-info)
+             ([remap Info-search] . consult-info)
+             ;; C-x bindings in `ctl-x-map'
+             ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+             ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+             ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+             ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+             ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
+             ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+             ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+             ;; Custom M-# bindings for fast register access
+             ("M-#" . consult-register-load)
+             ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+             ("C-M-#" . consult-register)
+             ;; Other custom bindings
+             ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+             ;; M-g bindings in `goto-map'
+             ("M-g e" . consult-compile-error)
+             ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+             ("M-g g" . consult-goto-line)             ;; orig. goto-line
+             ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+             ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+             ("M-g m" . consult-mark)
+             ("M-g k" . consult-global-mark)
+             ("M-g i" . consult-imenu)
+             ("M-g I" . consult-imenu-multi)
+             ;; M-s bindings in `search-map'
+             ("M-s d" . consult-find)                  ;; Alternative: consult-fd
+             ("M-s c" . consult-locate)
+             ("M-s g" . consult-grep)
+             ("M-s G" . consult-git-grep)
+             ("M-s r" . consult-ripgrep)
+             ("M-s l" . consult-line)
+             ("M-s L" . consult-line-multi)
+             ("M-s k" . consult-keep-lines)
+             ("M-s u" . consult-focus-lines)
+             ;; Isearch integration
+             ("M-s e" . consult-isearch-history)
+             :map isearch-mode-map
+             ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+             ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+             ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+             ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+             ;; Minibuffer history
+             :map minibuffer-local-map
+             ("M-s" . consult-history)                 ;; orig. next-matching-history-element
+             ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+
+      ;; Enable automatic preview at point in the *Completions* buffer. This is
+      ;; relevant when you use the default completion UI.
+      :hook (completion-list-mode . consult-preview-at-point-mode)
+
+      ;; The :init configuration is always executed (Not lazy)
+      :init
+
+      ;; Optionally configure the register formatting. This improves the register
+      ;; preview for `consult-register', `consult-register-load',
+      ;; `consult-register-store' and the Emacs built-ins.
+      (setq register-preview-delay 0.5
+            register-preview-function #'consult-register-format)
+
+      ;; Optionally tweak the register preview window.
+      ;; This adds thin lines, sorting and hides the mode line of the window.
+      (advice-add #'register-preview :override #'consult-register-window)
+
+      ;; Use Consult to select xref locations with preview
+      (setq xref-show-xrefs-function #'consult-xref
+            xref-show-definitions-function #'consult-xref)
+
+      ;; Configure other variables and modes in the :config section,
+      ;; after lazily loading the package.
+      :config
+
+      ;; Optionally configure preview. The default value
+      ;; is 'any, such that any key triggers the preview.
+      ;; (setq consult-preview-key 'any)
+      ;; (setq consult-preview-key "M-.")
+      ;; (setq consult-preview-key '("S-<down>" "S-<up>"))
+      ;; For some commands and buffer sources it is useful to configure the
+      ;; :preview-key on a per-command basis using the `consult-customize' macro.
+      (consult-customize
+       consult-theme :preview-key '(:debounce 0.2 any)
+       consult-ripgrep consult-git-grep consult-grep
+       consult-bookmark consult-recent-file consult-xref
+       consult--source-bookmark consult--source-file-register
+       consult--source-recent-file consult--source-project-recent-file
+       ;; :preview-key "M-."
+       :preview-key '(:debounce 0.4 any))
+
+      ;; Optionally configure the narrowing key.
+      ;; Both < and C-+ work reasonably well.
+      (setq consult-narrow-key "<") ;; "C-+"
+
+      ;; Optionally make narrowing help available in the minibuffer.
+      ;; You may want to use `embark-prefix-help-command' or which-key instead.
+      ;; (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
+
+      ;; By default `consult-project-function' uses `project-root' from project.el.
+      ;; Optionally configure a different project root function.
+      ;;;; 1. project.el (the default)
+      ;; (setq consult-project-function #'consult--default-project--function)
+      ;;;; 2. vc.el (vc-root-dir)
+      ;; (setq consult-project-function (lambda (_) (vc-root-dir)))
+      ;;;; 3. locate-dominating-file
+      ;; (setq consult-project-function (lambda (_) (locate-dominating-file "." ".git")))
+      ;;;; 4. projectile.el (projectile-project-root)
+      ;; (autoload 'projectile-project-root "projectile")
+      ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
+      ;;;; 5. No project support
+      ;; (setq consult-project-function nil)
+    )
+
+    (use-package embark
+    :straight t
+
+    :bind
+    (("C-." . embark-act)         ;; pick some comfortable binding
+     ("C-;" . embark-dwim)        ;; good alternative: M-.
+     ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+    :init
+
+    ;; Optionally replace the key help with a completing-read interface
+    (setq prefix-help-command #'embark-prefix-help-command)
+
+    ;; Show the Embark target at point via Eldoc. You may adjust the
+    ;; Eldoc strategy, if you want to see the documentation from
+    ;; multiple providers. Beware that using this can be a little
+    ;; jarring since the message shown in the minibuffer can be more
+    ;; than one line, causing the modeline to move up and down:
+
+    ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+    ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+    :config
+
+    ;; Hide the mode line of the Embark live/completions buffers
+    (add-to-list 'display-buffer-alist
+                 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                   nil
+                   (window-parameters (mode-line-format . none)))))
+
+  ;; Consult users will also want the embark-consult package.
+  (use-package embark-consult
+    :ensure nil ; only need to install it, embark loads it after consult if found
+    :hook
+    (embark-collect-mode . consult-preview-at-point-mode))
+;;#+END_SRC
 * Ivy, counsel, swiper
 #+BEGIN_SRC emacs-lisp 
 (use-package counsel
-  :ensure t)
+  :straight t)
 
 (use-package ivy
-  :ensure t
+  :straight t
   :init (progn
 	  (bind-key "C-c C-r"  'ivy-resume)
 	  (bind-key "C-<return>" 'ivy-immediate-done))
@@ -188,7 +557,7 @@
 	    (counsel-mode 1)))
 
 (use-package ivy-rich
-  :ensure t
+  :straight t
   :after ivy
   :config
   (setq ivy-rich-path-style 'abbreviate)
@@ -198,7 +567,7 @@
   (ivy-rich-mode 1))
 
 (use-package swiper
-  :ensure t
+  :straight t
   :config (progn
 	    (setq ivy-use-virtual-buffers t)
 	    (setq enable-recursive-minibuffers t)
@@ -265,7 +634,7 @@
 ** Shell switcher
 #+BEGIN_SRC emacs-lisp
     (use-package shell-switcher
-      :ensure t
+      :straight t
       :config 
       (setq shell-switcher-mode t)
       (define-key shell-switcher-mode-map (kbd "C-'")
@@ -336,11 +705,11 @@
   (eshell 'N))
 
 (use-package fish-completion
-  :ensure t
+  :straight t
   :hook (eshell-mode . fish-completion-mode))
 
 (use-package eshell-syntax-highlighting
-  :ensure t
+  :straight t
   :after esh-mode
   :demand t ;; Install if not already installed.
   :config
@@ -360,13 +729,13 @@
   ;; If you have use-package-hook-name-suffix set to nil, uncomment and use the
   ;; line below instead:
   ;; :hook (eshell-mode-hook . esh-autosuggest-mode)
-  :ensure t)
+  :straight t)
 #+END_SRC
 
 * Yasnippet
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
-    :ensure t
+    :straight t
     :config
       (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
       (yas-reload-all)
@@ -377,7 +746,7 @@
 * Theme
 #+begin_src emacs-lisp
   (use-package doom-themes 
-    :ensure t
+    :straight t
     :init
       (load-theme 'doom-snazzy t)
       ;(load-theme 'doom-palenight t)
@@ -394,7 +763,7 @@
 * Fira Code Mode
 #+begin_src emacs-lisp
 ;(use-package fira-code-mode
-;  :ensure t
+;  :straight t
 ;  :custom (fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
 ;  :hook prog-mode) ;; Enables fira-code-mode automatically for programming major modes
 #+end_src
@@ -412,7 +781,7 @@
                      (?!  . ,(regexp-opt '("!==" "!!" "!=")))
                      (?>  . ,(regexp-opt '(">]" ">:" ">>-" ">>=" ">=>" ">>>" ">-" ">=")))
                      (?&  . ,(regexp-opt '("&&&" "&&")))
-                     (?|  . ,(regexp-opt '("|||>" "||>" "|>" "|]" "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||")))
+                     (?|  . ,(regexp-opt '("|>" "|||>" "||>" "|]" "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||")))
                      (?.  . ,(regexp-opt '(".." ".?" ".=" ".-" "..<" "...")))
                      (?+  . ,(regexp-opt '("+++" "+>" "++")))
                      (?\[ . ,(regexp-opt '("[||]" "[<" "[|")))
@@ -430,9 +799,10 @@
       (set-char-table-range composition-function-table (car char-regexp)
                             `([,(cdr char-regexp) 0 font-shape-gstring]))))
 
-  (use-package composite
-  :hook (prog-mode . auto-composition-mode)
-  :init (global-auto-composition-mode -1))
+  ;(use-package composite
+  ;  :straight t
+  ;  :hook (prog-mode . auto-composition-mode)
+  ;  :init (global-auto-composition-mode -1))
 #+end_src
 
 #+end_src
@@ -451,7 +821,7 @@
 ;(display-battery-mode t)
 
 ;(use-package spaceline
-;  :ensure t  
+;  :straight t  
 ;  :config
 ;    (spaceline-spacemacs-theme)
 ;    (spaceline-toggle-battery-on)
@@ -461,7 +831,7 @@
 ;(spaceline-compile)
 
 ;(use-package smart-mode-line-atom-one-dark-theme
-;  :ensure t)
+;  :straight t)
 
 ;(custom-set-faces
 ;  '(mode-line ((t (:family "Fira Sans Mono" :height 150))))
@@ -473,7 +843,7 @@
 (display-time-mode 1)
 
 ;(use-package smart-mode-line
-;  :ensure t
+;  :straight t
 ;  :config
 ;  (setq column-number-mode 1)
 ;  (setq sml/no-confirm-load-theme t)
@@ -485,7 +855,7 @@
 ;  (sml/setup))
 
 (use-package doom-modeline
-  :ensure t
+  :straight t
   :init (doom-modeline-mode 1))
  
     (setq doom-modeline-height 20)
@@ -509,7 +879,7 @@
 
 ;;;;;;;;;;;;;
 ;(use-package telephone-line
-;   :ensure t
+;   :straight t
 ;   :config
 ;    (setq telephone-line-primary-left-separator 'telephone-line-gradient
 ;          telephone-line-secondary-left-separator 'telephone-line-gradient
@@ -520,7 +890,7 @@
 
 ;;;;;;;;;;;;
 ;(use-package mood-line
-;  :ensure t
+;  :straight t
 ;  :init (mood-line-mode))
 
 
@@ -530,7 +900,7 @@
 * Exec Path From Shell
 #+BEGIN_SRC emacs-lisp
   (use-package exec-path-from-shell
-    :ensure t)
+    :straight t)
   (when (daemonp)
     (exec-path-from-shell-initialize))
 #+END_SRC
@@ -538,138 +908,152 @@
 * Common Lisp
 #+BEGIN_SRC emacs-lisp
   ;(use-package slime
-  ; :ensure t
+  ; :straight t
   ; :config (load (expand-file-name "~/.roswell/helper.el")))
 
-  ;(use-package sly
-  ; :ensure t
-  ; :config (load (expand-file-name "~/.roswell/helper.el")))
+  (use-package sly
+   :straight t
+   :config (load (expand-file-name "~/.roswell/helper.el")))
+
+  (setq inferior-lisp-program "ros -Q run")
 
 #+END_SRC
 
 * Haskell
 #+BEGIN_SRC emacs-lisp
 
-      (use-package lsp-haskell
-       :ensure t
-      ; :defer t
-       :config 
-        (add-hook 'haskell-mode-hook #'lsp)
-        (add-hook 'haskell-literate-mode-hook #'lsp)
-        (setq lsp-haskell-server-path "/home/tgaref/.ghcup/bin/haskell-language-server-8.10.7"))
-      ;  (setq lsp-haskell-server-path "/home/tgaref/.local/bin/haskell-language-server-wrapper"))
+    (use-package lsp-haskell
+     :straight t
+     :defer t
+     :config 
+      (add-hook 'haskell-mode-hook #'lsp)
+      (add-hook 'haskell-literate-mode-hook #'lsp) 
+      (setq lsp-haskell-server-path "/home/tgaref/.ghcup/bin/haskell-language-server-wrapper --lsp")) 
+  ;;    (setq lsp-haskell-server-path "/home/tgaref/.local/bin/haskell-language-server-wrapper"))
 
-      (use-package hindent
-       :ensure t
-       :defer t
-       :config 
-        (add-hook 'haskell-mode-hook #'hindent-mode))
+    (use-package hindent
+     :straight t
+     :defer t
+     :config 
+      (add-hook 'haskell-mode-hook #'hindent-mode))
 
-      (use-package haskell-mode
-       :ensure t
-       :init (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
-             (add-hook 'haskell-mode-hook #'lsp)
-             (require 'haskell-interactive-mode)
-             (require 'haskell-process)
-             (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-       :bind (:map haskell-mode-map
-               ("C-c h" . hoogle)
-               ("C-c s" . haskell-mode-stylish-buffer))
-       :config  (add-to-list 'exec-path "/home/tgaref/.ghcup/bin")
-                (message "Loaded haskell-mode")
-                (setq haskell-mode-stylish-haskell-path "~/.local/bin/fourmolu")
-                (setq haskell-hoogle-url "https://hoogle.haskell.org/?hoogle=%s")
-                (setq haskell-compile-cabal-build-command "cabal build")
-                (custom-set-variables
-                 '(haskell-process-suggest-remove-import-lines t)
-                 '(haskell-process-auto-import-loaded-modules t)
-                 '(haskell-process-log t)
-                 '(haskell-process-type 'cabal-repl))
-                (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
-                (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-                (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-                (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-                (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-                (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-                (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal))
-
+    (use-package haskell-mode
+     :straight t
+     :init (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
+           (add-hook 'haskell-mode-hook #'lsp)
+           (require 'haskell-interactive-mode)
+           (require 'haskell-process)
+           (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+     :bind (:map haskell-mode-map
+             ("C-c h" . hoogle)
+             ("C-c s" . haskell-mode-stylish-buffer))
+     :config  (add-to-list 'exec-path "/home/tgaref/.ghcup/bin")
+              (message "Loaded haskell-mode")
+              (setq haskell-mode-stylish-haskell-path "~/.local/bin/fourmolu")
+              (setq haskell-hoogle-url "https://hoogle.haskell.org/?hoogle=%s")
+              (setq haskell-compile-cabal-build-command "cabal build")
+              (custom-set-variables
+               '(haskell-process-suggest-remove-import-lines t)
+               '(haskell-process-auto-import-loaded-modules t)
+               '(haskell-process-log t)
+               '(haskell-process-type 'cabal-repl))
+              (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
+              (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+              (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+              (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+              (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+              (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+              (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal))
 #+END_SRC
 
 * Racket
 #+BEGIN_SRC emacs-lisp 
-(use-package racket-mode
-  :mode "\\.rk\\'"
-  :ensure t)
+  (use-package racket-mode
+    :straight t
+    :mode "\\.rk\\'"
+    :straight t)
 #+END_SRC
 
 * Ocaml
 #+BEGIN_SRC emacs-lisp 
-(use-package tuareg
-  :ensure t
-  :config (add-hook 'tuareg-mode-hook #'electric-pair-local-mode)
-       ;; (add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
-          (setq auto-mode-alist
-          (append '(("\\.ml[ily]?$" . tuareg-mode)
-                    ("\\.topml$" . tuareg-mode))
-                  auto-mode-alist))
-	  (setq tuareg-indent-align-with-first-arg t))
+  (use-package tuareg
+    :straight t
+    :config (add-hook 'tuareg-mode-hook #'electric-pair-local-mode)
+         ;; (add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
+            (setq auto-mode-alist
+                  (append '(("\\.ml[ily]?$" . tuareg-mode)
+                            ("\\.topml$" . tuareg-mode))
+                          auto-mode-alist))
+            (setq tuareg-indent-align-with-first-arg t))
 
-;; Merlin configuration
+  ;; Merlin configuration
 
-(use-package merlin
-  :ensure t
-  :config
-  (add-hook 'tuareg-mode-hook 'merlin-mode)
-  (add-hook 'merlin-mode-hook 'company-mode)
-  (setq merlin-error-after-save nil))
+  (use-package merlin
+    :straight t
+    :config
+    (add-hook 'tuareg-mode-hook 'merlin-mode)
+    (add-hook 'merlin-mode-hook 'company-mode)
+    (setq merlin-error-after-save nil))
 
-;; utop configuration
+  ;; utop configuration
 
-(use-package utop
-  :ensure t
-  :config
-  (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
-  (add-hook 'tuareg-mode-hook 'utop-minor-mode))
+  (use-package utop
+    :straight t
+    :config
+    (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+    (add-hook 'tuareg-mode-hook 'utop-minor-mode))
 #+END_SRC
 
 * Julia
 #+BEGIN_SRC emacs-lisp 
   (use-package julia-mode
-    :ensure t
+    :straight t
     :mode "\\.jl\\'")
 
   (use-package julia-snail
-  :ensure t
+  :straight t
   :after julia-mode
   :bind (:map julia-mode-map
               ("C-c C-n" . 'julia-snail))
   :hook (julia-mode . julia-snail-mode))
 
-  ;(use-package julia-repl
-  ;  :ensure t
-  ;  :after julia-mode
-  ;  :bind (:map julia-mode-map
-  ;             ("C-c C-n" . 'julia-repl))
-  ;  :config 
-  ;   (add-hook 'julia-mode-hook 'julia-repl-mode)
-  ;   (setq julia-repl-executable-records
-  ;      '((default "~/.juliaup/bin/julia")))) ;; always use minor mode
+  (use-package julia-vterm
+      :straight t
+      :config
+      (add-hook 'julia-mode-hook #'julia-vterm-mode))
 #+END_SRC
 
+* Scheme
+#+begin_src emacs-lisp
+  (use-package geiser-guile
+    :straight t)
+
+  (use-package macrostep-geiser
+    :straight t)
+
+  (use-package geiser-chez
+    :straight t)
+
+  (setq auto-mode-alist
+        (append '(("\\.sls\\'" . scheme-mode)
+                  ("\\.sc\\'" . scheme-mode)
+                  ("\\.scm\\'" . scheme-mode))
+                auto-mode-alist))
+#+end_src
 * Flycheck, company, lsp-mode
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
-    :ensure t
+    :straight t
     :hook (prog-mode . flycheck-mode))
 
   (use-package company
-    :ensure t
+    :straight t
     :hook (prog-mode . company-mode)
     :config (setq company-tooltip-align-annotations t)
             (setq company-minimum-prefix-length 1))
 
   (use-package lsp-mode
-    :ensure t
+    :straight t
     :commands lsp
     :custom
     ;; what to use when checking on-save. "check" is default, I prefer clippy
@@ -688,7 +1072,7 @@
     (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
   (use-package lsp-ui
-    :ensure t
+    :straight t
     :commands lsp-ui-mode
     :custom
     (lsp-ui-peek-always-show t)
@@ -703,25 +1087,25 @@
 
 #+BEGIN_SRC emacs-lisp 
   (use-package toml-mode
-    :ensure t)
+    :straight t)
 
   (use-package rust-mode
-    :ensure t
+    :straight t
     :mode "\\.rs\\'"
     :hook (rust-mode . lsp))
 
   (use-package cargo
-    :ensure t
+    :straight t
     :after rust-mode
     :hook (rust-mode . cargo-minor-mode))
 
   (use-package flycheck-rust
-    :ensure t
+    :straight t
     :after rust-mode
     :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
   (use-package rustic
-    :ensure t
+    :straight t
     :after rust-mode
     :bind (:map rustic-mode-map
                 ("M-j" . lsp-ui-imenu)
@@ -772,6 +1156,7 @@
   ;;narrow dired to match filter
 
   (use-package dired
+   :straight nil
    :config
      (put 'dired-find-alternate-file 'disabled nil)
      (setq dired-dwim-target t)
@@ -781,18 +1166,18 @@
      (setq dired-omit-files "^\\..*[^\.]+$"))
 
   ;(use-package dirvish
-  ;:ensure t
+  ;:straight t
   ;:init
   ;; Let Dirvish take over Dired globally
   ;(dirvish-override-dired-mode))
-   
+
   (use-package dired-narrow
-    :ensure t
+    :straight t
     :bind (:map dired-mode-map
                 ("/" . dired-narrow)))
 
   (use-package dired-subtree
-    :ensure t
+    :straight t
     :after dired
     :config
       (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
@@ -833,14 +1218,14 @@
 * Diredful
 #+BEGIN_SRC emacs-lisp
 (use-package diredful
-  :ensure t)
+  :straight t)
 (diredful-mode 1)
 #+END_SRC
 
 * Dired-sidebar
 #+BEGIN_SRC emacs-lisp
   (use-package dired-sidebar
-    :ensure t
+    :straight t
     :commands (dired-sidebar-toggle-sidebar)
     :bind (("C-b" . dired-sidebar-toggle-sidebar))
     :config (setq dired-sidebar-subtree-line-prefix "__")
@@ -851,7 +1236,7 @@
 * Which key
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
-  :ensure t
+  :straight t
   :config
      ;; Allow C-h to trigger which-key before it is done automatically
      (setq which-key-show-early-on-C-h t)
@@ -865,13 +1250,13 @@
 * PDF-tools
 #+BEGIN_SRC emacs-lisp 
 ;(use-package pdf-tools
-; :ensure 
+; :straight 
 ; :config (pdf-tools-install))
 
 ;(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
 
 ;(use-package org-pdfview
-; :ensure t)
+; :straight t)
 
 ;(eval-after-load 'org '(require 'org-pdfview))
 
@@ -886,11 +1271,11 @@
 
 #+BEGIN_SRC emacs-lisp
   (use-package expand-region
-    :ensure t
+    :straight t
     :config (global-set-key (kbd "C-=") 'er/expand-region))
 
   (use-package iedit
-    :ensure t)
+    :straight t)
 
 #+END_SRC
 
@@ -898,57 +1283,69 @@
 
 #+BEGIN_SRC emacs-lisp
 (use-package better-shell
-  :ensure t)
+  :straight t)
 #+END_SRC
 
 * God mode
 
 #+BEGIN_SRC emacs-lisp
   (use-package god-mode
-    :ensure t
+    :straight t
     :config (global-set-key (kbd "<f12>") 'god-local-mode))
 #+END_SRC
 
 * All the icons
  #+BEGIN_SRC emacs-lisp
- (use-package all-the-icons
- :ensure t
- :defer 0.5)
+   (use-package all-the-icons
+     :straight t
+     :defer 0.5)
 
- (use-package all-the-icons-ivy
- :ensure t
- :after (all-the-icons ivy)
- :custom (all-the-icons-ivy-buffer-commands '(ivy-switch-buffer-other-window ivy-switch-buffer))
- :config 
- (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
- (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
- (all-the-icons-ivy-setup))
+   (use-package all-the-icons-completion     
+     :straight t
+     :after all-the-icons
+     :config
+     (all-the-icons-completion-mode)
+     (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
 
- (use-package all-the-icons-dired
- :ensure t
- :config
- (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+   (use-package all-the-icons-ivy
+     :straight t
+     :after (all-the-icons ivy)
+     :custom (all-the-icons-ivy-buffer-commands '(ivy-switch-buffer-other-window ivy-switch-buffer))
+     :config 
+     (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
+     (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
+     (all-the-icons-ivy-setup))
+
+   (use-package all-the-icons-dired
+     :straight t
+     :config
+     (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
  #+END_SRC 
 
+* nerd-icons
+#+begin_src emacs-lisp
+  (use-package nerd-icons
+    :straight t)
+#+end_src
 * Counsel linux app
 
  #+BEGIN_SRC emacs-lisp
- (push (concat (getenv "HOME") "/.local/share/applications/") counsel-linux-apps-directories)
- (defun ds/counsel-linux-app-format-function (name comment exec)
-  "Default Linux application name formatter.
-   NAME is the name of the application, COMMENT its comment and EXEC
-   the command to launch it."
-  (format "% -45s %s"
-	  (propertize name 'face 'font-lock-builtin-face)
-	  (or comment "")))
- (setq counsel-linux-app-format-function #'ds/counsel-linux-app-format-function)
+ ;(push (concat (getenv "HOME") "/.local/share/applications/") counsel-linux-apps-directories)
+ ;(defun ds/counsel-linux-app-format-function (name comment exec)
+ ; "Default Linux application name formatter.
+ ;  NAME is the name of the application, COMMENT its comment and EXEC
+ ;  the command to launch it."
+ ; (format "% -45s %s"
+;	  (propertize name 'face 'font-lock-builtin-face)
+;	  (or comment "")))
+ ;(setq counsel-linux-app-format-function #'ds/counsel-linux-app-format-function)
  #+END_SRC
 
 * Ripgrep
 
 #+BEGIN_SRC emacs-lisp
 (use-package rg
-  :ensure t
+  :straight t
   :after wgrep
   :config
   (setq rg-group-result t)
@@ -990,8 +1387,8 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 
  #+BEGIN_SRC emacs-lisp 
    (use-package magit
-     :ensure t
-     :pin melpa
+     :straight t
+;     :pin melpa
      :bind
        ("C-x g" . magit-status)
      :config
@@ -1001,28 +1398,28 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 
 * Dashboard
 #+BEGIN_SRC emacs-lisp
-(use-package dashboard
-  :ensure t
-  :init
-  (progn
-    (setq dashboard-banner-logo-title "Γειά σου Θεόδουλε!")
-    (setq dashboard-startup-banner 'logo)
-    (setq dashboard-items '((recents  . 8)
-                        (bookmarks . 4)
-                        (agenda . 3)
-                        (registers . 5)))
-    (setq dashboard-set-heading-icons t)      
-    (setq dashboard-set-file-icons t)
-    (setq dashboard-center-content t))    
- :config (dashboard-setup-startup-hook))
-
-(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+  (use-package dashboard
+    :straight t
+    :init
+    (progn
+      (setq dashboard-banner-logo-title "Γειά σου Θεόδουλε!")
+      (setq dashboard-startup-banner 'logo)
+      (setq dashboard-items '((recents  . 8)
+                          (bookmarks . 4)
+                          (agenda . 3)
+                          (registers . 5)))
+      (setq dashboard-icon-type 'all-the-icons) ;; use `all-the-icons' package
+      (setq dashboard-set-heading-icons t)      
+      (setq dashboard-set-file-icons t)
+      (setq dashboard-center-content t))    
+   :config (dashboard-setup-startup-hook))
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 #+END_SRC
 * Eterm-256color
 
 #+BEGIN_SRC emacs-lisp
 (use-package eterm-256color
-  :ensure t
+  :straight t
   :config  
     (setq eterm-256color-disable-bold nil))
 
@@ -1033,7 +1430,7 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 
 #+BEGIN_SRC emacs-lisp
 (use-package openwith
-  :ensure t)
+  :straight t)
 
 (when (require 'openwith nil 'noerror)
       (setq openwith-associations
@@ -1065,13 +1462,13 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 * vterm
 #+BEGIN_SRC emacs-lisp
   (use-package vterm
-   :ensure t
+   :straight t
    :commands vterm
    :config
     (setq vterm-max-scrollback 10000))
 
   (use-package multi-vterm 
-    :ensure t
+    :straight t
     :init
      (bind-key "C-c r v" 'multi-vterm)
      (bind-key "C-`" 'multi-vterm-dedicated-toggle)
@@ -1084,9 +1481,9 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 * Weblorg
 #+BEGIN_SRC emacs-lisp
   (use-package weblorg
-    :ensure t)
+    :straight t)
 
   (use-package templatel
-    :ensure t)
+    :straight t)
 
 #+END_SRC

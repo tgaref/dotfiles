@@ -1,6 +1,6 @@
 /* Message Dialog */
 
-@import "rounded-red-dark.rasi"
+@import "rounded-gray-dark.rasi"
 
 window {
     width:      	260px;

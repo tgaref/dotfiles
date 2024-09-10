@@ -288,7 +288,7 @@ tail = true
 type = internal/xwindow
 format = <label>
 label = %title%
-label-maxlen = 30
+label-maxlen = 36
 
 [module/ewmh]
 type = internal/xworkspaces

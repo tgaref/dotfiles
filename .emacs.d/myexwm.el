@@ -11,8 +11,8 @@
 (require 'exwm)
 
 ;; Fix problems with Ido (if you use it).
-(require 'exwm-config)
-(exwm-config-ido)
+;(require 'exwm-config)
+;(exwm-config-ido)
 
 ;; Set the initial number of workspaces (they can also be created later).
 (setq focus-follows-mouse t)
@@ -117,6 +117,9 @@
 		     (interactive (list (read-shell-command "$ ")))
 		     (start-process-shell-command command nil command)))
 	([f1] . counsel-linux-app)
+	;([f1] . (lambda ()
+	;	    (interactive)
+	;	    (start-process-shell-command "" nil "/usr/bin/rofi -show drun -no-fixed-num-lines -theme launcher")))	
 	([?\C-c ?r ?t] . (lambda ()
 		     (interactive)
 		     (start-process-shell-command "" nil "/usr/bin/alacritty --config-file ~/.config/alacritty/alacritty.yml")))
@@ -125,7 +128,7 @@
 		    (start-process "" nil "/home/tgaref/local/bin/rofi-system.fish")))
 	([?\C-c ?r ?b] . (lambda ()
 			    (interactive)
-			    (start-process "" nil "/usr/bin/firefox")))))
+			    (start-process "" nil "/usr/bin/brave")))))
 
 ;; To add a key binding only available in line-mode, simply define it in
 ;; `exwm-mode-map'.  The following example shortens 'C-c q' to 'C-q'.

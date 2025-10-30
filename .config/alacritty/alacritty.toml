@@ -1,9 +1,9 @@
-# cursor_style = "Block"
-# custom_cursor_colors = true
-# hide_cursor_when_typing = false
-live_config_reload = true
 # unfocused_hollow_cursor = true
 
+[cursor]
+style.shape = "Beam"
+style.blinking="Off"
+thickness=0.4
 
 [bell]
 animation = "EaseOutExpo"
@@ -596,6 +596,9 @@ multiplier = 3
 save_to_clipboard = false
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
+[terminal]
+shell = "fish"
+
 [window]
 decorations = "full"
 dynamic_title = true
@@ -608,3 +611,8 @@ lines = 24
 [window.padding]
 x = 2
 y = 2
+
+[general]
+# custom_cursor_colors = true
+# hide_cursor_when_typing = false
+live_config_reload = true

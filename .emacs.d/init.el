@@ -41,6 +41,6 @@
 (exec-path-from-shell-initialize)
 (setq inhibit-x-resources t)
 
-(load "~/.emacs.d/myexwm")
+;;(load "~/.emacs.d/myexwm")
 
 (provide 'init)

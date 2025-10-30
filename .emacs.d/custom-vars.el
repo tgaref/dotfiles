@@ -42,9 +42,8 @@
  '(haskell-process-type 'cabal-repl)
  '(highlight-changes-colors '("#ff8eff" "#ab7eff"))
  '(highlight-symbol-colors
-   (--map
-    (solarized-color-blend it "#fdf6e3" 0.25)
-    '("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2")))
+;   (solarized-color-blend it "#fdf6e3" 0.25)
+   '("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))
  '(highlight-symbol-foreground-color "#586e75")
  '(hl-bg-colors
    '("#DEB542" "#F2804F" "#FF6E64" "#F771AC" "#9EA0E5" "#69B7F0" "#69CABF" "#B4C342"))
@@ -151,6 +150,7 @@
  '(eterm-256color-red ((t (:foreground "#dc322f"))))
  '(eterm-256color-white ((t (:foreground "white"))))
  '(eterm-256color-yellow ((t (:foreground "#b58900"))))
+ '(org-done ((t (:foreground "medium spring green" :strike-through nil :weight medium))))
  '(term-default-bg-color ((t (:inherit term-color-black))))
  '(term-default-fg-color ((t (:inherit term-color-white)))))
 

@@ -16,6 +16,7 @@
         scroll-conservatively  10000)
 
   (setq frame-title-format "%b - emacs")
+  (setq frame-resize-pixelwise t)
 
 #+END_SRC
 
@@ -53,12 +54,17 @@
               (bind-key "\C-cc" 'org-capture)
               (bind-key "\C-cb" 'org-iswitchb))
       :config (progn
+                (setq org-fontify-done-headline nil)
                 (setq org-todo-keyword-faces
-                      '(("TODO" . org-warning) ("PROGRESS" . "yellow")))
+                      '(("TODO" . org-warning)
+                        ("PROGRESS" . (:foreground "tan1" :weight normal))
+                        ("CANCELLED" . (:foreground "mediumpurple1" :weight normal :inhert nil))
+                        ("CHECK" .(:foreground "indianred1" :weight normal :inherit nil))
+                        ("DONE" . (:foreground "mediumspringgreen" :weight normal :inherit nil))))
                 (setq org-enforce-todo-dependencies t)
                 (setq org-list-allow-alphabetical t)
                 (setq org-hide-leading-stars t)
-                (setq org-ellipsis " ▾")
+                (setq org-ellipsis "…") ; " ▾")
                 (setq org-hide-emphasis-markers t)
                 (setq org-startup-indented t)
                 (variable-pitch-mode 1)))
@@ -95,7 +101,7 @@
       :straight t
       :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-    (add-hook 'org-mode-hook 'org-indent-mode)
+  (add-hook 'org-mode-hook 'org-indent-mode)
 
   (add-hook 'org-mode-hook
           (lambda ()
@@ -105,80 +111,80 @@
             (prettify-symbols-mode)))
 
   (setq org-agenda-default-appointment-duration 60)
-    (setq org-icalendar-store-UID t)
-    (setq org-agenda-files
-      (quote
-        ("~/notes/agenda/uoc.org" "~/notes/agenda/eap.org" "~/notes/agenda/personal.org" "~/notes/agenda/notes.org")))
-     (setq org-capture-templates
-       (quote
-        (("e" "ΕΑΠ templates")
-         ("et" "ΕΑΠ TODO" entry
-          (file+headline "~/notes/agenda/eap.org" "Capture")
-          (file "~/notes/templates/todo.tmpl")
-          :empty-lines-before 1)
-         ("ee" "ΕΑΠ Εξέταση" entry
-          (file+headline "~/notes/agenda/eap.org" "Capture")
-          (file "~/notes/templates/eap-exam.tmpl")
-          :empty-lines-before 1)
-         ("ep" "ΕΑΠ ΟΔΠ" entry
-          (file+headline "~/notes/agenda/eap.org" "Capture")
-          (file "~/notes/templates/eap-odp.tmpl")
-          :empty-lines-before 1)
-         ("es" "ΕΑΠ ΟΣΣ" entry
-          (file+headline "~/notes/agenda/eap.org" "Capture")
-          (file "~/notes/templates/eap-oss.tmpl")
-          :empty-lines-before 1)
-         ("u" "UoC templates")
-         ("ut" "UoC TODO" entry
-          (file+headline "~/notes/agenda/uoc.org" "Capture")
-          (file "~/notes/templates/todo.tmpl")
-          :empty-lines-before 1)
-         ("ue" "UoC Event" entry
-          (file+headline "~/notes/agenda/uoc.org" "Capture")
-          (file "~/notes/templates/event.tmpl")
-          :empty-lines-before 1)
-         ("p" "Personal templates")
-         ("pt" "Personal TODO" entry
-          (file+headline "~/notes/agenda/personal.org" "Capture")
-          (file "~/notes/templates/todo.tmpl")
-          :empty-lines-before 1)
-         ("pe" "Personal Event" entry
-          (file+headline "~/notes/agenda/personal.org" "Capture")
-          (file "~/notes/templates/event.tmpl")
-          :empty-lines-before 1)
-         ("n" "Note" entry
-          (file "~/notes/agenda/notes.org")
-          (file "~/notes/templates/notes.tmpl")
-          :empty-lines-before 1))))
-     (setq org-refile-allow-creating-parent-nodes (quote confirm))
-     (setq org-refile-targets (quote ((org-agenda-files :level . 1))))
-     (setq org-refile-use-outline-path (quote file))
+  (setq org-icalendar-store-UID t)
+  (setq org-agenda-files
+        (quote
+         ("~/notes/agenda/uoc.org" "~/notes/agenda/eap.org" "~/notes/agenda/personal.org" "~/notes/agenda/notes.org")))
+  (setq org-capture-templates
+        (quote
+         (("e" "ΕΑΠ templates")
+          ("et" "ΕΑΠ TODO" entry
+           (file+headline "~/notes/agenda/eap.org" "Capture")
+           (file "~/notes/templates/todo.tmpl")
+           :empty-lines-before 1)
+          ("ee" "ΕΑΠ Εξέταση" entry
+           (file+headline "~/notes/agenda/eap.org" "Capture")
+           (file "~/notes/templates/eap-exam.tmpl")
+           :empty-lines-before 1)
+          ("ep" "ΕΑΠ ΟΔΠ" entry
+           (file+headline "~/notes/agenda/eap.org" "Capture")
+           (file "~/notes/templates/eap-odp.tmpl")
+           :empty-lines-before 1)
+          ("es" "ΕΑΠ ΟΣΣ" entry
+           (file+headline "~/notes/agenda/eap.org" "Capture")
+           (file "~/notes/templates/eap-oss.tmpl")
+           :empty-lines-before 1)
+          ("u" "UoC templates")
+          ("ut" "UoC TODO" entry
+           (file+headline "~/notes/agenda/uoc.org" "Capture")
+           (file "~/notes/templates/todo.tmpl")
+           :empty-lines-before 1)
+          ("ue" "UoC Event" entry
+           (file+headline "~/notes/agenda/uoc.org" "Capture")
+           (file "~/notes/templates/event.tmpl")
+           :empty-lines-before 1)
+          ("p" "Personal templates")
+          ("pt" "Personal TODO" entry
+           (file+headline "~/notes/agenda/personal.org" "Capture")
+           (file "~/notes/templates/todo.tmpl")
+           :empty-lines-before 1)
+          ("pe" "Personal Event" entry
+           (file+headline "~/notes/agenda/personal.org" "Capture")
+           (file "~/notes/templates/event.tmpl")
+           :empty-lines-before 1)
+          ("n" "Note" entry
+           (file "~/notes/agenda/notes.org")
+           (file "~/notes/templates/notes.tmpl")
+           :empty-lines-before 1))))
+  (setq org-refile-allow-creating-parent-nodes (quote confirm))
+  (setq org-refile-targets (quote ((org-agenda-files :level . 1))))
+  (setq org-refile-use-outline-path (quote file))
 
-     (defun org-convert-csv-table (beg end)
-       (interactive (list (mark) (point)))
-       (org-table-convert-region beg end ","))
+  (defun org-convert-csv-table (beg end)
+    (interactive (list (mark) (point)))
+    (org-table-convert-region beg end ","))
 
-    (add-hook 'org-mode-hook
-      (lambda ()
-      (define-key org-mode-map (kbd "C-c t") 'org-convert-csv-table)))
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (define-key org-mode-map (kbd "C-c t") 'org-convert-csv-table)))
 
     ; (set-face-attribute 'org-document-title nil :font "Ubuntu" :weight 'bold :height 1.3)
 
-    (add-hook 'org-mode-hook (lambda ()
-      (dolist (face '((org-level-1 . 1.1)
-                      (org-level-2 . 1.05)
-                      (org-level-3 . 1.00)
-                      (org-level-4 . 1.00)
-                      (org-level-5 . 0.90)
-                      (org-level-6 . 0.80)
-                      (org-level-7 . 0.80)
-                      (org-level-8 . 0.80)))
-        (set-face-attribute (car face) nil :font "Ubuntu" :weight 'medium :height (cdr face)))))
-        ;(set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'medium :height (cdr face)))))
+  (add-hook 'org-mode-hook (lambda ()
+                             (dolist (face '((org-level-1 . 1.1)
+                                             (org-level-2 . 1.05)
+                                             (org-level-3 . 1.00)
+                                             (org-level-4 . 1.00)
+                                             (org-level-5 . 0.90)
+                                             (org-level-6 . 0.80)
+                                             (org-level-7 . 0.80)
+                                             (org-level-8 . 0.80)))
+                               (set-face-attribute (car face) nil :font "Ubuntu" :weight 'medium :height (cdr face)))))
+                                          ;(set-face-attribute (car face) nil :font "Iosevka Aile" :weight 'medium :height (cdr face)))))
 
-    (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 
-    (setq org-latex-default-packages-alist
+  (setq org-latex-default-packages-alist
         '(("" "graphicx" t)
           ("" "grffile" t)
           ("" "longtable" nil)
@@ -195,9 +201,9 @@
           ("" "xunicode")
           ("" "polyglossia")))          
 
-    (setq org-latex-classes
-          '(("article"
-             "\\documentclass[a4paper, 11pt]{article}
+  (setq org-latex-classes
+        '(("article"
+           "\\documentclass[a4paper, 11pt]{article}
               \\usepackage[top=1.5cm,bottom=1.5cm,left=2.5cm,right=2.5cm]{geometry}
               [DEFAULT-PACKAGES]
               [PACKAGES]
@@ -305,7 +311,7 @@ Navigate slides with =C-<= and =C->=
 #+END_SRC
 
 * Vertico, marginalia, consult
-;;#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
       ;; Enable vertico
       (use-package vertico
         :straight t
@@ -541,9 +547,9 @@ Navigate slides with =C-<= and =C->=
     :ensure nil ; only need to install it, embark loads it after consult if found
     :hook
     (embark-collect-mode . consult-preview-at-point-mode))
-;;#+END_SRC
+#+END_SRC
 * Ivy, counsel, swiper
-#+BEGIN_SRC emacs-lisp 
+;;#+BEGIN_SRC emacs-lisp 
 (use-package counsel
   :straight t)
 
@@ -591,7 +597,7 @@ Navigate slides with =C-<= and =C->=
 	    (global-set-key (kbd "C-x l") 'counsel-locate)
 	    (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 	    (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
-#+END_SRC
+;;#+END_SRC
 
 * IBuffer
 
@@ -811,89 +817,92 @@ Navigate slides with =C-<= and =C->=
 
 #+BEGIN_SRC emacs-lisp
 
-;; battery info
+  ;; battery info
 
-;(setq battery-mode-line-format "[%b%p%%]")
-;(setq battery-mode-line-limit 95)
-;(setq battery-update-interval 120)
-;(setq battery-load-low 20)
-;(setq battery-load-critical 10)
-;(display-battery-mode t)
+  ;(setq battery-mode-line-format "[%b%p%%]")
+  ;(setq battery-mode-line-limit 95)
+  ;(setq battery-update-interval 120)
+  ;(setq battery-load-low 20)
+  ;(setq battery-load-critical 10)
+  ;(display-battery-mode nil)
 
-;(use-package spaceline
-;  :straight t  
-;  :config
-;    (spaceline-spacemacs-theme)
-;    (spaceline-toggle-battery-on)
-;    (spaceline-toggle-input-method-on)
-;    (setq powerline-default-separator 'roundstub))
+  ;(use-package spaceline
+  ;  :straight t  
+  ;  :config
+  ;    (spaceline-spacemacs-theme)
+  ;    (spaceline-toggle-battery-on)
+  ;    (spaceline-toggle-input-method-on)
+  ;    (setq powerline-default-separator 'roundstub))
 
-;(spaceline-compile)
+  ;(spaceline-compile)
 
-;(use-package smart-mode-line-atom-one-dark-theme
-;  :straight t)
+;  (use-package smart-mode-line-atom-one-dark-theme
+;    :straight t)
 
-;(custom-set-faces
-;  '(mode-line ((t (:family "Fira Sans Mono" :height 150))))
-;  '(mode-line-inactive ((t (:family "Fira Sans Mono" :height 150)))))
+  ;(custom-set-faces
+  ;  '(mode-line ((t (:family "Fira Sans Mono" :height 150))))
+  ;  '(mode-line-inactive ((t (:family "Fira Sans Mono" :height 150)))))
 
-(display-battery-mode 1)
-(setq display-time-format "%H:%M %a, %d %b %Y")
-(setq display-time-interval 60)
-(display-time-mode 1)
+  ;(display-battery-mode 1)
+  ;(setq display-time-format "%H:%M %a, %d %b %Y")
+  ;(setq display-time-interval 60)
+  ;(display-time-mode 1)
 
-;(use-package smart-mode-line
-;  :straight t
-;  :config
-;  (setq column-number-mode 1)
-;  (setq sml/no-confirm-load-theme t)
-;  (setq sml/theme 'respectful)
-;  (setq sml/shorten-directory t)
-;  (setq sml/shorten-modes t)
-;  (setq sml/mode-width 'right
-;        sml/name-width 60)
-;  (sml/setup))
+ ; (use-package smart-mode-line
+ ;   :straight t
+ ;   :config
+ ;   (setq column-number-mode 1)
+ ;   (setq sml/no-confirm-load-theme t)
+ ;   (setq sml/theme 'atom-one-dark)    
+ ;   (setq sml/shorten-directory t)
+ ;   (setq sml/shorten-modes t)
+ ;   (setq sml/mode-width 'full
+ ;         sml/name-width 50)
+ ;   (setq display-time-default-load-average nil)
+  ;  (setq sml/time nil)
+  ;  (setq display-time-format nil
+  ;        display-time-day-and-date nil
+  ;        display-time-24hr-format nil)
+  ;  (display-battery-mode nil)
+  ;  (sml/setup))
 
-(use-package doom-modeline
-  :straight t
-  :init (doom-modeline-mode 1))
- 
-    (setq doom-modeline-height 20)
-    (setq doom-modeline-bar-width 6)
-    (setq doom-modeline-lsp t)
-    (setq doom-modeline-github nil)
-    (setq doom-modeline-mu4e nil)
-    (setq doom-modeline-irc nil)
-    (setq doom-modeline-minor-modes nil)
-    (setq doom-modeline-persp-name nil)
-    (setq doom-modeline-buffer-file-name-style 'truncate-except-project)
-    (setq doom-modeline-icon t)
-    (setq doom-modeline-major-mode-icon t)
-    (setq doom-modeline-major-mode-color-icon t)
-    (setq doom-modeline-buffer-state-icon t)
-    (setq doom-modeline-modal-icon t)
-    (setq column-number-mode 1)
-    (setq doom-modeline-workspace-name t)
-    (setq inhibit-compacting-font-caches t)
+  (use-package doom-modeline
+    :straight t
+    :init (doom-modeline-mode 1))
 
+     (setq doom-modeline-height 20)
+     (setq doom-modeline-bar-width 6)
+     (setq doom-modeline-lsp t)
+     (setq doom-modeline-github nil)
+     (setq doom-modeline-mu4e nil)
+     (setq doom-modeline-irc nil)
+     (setq doom-modeline-minor-modes nil)
+     (setq doom-modeline-persp-name nil)
+     (setq doom-modeline-buffer-file-name-style 'truncate-except-project)
+     (setq doom-modeline-icon t)
+     (setq doom-modeline-major-mode-icon nil)
+     (setq doom-modeline-major-mode-color-icon nil)
+     (setq doom-modeline-buffer-state-icon t)
+     (setq doom-modeline-modal-icon t)
+     (setq column-number-mode 1)
+     (setq doom-modeline-workspace-name t)
+     (setq inhibit-compacting-font-caches t)
 
-;;;;;;;;;;;;;
-;(use-package telephone-line
-;   :straight t
-;   :config
-;    (setq telephone-line-primary-left-separator 'telephone-line-gradient
-;          telephone-line-secondary-left-separator 'telephone-line-gradient
-;          telephone-line-primary-right-separator 'telephone-line-gradient
-;          telephone-line-secondary-right-separator 'telephone-line-gradient
-;          telephone-line-height 24))
-;(telephone-line-mode 1)
+  ;;;;;;;;;;;;;
+  ;(use-package telephone-line
+  ;   :straight t
+  ;   :config
+  ;    (setq telephone-line-primary-left-separator 'telephone-line-gradient
+  ;          telephone-line-secondary-left-separator 'telephone-line-gradient
+  ;          telephone-line-primary-right-separator 'telephone-line-gradient
+  ;          telephone-line-secondary-right-separator 'telephone-line-gradient
+  ;          telephone-line-height 24))
+  ;(telephone-line-mode 1)
 
-;;;;;;;;;;;;
-;(use-package mood-line
-;  :straight t
-;  :init (mood-line-mode))
-
-
+  ;;;;;;;;;;;;
+  ;(use-package mood-line
+  ;  :straight t
+  ;  :init (mood-line-mode))
 
 #+END_SRC
 
@@ -903,6 +912,27 @@ Navigate slides with =C-<= and =C->=
     :straight t)
   (when (daemonp)
     (exec-path-from-shell-initialize))
+#+END_SRC
+
+* AUCTex
+#+BEGIN_SRC emacs-lisp
+  (use-package auctex
+    :straight t)
+#+END_SRC
+
+* Paredit
+#+BEGIN_SRC emacs-lisp
+            (use-package paredit
+              :straight t
+              :config (autoload 'enable-paredit-mode "paredit"
+                        "Turn on pseudo-structural editing of Lisp code."
+                        t)
+              (add-hook 'emacs-lisp-mode-hook       'enable-paredit-mode)
+              (add-hook 'lisp-mode-hook             'enable-paredit-mode)
+              (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
+              (add-hook 'scheme-mode-hook           'enable-paredit-mode)
+              (add-hook 'racket-mode-hook           'enable-paredit-mode)
+              (add-hook 'racket-repl-mode-hook      'enable-paredit-mode))
 #+END_SRC
 
 * Common Lisp
@@ -922,48 +952,46 @@ Navigate slides with =C-<= and =C->=
 * Haskell
 #+BEGIN_SRC emacs-lisp
 
-    (use-package lsp-haskell
-     :straight t
-     :defer t
-     :config 
-      (add-hook 'haskell-mode-hook #'lsp)
-      (add-hook 'haskell-literate-mode-hook #'lsp) 
-      (setq lsp-haskell-server-path "/home/tgaref/.ghcup/bin/haskell-language-server-wrapper --lsp")) 
-  ;;    (setq lsp-haskell-server-path "/home/tgaref/.local/bin/haskell-language-server-wrapper"))
+  (use-package lsp-haskell
+   :straight t
+   :config 
+    (add-hook 'haskell-mode-hook #'lsp)
+    (add-hook 'haskell-literate-mode-hook #'lsp) 
+    (setq lsp-haskell-server-path "/home/tgaref/.ghcup/hls/2.10.0.0/bin/haskell-language-server-9.6.7"))
+    ;;(setq lsp-haskell-server-path "/home/tgaref/.ghcup/bin/haskell-language-server-wrapper"))
 
-    (use-package hindent
-     :straight t
-     :defer t
-     :config 
-      (add-hook 'haskell-mode-hook #'hindent-mode))
+  (use-package hindent
+   :straight t
+   :config 
+    (add-hook 'haskell-mode-hook #'hindent-mode))
 
-    (use-package haskell-mode
-     :straight t
-     :init (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
-           (add-hook 'haskell-mode-hook #'lsp)
-           (require 'haskell-interactive-mode)
-           (require 'haskell-process)
-           (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-     :bind (:map haskell-mode-map
-             ("C-c h" . hoogle)
-             ("C-c s" . haskell-mode-stylish-buffer))
-     :config  (add-to-list 'exec-path "/home/tgaref/.ghcup/bin")
-              (message "Loaded haskell-mode")
-              (setq haskell-mode-stylish-haskell-path "~/.local/bin/fourmolu")
-              (setq haskell-hoogle-url "https://hoogle.haskell.org/?hoogle=%s")
-              (setq haskell-compile-cabal-build-command "cabal build")
-              (custom-set-variables
-               '(haskell-process-suggest-remove-import-lines t)
-               '(haskell-process-auto-import-loaded-modules t)
-               '(haskell-process-log t)
-               '(haskell-process-type 'cabal-repl))
-              (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
-              (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-              (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-              (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-              (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-              (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-              (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal))
+  (use-package haskell-mode
+   :straight t
+   :init (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
+         (add-hook 'haskell-mode-hook #'lsp)
+         (require 'haskell-interactive-mode)
+         (require 'haskell-process)
+         (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+   :bind (:map haskell-mode-map
+           ("C-c h" . hoogle)
+           ("C-c s" . haskell-mode-stylish-buffer))
+   :config  (add-to-list 'exec-path "/home/tgaref/.ghcup/bin")
+            (message "Loaded haskell-mode")
+            (setq haskell-mode-stylish-haskell-path "~/.local/bin/fourmolu")
+            (setq haskell-hoogle-url "https://hoogle.haskell.org/?hoogle=%s")
+            (setq haskell-compile-cabal-build-command "cabal build")
+            (custom-set-variables
+             '(haskell-process-suggest-remove-import-lines t)
+             '(haskell-process-auto-import-loaded-modules t)
+             '(haskell-process-log t)
+             '(haskell-process-type 'cabal-repl))
+            (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
+            (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+            (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+            (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+            (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+            (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+            (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal))
 #+END_SRC
 
 * Racket
@@ -1054,7 +1082,8 @@ Navigate slides with =C-<= and =C->=
 
   (use-package lsp-mode
     :straight t
-    :commands lsp
+    :hook (haskell-mode . lsp)
+    :commands lsp    
     :custom
     ;; what to use when checking on-save. "check" is default, I prefer clippy
     (lsp-rust-analyzer-cargo-watch-command "clippy")
@@ -1249,20 +1278,27 @@ Navigate slides with =C-<= and =C->=
 
 * PDF-tools
 #+BEGIN_SRC emacs-lisp 
-;(use-package pdf-tools
-; :straight 
-; :config (pdf-tools-install))
+  ;(use-package pdf-tools
+  ; :straight t
+  ; :config (pdef-tools-install))
 
-;(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+  ;(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
 
-;(use-package org-pdfview
-; :straight t)
+  ;(setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+  ;    TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view))
+  ;    TeX-source-correlate-start-server t)
 
-;(eval-after-load 'org '(require 'org-pdfview))
+  ;(add-hook 'TeX-after-compilation-finished-functions
+  ;	  #'TeX-revert-document-buffer)
 
-;(add-to-list 'org-file-apps 
-;             '("\\.pdf\\'" . (lambda (file link)
-;                                     (org-pdfview-open link))))
+    ;(use-package org-pdfview
+    ; :straight t)
+
+    ;(eval-after-load 'org '(require 'org-pdfview))
+
+    ;(add-to-list 'org-file-apps 
+    ;             '("\\.pdf\\'" . (lambda (file link)
+    ;                                     (org-pdfview-open link))))
 
 
 #+END_SRC
@@ -1461,21 +1497,22 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 #+END_SRC
 * vterm
 #+BEGIN_SRC emacs-lisp
-  (use-package vterm
-   :straight t
-   :commands vterm
-   :config
-    (setq vterm-max-scrollback 10000))
+    (use-package vterm
+     :straight t
+     :commands vterm
+     :config
+      (setq vterm-max-scrollback 10000)
+      (setq vterm-shell "fish"))
 
-  (use-package multi-vterm 
-    :straight t
-    :init
-     (bind-key "C-c r v" 'multi-vterm)
-     (bind-key "C-`" 'multi-vterm-dedicated-toggle)
-     (bind-key "C-<prior>" 'multi-vterm-next) ; Control - PageUp
-     (bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
-    :config
-     (setq multi-vterm-dedicated-window-height 50))
+    (use-package multi-vterm 
+      :straight t
+      :init
+       (bind-key "C-c r v" 'multi-vterm)
+       (bind-key "C-`" 'multi-vterm-dedicated-toggle)
+       (bind-key "C-<prior>" 'multi-vterm-next) ; Control - PageUp
+       (bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
+      :config
+       (setq multi-vterm-dedicated-window-height 50))
 #+END_SRC
 
 * Weblorg

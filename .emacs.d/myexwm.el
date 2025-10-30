@@ -100,6 +100,8 @@
         (,(kbd "S-s-<down>") . shrink-window)
         (,(kbd "S-s-<up>") . enlarge-window)
 	(,(kbd "C-c p") . battery)
+	(,(kbd "C-c C-t C-f") . exwm-layout-toggle-fullscreen)
+	(,(kbd "C-c C-t C-m") . exwm-layout-hide-mode-line)
         ;; Bind "s-q" to exit char-mode and fullscreen mode.
         ([?\s-q] . exwm-reset)
         ;; Bind "s-w" to switch workspace interactively.
@@ -122,7 +124,7 @@
 	;	    (start-process-shell-command "" nil "/usr/bin/rofi -show drun -no-fixed-num-lines -theme launcher")))	
 	([?\C-c ?r ?t] . (lambda ()
 		     (interactive)
-		     (start-process-shell-command "" nil "/usr/bin/alacritty --config-file ~/.config/alacritty/alacritty.yml")))
+		     (start-process-shell-command "" nil "/usr/bin/alacritty")))
 	([?\s-Q] . (lambda ()
 		    (interactive)
 		    (start-process "" nil "/home/tgaref/local/bin/rofi-system.fish")))

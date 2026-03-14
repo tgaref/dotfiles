@@ -1,0 +1,3738 @@
+which nu
+$env
+$nu.env-path
+ls
+cd 
+ls
+htop
+cd
+ls
+let a = 3
+a
+$a
+opam list
+opam update
+opam upgrade
+echo $SHELL
+ls
+cd AUR/
+ls
+sudo pacman -Ss lem
+sudo pacman -Ss lemeditor
+sudo pacman -S lem
+ros install lem-project
+ls
+ros list
+ros list installed
+ros follow-dependency=t install lem-project/lem
+ros list versions
+ros list versions sbcl
+ros list installed
+ros install sbcl 2.5.6
+ghcup list
+ghcup
+rustup
+which rustup
+fish
+$env.PATH ++= ['~/.ghcup/bin/ghcup']
+ghcup
+$env.PATH
+$env.PATH | uniq
+$env.PATH = $env.PATH | uniq
+$env.PATH
+a = [1 2 3]
+$a = [1 2 3]
+let a = [1 2 3]
+$a
+$a ++= [4]
+mut a = [1 2 3]
+$a ++= [4]
+$a
+$env.PATH ++= ['~/.ghcup/bin/ghcup']
+$env.PATH
+ghcup
+which ghcup
+$env.PATH | take 12
+$env.PATH = $env.PATH | take 12
+$env.PATH = ['/home/tgaref/local/bin', '/home/tgaref/.ghcup/bin'] ++ $env.PATH
+$env.PATH
+ghcup list
+juliaup 
+juliaup  self update
+juliaup list
+sudo pacman -Syu
+curl -s https://ohmyposh.dev/install.sh | bash -s
+oh-my-posh get shell
+ls
+reboot
+ls
+cd Documents/
+cd ΕπιτροπέςΤΜΕΜ/
+ls
+fish
+which starship
+ls
+oh-my-posh
+which oh-my-posh
+pwd
+cd
+mv .local/bin/oh-my-posh .local/bin/oh-my-posh-orig
+clr
+clear
+l
+cd ΕπιτροπέςΤΜΕΜ/
+cd Documents/
+cd ΕπιτροπέςΤΜΕΜ/
+mv .local/bin/oh-my-posh-orig .local/bin/oh-my-posh
+cd
+mv .local/bin/oh-my-posh-orig .local/bin/oh-my-posh
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+fish
+ls
+rm ~/.local/bin/oh-my-posh
+cd
+ls
+sudo pacman -Ss ppd
+sudo pacman -S tuned-ppd
+sudo chsh tgaref
+logout
+sudo systemctl logout
+cat local/bin/fuzzel-system.fish
+loginctl terminate-session $session
+sudo reboot
+sudo pacman -Ss wlogout
+cd AUR/
+git clone https://aur.archlinux.org/wlogout.gi
+ls
+rm wlogout.gi/
+ls
+rmdir wlogout.gi
+rm -rf wlogout.gi/
+git clone https://aur.archlinux.org/wlogout.git
+cd wlogout/
+makepkg -si
+fish
+cd Downloads/
+ls *.asc
+gpg --import ~/Downloads/f4fdb18a9937358364b276e9e25d679af73c6d2f.asc
+makepkg -si
+sudo pacman -Ss swaylock
+sudo pacman -Ss swaylock-effects
+cd ..
+git clone https://aur.archlinux.org/swaylock-effects.git
+cd swaylock-effects/
+makepkg -si
+git clone https://gitlab.com/stephan-raabe/dotfiles.git
+ls
+sudo pacman -Ss swaylock
+sudo pacman -S swaylock
+swaylock
+swaylock \<\n>	--screenshots \<\n>	--clock \<\n>	--indicator \<\n>	--indicator-radius 100 \<\n>	--indicator-thickness 7 \<\n>	--effect-blur 7x5 \<\n>	--effect-vignette 0.5:0.5 \<\n>	--ring-color bb00cc \<\n>	--key-hl-color 880033 \<\n>	--line-color 00000000 \<\n>	--inside-color 00000088 \<\n>	--separator-color 00000000 \<\n>	--grace 2 \<\n>	--fade-in 0.2
+wlogout
+ls -al
+ls
+ls -l
+ls -al
+ls -aF
+ll
+ls
+ls | sort-by type
+ls
+ls 
+ls | sort-by type
+lst
+overlay list
+ls
+ls www
+ls tmp
+ls
+lst
+lst tmp
+lst .
+lst
+lst tmp
+lst .
+lst tmp
+lst
+ls
+lst
+ls
+lst
+lst tmp
+lst
+lst tmp
+l
+l tmp
+ls
+cd Downloads/
+l
+rm `Υπόμνημα για την εισηγητική έκθεση.pdf`
+rm -i `Υπόδειγμα Πρότασης ΠΠΣ.docx`
+cd Downloads/
+l
+rm ΥπεύθυνηΔήλωση_N1256_2_ΑΑ_3.pdf
+cd
+ll
+cd AUR/
+ls
+git clone https://aur.archlinux.org/python-pywal16.git 
+cd python-pywal16/
+makepkg -si
+wal
+cd
+wal
+wall -l ~/Pictures/wallpapers/pexels-ian-turnell-709552.jpg
+wall -i ~/Pictures/wallpapers/pexels-ian-turnell-709552.jpg
+wall
+wal
+wal -i ~/Pictures/wallpapers/pexels-ian-turnell-709552.jpg
+ls
+sudo pacman -Ss nsxiv
+sudo pacman -S nsxiv
+nsxiv ~/Pictures/wallpapers/
+nsxiv -otb ~/Pictures/wallpapers/
+cd 
+cd local/vin
+cd local/bin
+ls
+chmod 755 wallpapermenu.sh
+wallpapermenu.sh 
+chmod 755 pywal16.sh
+wallpapermenu.sh 
+mkdir ~/.config/sxiv/exec/
+cp /usr/share/sxiv/exec/key-handler ~/.config/sxiv/exec/key-handler
+cp /usr/share/nsxiv/exec/key-handler ~/.config/sxiv/exec/key-handler
+cd /usr/share/
+ls
+nsxiv -i ~/Pictures/wallpapers/
+nsxiv -otb ~/Pictures/wallpapers/
+cd
+cd .config/nsxiv/exec/
+ls
+chmod 755 key-handler
+nsxiv -otb ~/Pictures/wallpapers/
+which nitrogen
+swaybg -m fill -i ~/Pictures/wallpapers/art-1.jpg && disown
+swaybg -m fill -i ~/Pictures/wallpapers/art-1.jpg & disown
+swaybg -m fill -i ~/Pictures/wallpapers/art-1.jpg;  disown
+swaybg -m fill -i ~/Pictures/wallpapers/art-1.jpg && disown
+swaybg -m fill -i ~/Pictures/wallpapers/art-1.jpg and disown
+bash
+swaybg -m fill -i ~/Pictures/wallpapers/art-1.jpg and disown
+bash
+nsxiv -otb ~/Pictures/wallpapers/
+niri validate
+nsxiv -tb ~/Pictures/wallpapers/
+df .
+df 
+dysk
+sudo pacman -Ss dysk
+sudo pacman -S dysk
+dysk
+dysk .
+2025-10-1 | describe
+2025-10-01 | describe
+"One | Two | Three \nFour | Five | Six" | lines | split column '|'
+"One | Two | Three \nFour | Five | Six" | lines | split column '|' | str trim
+"One | Two | Three \nFour | Five | Six" | lines | split column '|' | str trim | get column1
+loginctl terminate-session $session
+ln ~/Pictures/wallpapers/art-1.jpg wallpaper
+swaybg -m fill -i wallpaper &
+ls
+rm wallpaper
+ln -s ~/Pictures/wallpapers/art-1.jpg 
+ls
+swaybg -m fill -i art-1.jpg
+ln -s ~/Pictures/wallpapers/art-1.jpg wallpaper
+ls
+rm art-1.jpg
+ls
+swaybg -m fill -i wallpaper &
+mv wallpaper wallpaper.jpg
+swaybg -m fill -i wallpaper.jpg &
+l
+swaybg -m fill -i wallpaper.jpg
+nsxiv -tb ~/Pictures/wallpapers/
+notify-send "Hellow"
+ps
+ps | get name
+killall swaybg
+swaybg -m fill -i ~/.config/niri/wallpaper&
+ls .config/niri/
+swaybg -m fill -i ~/.config/niri/wallpaper &
+swaybg -m fill -i /home/tgaref/.config/niri/wallpaper &
+swaybg -m fill -i /home/tgaref/.config/niri/wallpaper
+bg
+killall swaybg
+swaybg -m fill -i /home/tgaref/.config/niri/wallpaper &
+job spawn {swaybg -m fill -i /home/tgaref/.config/niri/wallpaper}
+ps | get name | where ($it = "mako")
+ps | get name | where ($in = "mako")
+ps | get name | where ($in == "mako")
+ps | get name | where ($it == "mako")
+ps | get name | where ($it == "dunst")
+find /usr/share/dbus-1/services/ -name '*Notif*'
+find /usr/share/dbus-1/services/ '*Notif*'
+cat /usr/share/dbus-1/services/ 
+cd /usr/share/dbus-1/services/
+ls
+notify-send "Hello"
+sudo pacman -S swaync
+systemctl  --user add-wants niri.service swaync.service
+notify-send "Hello"
+notify-send "Hello\n This is a test\nlajfajflsjd"
+1 | into string
+1 | (into string) + " 2 "
+1 | (into string) ++ " 2 "
+ps | get name | where {|$it|  str contains "a"} 
+ps | get name | where {|$it|  str contains "emacs"} 
+sudo pacman -R mako
+cd .config/waybar/
+ls
+rm config
+ln -s config-sway config
+cd .config/waybar/
+rm config
+ln -s config-niri config
+validate niti
+validate niri
+niri validate
+ls
+ps | get name | where {|$it|  str contains "alacritty"} 
+ps | where {|$it.name|  str contains "alacritty"} 
+ps | where {|$(it.name)|  str contains "alacritty"} 
+ps 
+sudo pacman -Ss wlprop
+wlprop
+ndrop alacritty --class drop
+ndrop alacritty --class drop &
+ndrop alacritty --class drop
+ndrop alacritty --class drop
+ndrop -v alacritty --class drop
+niri validate
+sudo pacman -Syu
+ros lis
+ros list in
+ros list installed
+ros update
+ros install sbcl 2.5.7
+ros remove sbcl2.5.4
+ros remove sbcl 2.5.4
+ros 
+ros delete sbcl 2.5.4 
+ros list installed
+ros list
+ros list installed
+ros list sbcl
+ros
+ros list
+ros list versions sbcl
+ros list installed sbcl
+ros list install sbcl 2.5.7
+ros install sbcl 2.5.7
+ros list installed
+niri msg action
+niri msg action focus-column-first
+cd AUR/zen-browser-bin/
+git pull
+makepkg -si
+cd
+rustup 
+rustup list
+rustup
+rustup check
+cd
+cd AUR/
+ls
+cd viber/
+git pull
+makepkg -si
+cd ../opera-developer/
+ls
+git pull
+makepkg -si
+sudo pacman -R opera-developer
+sudo pacman -S vivaldi
+sudo pacman -R vivaldi
+sudo paccache -rk 1
+cd ..
+git clone https://aur.archlinux.org/mullvad-browser-bin.git
+makepkg -si
+cd mullvad-browser-bin/
+makepkg -si
+gpg --auto-key-locate nodefault,wkd --locate-keys torbrowser@torproject.org<\n>
+makepkg -si
+cd ../opera-developer/
+makepkg -si
+sudo pacman -R opera-developer
+sudo pacman -Ss chrome
+sudo pacman -Ss chromium
+sudo pacman -S chromium
+sudo pacman -Ss waterfox
+notify-send "Hello\n This is a test\nlajfajflsjd"
+htop
+sudo pacman -Ss inter-font
+sudo pacman -S inter-font
+sudo pacman -Ss mullvad
+sudo pacman -Ss mullvad-browser
+cd ..
+ls
+rm -rf mullvad-browser-bin/
+sudo pacman -Syu
+juliaup list
+juliaup self update
+juliaup list
+juliaup status
+cd ..
+rustup check
+ghcup list
+ros list installed
+julia
+python3 -i 13425.py
+julia
+python3 -i 13428.py
+julia
+cd /run/media/tgaref/
+ls
+cd THEO-BACKUP/
+ls
+cd BACKUP/
+ls
+cd tgaref/
+ls
+cd
+systemctl start duplicati
+systemctl status duplicati
+duplicati-server-util change-password
+borgbackup1 
+cd tmp
+ls
+borg mount /run/media/tgaref/THEO-BACKUP/BORG/tgaref/data/0/ borg/
+borg mount /run/media/tgaref/THEO-BACKUP/BORG/tgaref/data/ borg/
+borg mount /run/media/tgaref/THEO-BACKUP/BORG/tgaref/ borg/
+cd borg/
+ls
+borg umount /run/media/tgaref/THEO-BACKUP/BORG/tgaref/
+borg umount borg
+cd ..
+borg umount borg
+borgbackup1 
+umount /run/media/tgaref/
+umount /run/media/tgaref/THEO-BACKUP/
+cabal inatall hakyll
+cabal install hakyll
+cabal update
+cabal install hakyll
+ghcup list
+ghcup install cabal 3.14.2
+ghcup list
+cabal install hakyll
+cd
+rustup check
+rustup update stable
+site watch
+emacs --daemon
+ps aux | grep emacs
+ps help
+ps
+disown 90442
+bash
+cabal install hakyll
+job spawn {emacs --daemon}
+ps
+ghcup list
+ghcup install ghc 9.10.1
+ghcup list
+ghcup help
+ghcup set 9.10.1
+cd www/hakyll-site/
+site watch
+cd ..
+ls
+cd zola-site/
+zola
+zola serve
+cabal --overwrite-policy=always install hakyll 
+job spawn {emacs --daemon}
+sudo pacman -Ss zola
+ghcup list
+ghcup delete ghc 9.10.1
+ghcup rm ghc 9.10.1
+ghcup install ghc 9.6.7
+ghcup set 9.6.7
+ghcup list
+ghcup set cabal 3.12.1
+cabal --overwrite-policy=always install hakyll 
+du .
+ls
+cd ..
+cd .cargo
+du .
+ll
+cd ..
+du .
+cd global-project/
+ls
+stack install hakyll
+rm -rf .cabal
+stack install hakyll
+rm -rf .stack
+cd ..
+df
+cd
+df
+stack install hakyll
+julia
+./deploy
+cd www/hakyll-site/
+stack exec site watch
+site watch
+stack exec site build
+stack build
+stack exec site build
+git init
+ls
+git status
+git add .
+git status
+git commit -m 'initial commit'
+git status
+stack exec site watch
+stack exec site build
+stack exec site watch
+stack exec site build
+stack exec site watch
+stack exec site build
+stack exec site watch
+stack exec site build
+stack exec site watch
+stack exec site build
+stack exec site watch
+stack exec site build
+stack exec site watch
+cd ../zola-site/
+zola serve
+cd ../MySite/
+git status
+git add .
+git status
+git commit -m 'more content'
+julia
+cd
+ghcup list
+ghcup install hls 2.11.0
+cd
+ghcup list
+which hakyll
+cabal --overwrite-policy=always install hakyll 
+cabal update
+ghcup list
+cabal --overwrite-policy=always install hakyll 
+ghcup list
+ghcup set hls 2.10.0
+ghcup list
+ghcup set hls 2.6.7
+site build
+stack exec site build
+stack exec site watch
+sola serve
+zola build
+sola help
+sola
+zola serve
+zola build
+zola serve
+zola build
+zola serve
+zola build
+zola serve
+zola build
+zola serve
+zola build
+zola serve
+zola build
+zola serve
+zola build
+zola serve
+zola build
+zola serve
+zola build
+zola serve
+zola build
+zola serve
+cd ../hakyll-site/
+site build
+cabal site build
+cabal build
+site build
+cabal run site build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal build
+cabal run site watch
+cabal build
+cabal run site watch
+cabal build
+cabal run site build
+cabal run site watch
+cabal build
+cabal run site watch
+cabal build
+cabal run site watch
+cabal build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal build
+cabal repl
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal build
+cabal run site build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal build
+cabal run site build
+cabal run site watch
+cabal build
+cabal run site build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal repl
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal build
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+systemctl start cups.service
+lpq -PHP_LaserJet_1022
+lrm 896 -PHP_LaserJet_1022
+lprm 896 -PHP_LaserJet_1022
+lpq -PHP_LaserJet_1022
+sudo cupsctl --no-debug-logging
+sudo systemctl stop cups.service
+systemctl stop cups.service
+lpq -PHP_LaserJet_1022
+lpstat -t
+systemctl start cups.service
+systemctl stop cups.service
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+git status
+rm templates/base-orig.html
+rm index-orig.html
+git status
+git add .
+git commit -m 'working shortcodes'
+sudo pacman -Ss zabbix
+sudo pacman -Syu
+bluetoothctl
+ps
+ps | get name | where {|$it| str contains emacs}
+killall emacs
+job spawn {emacs --daemon}
+jobs
+jobs list
+job list
+juliaup list
+ghcup list
+rustup shwo
+rustup show
+sudo paccache -rk 1
+df .
+cd /
+df .
+cd
+ros list installed
+ros list 
+ros list versions sbcl-bin
+ros list versions sbcl
+path exists "."
+path exists
+"." | path exists
+"." | path split
+"." | path expand
+"." | path expand | path split
+sudo pacman -Syu
+sudo pacman -Ss niri
+cargo info niri
+ls
+niri msg -- help
+niri msg --help
+niri msg action --help
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+sage -n
+sudo pacman -Syu
+ghcup list
+cd .local/
+ll
+cd lib/
+ls
+cd
+cd .ghcup/
+ghcup list
+cd www/hakyll-site/
+stack build hakyll
+stack exec site watch
+cabal run site watch
+cd bin
+ls
+cabal build 
+cabal update
+cabal build
+cd
+cd www/hakyll-site/
+cabal build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cabal run site build
+cabal run site watch
+cd
+cd www/zola-site/
+la
+ls
+zola serve
+cabal run site watch
+cabal build
+cabal site watch
+cabal run site watch
+cabal build
+cabal run site watch
+cabal build
+cabal run site watch
+hakyll --help
+cabal run site -- help
+cabal run site cleab
+cabal run site clean
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+zola serve
+cd ../hakyll-site/
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site watch
+cabal build
+cabal run site watch
+cabal build
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal build
+emacs --daemon
+cd www/hakyll-site/
+cabal build
+cabal run site rebuild
+cabal build
+cabal run site rebuild
+cabal build
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+zola serve
+zola build
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+zola serve
+ls
+zola build
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site clean
+cabal run site rebuild
+cabal run site clean
+cabal run site rebuild
+cabal run site watch
+cabal run site clean
+cabal run site rebuild
+cabal run site watch
+cabal run site clean
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+cabal run site watch
+cabal run site rebuild
+zola serve
+julia
+julia
+./deploy
+git remote -v
+git push origin
+git remote set-url https://github.com/tgaref/tgaref.github.io.git
+git remote set-url origin https://github.com/tgaref/tgaref.github.io.git
+git push origin
+cd ../MySite/
+julia
+./deploy
+julia
+./deploy
+julia
+sudo pacman -Syu
+cd www/MySite/
+julia
+./deploy
+cd
+cd programming/
+ls
+cd rust/
+ls
+cargo help
+cargo new avdou
+cd avdou
+ls
+cargo new avdou --lib
+cd ..
+cd
+cd programming/rust/
+cargo new avdou --lib
+cargo build 
+cd avdou
+cargo build 
+cargo run 
+cargo build
+touch src/main.rs
+cargo build
+cargo run
+cd
+sudo pacman -Ss pandoc
+sudo pacman -S pandoc-cli
+cargo run
+sudo pacman -Ss pandoc
+sudo pacman -S haskell-pandoc
+cabal update
+cargo build
+cabal install pandoc-cli
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+touch src/main.rs
+cargo build
+cargo run
+cargo build
+touch src/main.rs
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cabal site watch
+cabal run site watch
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cargo build
+cd programming/rust/avdou/
+ll
+cargo run
+cargo build
+git init
+ls
+cargo build
+touch src/lib.rs
+cargo build
+cargo new avdou-site --bin
+cd avdou-site/
+ls
+cargo build
+cargo run
+pwd
+cargo run
+cargo build
+cargo run
+cargo build
+cargo run
+cd
+ls
+cd programming/rust/avdou/
+git remote add origin https://github.com/tgaref/avdou.git
+git branch -M main
+git push -u origin main
+cd
+cd
+echo $PATH
+echo $env.PATH
+echo $env.SHELL
+fish
+ghcup list
+rm .ghcup/bin/cabal
+ghcup set cabal 3.12.1
+rm -rf .ghcup
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+ghcup list
+cd www/hakyll-site/
+ls
+ghcup list
+cabal build
+cabal run site watch
+cabal build
+cabal run site watch
+cabal build
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+julia
+./deploy
+cabal run site watch
+./deploy
+cabal build
+cabal run site watch
+./deploy
+cabal run site watch
+./deploy
+cabal run site watch
+./deploy
+cabal run site watch
+./deploy
+cabal run site watch
+./deploy
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+./deploy
+cargo run
+cargo build
+cargo run
+cargo build
+cargo build
+cargo run
+rm -rf public/
+cargo run
+emacs --daemon
+cargo run
+cd www/MySite/
+julia
+./deploy
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal build
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal build
+cabal site clean
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal build
+cabal run site clean
+cabal run site watch
+cabal build
+cabal run site clean
+cabal run site watch
+cargo run
+cargo build
+rustc --explain E0597
+cargo build
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+cd ..
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo build
+cargo run
+cargo build
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+rm -rf public/
+cargo run --release
+cargo run
+cargo run --release
+cd
+cd www/hakyll-site/
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cd www/hakyll-site/
+cd ../hakyll-site/
+cd content/teaching/
+ls
+cd bio101linearalgebra/
+ls
+pandoc -f markdown+latex_macros -t html calendar.md
+cd ..
+cd coding/
+pandoc -f markdown+latex_macros -t html calendar.md
+cabal run site watch
+cabal run site clean
+pandoc --version
+cabal run site watch
+cabal run site clean
+cd
+cd tmp
+pandoc -f markdown+latex_macros -t html test.md
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cd
+cd tmp
+julia
+rm -rf TestWebsite/
+julia
+julia 
+julia
+cd ../avdou-site/
+cargo run --release
+cargo run --release -- clean
+cargo run --release -- build
+cargo run --release -- watch
+cargo run --release -- watch 8080
+cargo run --release -- watch -p 8080
+cargo run --release -- clean
+cargo run --release -- watch -p 8080
+cd ../hakyll-site/
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+pandoc -f markdown+latex_macros -t html calendar.md
+pandoc -f markdown+latex_macros -t html calendar.md > test.html
+pandoc -f markdown+latex_macros -t html calendar.md -o test.html
+cabal run site watch
+pandoc -f markdown+latex_macros -t html calendar.md -o test.html
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cd www/avdou-site/
+cargo run --release -- watch -p 8080
+cargo run --release -- clean
+cargo run --release -- watch -p 8080
+cargo run --release -- build
+cargo run --release -- watch -p 8080
+cd
+juliaup self update
+juliaup list
+juliaup update release
+julia
+cd tmp/
+pandoc -f markdown+latex_macros -t html --katex test.md -o test.html
+pandoc -f markdown+latex_macros -t html --mathjax test.md -o test2.html
+pandoc -f markdown+latex_macros -t html --katex test.md -o test1.html
+cd
+cd www/hakyll-site/
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+pandoc -f markdown+latex_macros -t html --katex calendar.md -o test.html
+pandoc -f markdown+latex_macros+tex_math_dollars -t html --katex calendar.md -o test.html
+pandoc -f markdown+latex_macros+tex_math_dollars+raw_html -t html --katex calendar.md -o test.html
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cd src/
+cabal runghc TestPandoc.hs
+cabal exec runhaskell
+cd ..
+cabal exec runhaskell src/TestPandoc.hs
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cabal run site clean
+cabal run site watch
+cargo run --release -- watch -p 8080
+cabal run site watch
+cabal run site clean
+cargo run --release -- watch -p 8080
+cabal run site clean
+cargo run --release -- clean
+cargo run --release -- watch -p 8080
+cargo run --release -- clean
+cargo run --release -- watch -p 8080
+cargo run --release -- clean
+cargo run --release -- watch -p 8080
+cargo run --release -- clean
+cargo run --release -- watch -p 8080
+julia
+cd Avdou/
+julia
+cd src/
+julia
+cd ../
+cd ..
+rm -rf Avdou/
+julia
+cd Avdou/
+ls
+julia
+julia 
+cp ~/www/MySite/index.md .
+mv index.md ../example/
+julia
+lsof -i :8080
+kill -8 110448
+lsof -i :8080
+kill -9 110448
+lsof -i :8080
+julia
+git init
+git branch -M main
+git remote add origin https://github.com/tgaref/Avdou.jl.git
+cd programming/julia/Avdou/
+julia
+julia --project=.
+cd ..
+julia
+julia
+ls
+cd programming/julia/Avdou/
+julia
+cd
+julia
+cd programming/julia/Avdou/
+julia
+julia --project=.
+julia --project=~/programming/julia/Avdou
+julia
+cd julia/
+julia
+julia --project=~/programming/julia/Avdou
+./deploy
+cd ../MySite/
+./deploy
+julia
+./deploy
+julia
+julia --
+julia --project=~/programming/julia/Avdou
+./deploy
+julia --project=~/programming/julia/Avdou
+./deploy
+julia --project=~/programming/julia/Avdou
+cargo run --release -- watch -p 8080
+cargo run --release -- watch -p 8000
+cd ../hakyll-site/
+cabal run site watch
+./deploy
+cd
+cd www/MySite/
+./deploy
+julia --project=~/programming/julia/Avdou
+j
+julia --project=~/programming/julia/Avdou
+julia --project=~/programming/julia/Avdou
+ls
+git delete example
+git del example
+git --help
+c
+cd 
+cd tmp/julia/
+julia --project=~/programming/julia/Avdou
+julia
+cd tmp
+julia
+julia --project=~/programming/julia/Avdou
+julia --project=~/programming/julia/Avdou
+cd ../avdou-site/
+cargo build
+cargo build
+cargo run -- watch -p 8000
+cargo build
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- build
+cargo build
+cargo run -- clean
+cargo run -- build
+cargo run -- clean
+cargo run -- build
+cargo build
+cargo run -- build
+cargo build
+cargo run -- build
+cargo run -- build
+cargo run -- clean
+cargo run -- build
+cargo run -- watch -p 8000
+cargo run -- watch -p 8080
+cargo run -- watch -p 9000
+cargo init
+cat Cargo.toml
+cargo build
+cargo run
+cargo run -- watch -p 9000
+chmod -R a+rx public
+cargo run -- watch -p 9000
+chmod -R a+rx public
+cargo run -- watch -p 9000
+umask
+bash
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo test
+cargo run  
+cargo build
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo build
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo build
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo build
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo run -- watch -p 8000
+cargo run -- clean
+cargo build
+cargo run -- watch -p 8000
+julia
+julia --project=~/programming/julia/Avdou
+julia
+julia --project=~/programming/julia/Avdou
+julia
+julia --project=~/programming/julia/Avdou
+julia
+julia --project=~/programming/julia/Avdou
+julia
+julia --project=~/programming/julia/Avdou
+sudo pacman -Syu
+juliaup self update
+juliaup list
+cd AUR/
+cd zen-browser-bin/
+git pull
+makepkg -si
+ls
+cd ..
+ls
+cd wlogout/
+git pull
+cd ../zoom
+git pull
+makepkg -si
+ls
+cd ..
+ls
+cd brave-bin/
+git pull
+makepkg -si
+cd ..
+ls
+opera
+cd
+cd tmp/haskell/
+ls
+stack new example-site rio
+ghcup list
+stack exec exaple-site
+stack exec example-site
+stack exec -- example-site
+stack exec -- example-site-exe
+fish
+stack exec -- example-site-exe
+stack exec
+ls
+stack build
+stack exec -- example-site-exe
+ghcup set gch 9.10.3
+ghcup set ghc 9.10.3
+ghcup list
+cd example-site/
+stack install ghcide
+ghcup list
+ghcup install ghc 9.10.1
+ghcup list
+ghcup set ghc 9.6.7
+ghcup rm ghc 9.10.2
+stack build
+stack exec -- example-site-exe
+stack exec -- example-site-exe --verbose
+stack repl
+sudo systemctl start cups.service
+lpa
+lpq
+sudo systemctl restart cups.service
+calc
+sudo pacman -Syu
+sat
+stack repl
+:r Rule
+stack repl
+stack build
+stack new site rio
+cd site
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+rm -rf public/
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+julia
+deploy
+ls
+./deploy
+stack repl
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+stack build
+stack exec -- site-exe
+stack build
+cp -r ~/tmp/haskell/example-site/ avdou-hs
+ls
+cd avdou-hs/
+ls
+stack build
+git init
+git status
+cd 
+cd programming/haskell/avdou-hs/
+stack build
+sudo systemctl start cups.service
+lpq -PHP_LaserJet_1022
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site wtach
+stack exec -- site watch
+stack exec -- site build
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site clean
+stack exec -- site build
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site clean
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site watch
+stack build
+stack repl
+stack build
+stack repl
+stack build
+stack repl
+stack build
+stack repl
+stack build
+stack repl
+stack build
+stack repl
+stack build
+stack repl
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack build
+stack exec -- site build
+stack repl
+stack build
+stac repl
+stack repl
+stack build
+stack repl
+stack exec -- site build
+stack build
+stack repl
+stack build
+stack exec -- site build
+stack exec -- site watch
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site watch
+stack build
+stack exec -- site build
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site build
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site build
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site watch
+stack build
+stack exec -- site clean
+stack exec -- site watch
+stack build
+stack exec -- site clean
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site build
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site clean
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack repl
+stack repl
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site clean
+stack build
+stack exec -- site clean
+stack exec -- site watch
+stack build
+stack exec -- site clean
+stack exec -- site watch
+stack build
+stack exec -- site clean
+stack exec -- site watch
+stack build
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+pandoc -f markdown+tex_math_dollars -t html -s --mathjax -o test.html calendar.md
+stack build
+stack exec -- site watch
+stack exec -- site clean
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stac clean
+stack clean
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack repl
+stack build
+stack exec -- site watch
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack repl
+stack exec -- site build
+stack repl
+stack exec -- site build
+stack repl
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack exec -- site watch
+stack exec -- site build
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site build
+stack exec -- site watch
+stack exec -- site build
+stack exec -- site watch
+stack exec -- site build
+stack build
+stack exec -- site build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+stack repl
+stack build
+stack repl
+stack build
+stack repl
+stack build
+stack exec -- site watch
+stack build
+stack exec -- site watch
+stack build
+git branch -M main
+git remote add origin https://github.com/tgaref/avdou-hs.git
+stack build
+killall emacs
+emacs --daemon
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site build
+julia
+stack build
+stack exec -- site build
+julia --project=~/programming/julia/Avdou
+stack repl
+stack build
+stack exec -- site build
+stack exec -- site build -p 8080
+stack exec -- site build -p 8080 -prefix "tsa!"
+stack exec -- site build -p 8080 --prefix "tsa!"
+stack build
+stack build
+stack exec -- site watch -p 8080
+stack exec -- site build -p 8080 --prefix "/~tgaref"
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site clean
+stack build
+stack exec -- site build
+stack exec -- site watch -p 8080
+stack build
+stack exec -- site watch -p 8080
+stack exec -- site clean
+stack exec -- site watch -p 8080
+stack exec -- site clean
+stack build
+stack exec -- site watch -p 8080
+stack build
+stack build
+stack exec -- site watch -p 8080
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack build
+stack exec -- site clean
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack build
+stack exec -- site build
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack build
+stack exec -- site clean
+stack exec -- site build
+stack exec -- site watch -p 8080
+stack build
+stack exec -- site clean
+stack exec -- site watch -p 8080
+ls
+0pwd
+pwd
+stack build
+stack repl
+stack build
+state build
+stack build
+stack exec -- site clean
+cd ..
+stack exec -- site clean
+stack exec -- site watch -p 8080
+ps
+ps | sortBy name
+ps | sort
+stack build
+stack -- exec build
+stack -- exec site build
+stack -- exec site watch -p 8020
+stack -- exec site watch --port 8020
+stack -- exec site 
+stack -- exec site watch -p 8080
+stack build
+stack -- exec site watch -p 8080
+stack -- exec site watch
+stack exec -- site watch -p 8080
+stack build
+stack build
+stack exec -- site watch -p 8080
+stack build
+julia --project=~/programming/julia/Avdou
+julia --project=~/programming/julia/Avdou
+ls
+julia --project=~/programming/julia/Avdou
+julia --project=~/programming/julia/Avdou
+cd ..
+ls
+julia --project=~/programming/julia/Avdou
+ls
+rm Project.toml
+mv Project.toml Project.toml.old
+julia --project=~/programming/julia/Avdou
+ls
+mv Manifest.toml Manifest.toml.old
+rm Project.toml
+julia --project=~/programming/julia/Avdou
+ls
+rm Manifest.toml
+mv Project.toml.old Project.toml
+mv Manifest.toml.old Manifest.toml
+julia --project=~/programming/julia/Avdou
+julia --project=~/programming/julia/Avdou
+wl-present 
+wl-mirror 
+which wl-present 
+wl-present 
+julia --project=~/programming/julia/Avdou
+cd
+sudo systemctl start cups.service
+which hplip
+sudo pacman -Ss hplip
+lpr -PHP_LaserJet_1022 EGA-2025-2.pdf
+lpq -PHP_LaserJet_1022
+hp-setup
+sudo systemctl stop cups.service
+fish
+juliaup self update
+juliaup list
+juliaup status
+juliaup update release
+cd programming/julia/Avdou/
+julia --project=~/programming/julia/Avdou
+cd
+ghcup list
+which ghcide
+fish
+cd .local/bin
+ls
+cd
+cd programming/haskell/
+ls
+cd copyFiles/
+ls
+cd src/
+ls
+cd ..
+ls
+cd ..
+cd moveFiles/
+ls
+cd src/
+ls
+cat Main.hs
+cd
+cd .local/bin
+ls
+cd
+cd local/bin
+ls
+cd
+cd .stack/
+ls
+cd programs/
+ls
+cd x86_64-linux/
+ls
+cd ../..
+ls
+cd ..
+l
+cd .ghcup/
+;s
+ls
+cd bin/
+l
+cd
+opam upgrade
+opam update
+opam upgrade
+opam
+opam list
+opam switch create 5.4.0
+opam switch set 5.4.0
+eval (opam env)
+bash
+echo $SHELL
+fish 
+$env.SHELL
+version
+pwd
+ls
+ls -aF
+ls
+ll
+ls .
+cd tmp
+cd ..
+ls tmp
+ls .
+ls | less -S
+ls > out.txt
+ls | table --expand
+cd tmp
+ls
+ls | where type == dir
+cd ..
+ls | where type == dir
+ls | where type == file
+ls
+cd tmp
+ls
+ls | sort-by modified
+ls | sort-by modified | reverse
+cd DE/
+ls
+cd ..
+ps
+ps aux
+ps | where status == Running
+ps | where status == Sleeping
+ps | sort-by mem
+ps | sort-by mem | reverse
+ps | sort-by mem | take 5
+ps | sort-by mem | take 5 | get name
+help ls
+ls -f
+help ls
+ls -a
+ls
+ls -a 
+ls
+ls -a
+help ls
+ls -as
+help ls
+ls  **/*
+help ls
+ls **/*.{rs, jl}
+ls (glob **/*.{rs, jl})
+ls ...(glob **/*.{rs, jl})
+help ls
+help commands | explore
+ls 
+ls DE YD
+date now
+date now | to-timezone "europe/Athens" 
+date now | to-timezone "Europe/Athens" 
+date now | date to-timezone "Europe/Athens" 
+date now
+date now | date to-timezone "Europe/Berlin" 
+date now | date to-timezone "America/EST" 
+date now | date to-timezone "USA/EST" 
+date now | date to-timezone "EST" 
+date now | date to-timezone "New York" 
+date now | date to-timezone "North America/New York" 
+date list-timezone
+{'name': 'nu', 'stars': 5, 'language': 'Python'} | upsert language 'Rust'
+[one two three] | to yaml
+[one two three] | to string
+[one two three] | to 
+[one two three] | to json
+help to
+[one two three] | to text
+[one two three] | to toml
+[one two three] | to xml
+[one, two, three] | to xml
+[one two three] | to yaml
+[[framework, language]; [Django, Python] [Laravel, PHP]]
+[{name: 'Robert' age: 34 position: 'Designer'}<\n> {name: 'Margaret' age: 30 position: 'Software Developer'}<\n> {name: 'Natalie' age: 50 position: 'Accountant'}<\n>] | select name position
+[{name: 'Robert' age: 34 position: 'Designer'}<\n> {name: 'Margaret' age: 30 position: 'Software Developer'}<\n> {name: 'Natalie' age: 50 position: 'Accountant'}<\n>]
+[[name, age, position]; ['Robert', 34, 'Designer'], ['Margaret', 30, 'Software Developer'], ['Natalie', 50, 'Accountant']] 
+[[name, age, position]; ['Robert', 34, 'Designer'], ['Margaret', 30, 'Software Developer'], ['Natalie', 50, Accountant]] 
+'Theo Garefalakis' | parse '{first name} {surname}'
+'Theo Garefalakis' | parse '{firstname} {surname}'
+[cammomile marigold rose forget-me-not] | first 2<\n># => ╭───┬───────────╮<\n># => │ 0 │ cammomile │<\n># => │ 1 │ marigold  │<\n># => ╰───┴───────────╯
+[cammomile marigold rose forget-me-not] | take 2<\n># => ╭───┬───────────╮<\n># => │ 0 │ cammomile │<\n># => │ 1 │ marigold  │<\n># => ╰───┴───────────╯
+[cammomile marigold rose forget-me-not] | last 2<\n># => ╭───┬───────────╮<\n># => │ 0 │ cammomile │<\n># => │ 1 │ marigold  │<\n># => ╰───┴───────────╯
+[cammomile marigold rose forget-me-not] | drop 1<\n># => ╭───┬───────────╮<\n># => │ 0 │ cammomile │<\n># => │ 1 │ marigold  │<\n># => ╰───┴───────────╯
+let planets = [Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune]<\n>$planets | each { |elt| $"($elt) is a planet of the solar system" }<\n># => ╭───┬─────────────────────────────────────────╮<\n># => │ 0 │ Mercury is a planet of the solar system │<\n># => │ 1 │ Venus is a planet of the solar system   │<\n># => │ 2 │ Earth is a planet of the solar system   │<\n># => │ 3 │ Mars is a planet of the solar system    │<\n># => │ 4 │ Jupiter is a planet of the solar system │<\n># => │ 5 │ Saturn is a planet of the solar system  │<\n># => │ 6 │ Uranus is a planet of the solar system  │<\n># => │ 7 │ Neptune is a planet of the solar system │<\n># => ╰───┴─────────────────────────────────────────╯
+let planets = [Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune]<\n>$planets | each { |elt| $"($elt) is a planet of the solar system" } | take 3<\n># => ╭───┬─────────────────────────────────────────╮<\n># => │ 0 │ Mercury is a planet of the solar system │<\n># => │ 1 │ Venus is a planet of the solar system   │<\n># => │ 2 │ Earth is a planet of the solar system   │<\n># => │ 3 │ Mars is a planet of the solar system    │<\n># => │ 4 │ Jupiter is a planet of the solar system │<\n># => │ 5 │ Saturn is a planet of the solar system  │<\n># => │ 6 │ Uranus is a planet of the solar system  │<\n># => │ 7 │ Neptune is a planet of the solar system │<\n># => ╰───┴─────────────────────────────────────────╯
+let planets = [Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune]<\n>$planets | each { |elt| {name: $elt, age: 10 } }<\n># => ╭───┬─────────────────────────────────────────╮<\n># => │ 0 │ Mercury is a planet of the solar system │<\n># => │ 1 │ Venus is a planet of the solar system   │<\n># => │ 2 │ Earth is a planet of the solar system   │<\n># => │ 3 │ Mars is a planet of the solar system    │<\n># => │ 4 │ Jupiter is a planet of the solar system │<\n># => │ 5 │ Saturn is a planet of the solar system  │<\n># => │ 6 │ Uranus is a planet of the solar system  │<\n># => │ 7 │ Neptune is a planet of the solar system │<\n># => ╰───┴─────────────────────────────────────────╯
+julia --project=.
+cd
+cd programming/AdventOfCode/aoc_2017_julia/
+julia --project=.
+cd
+$'(ansi purple_bold)This text is a bold purple!(ansi reset)'<\n># => This text is a bold purple!
+$'(ansi green_bold)This text is a bold purple!(ansi reset)'<\n># => This text is a bold purple!
+$'(ansi cyan_bold)This text is a bold purple!(ansi reset)'<\n># => This text is a bold purple!
+$'(ansi blue_bold)This text is a bold purple!(ansi reset)'<\n># => This text is a bold purple!
+"this"
+a = 10
+let a = 10
+"$a is ten"
+$"$a is ten"
+$a
+$"($a) is ten"
+"($a) is ten"
+$"($a) is ten"
+$"($a + 1) is ten"
+$"(1 + 1) is ten"
+let scores = [3 8 4]<\n>$"total = ($scores | reduce { |elt, acc| $acc + $elt })"<\n># => total = 15
+let scores = [3 8 4]<\n>$"total = ($scores | reduce { |elt, acc| $acc * $elt })"<\n># => total = 15
+let scores = [3 8 4]<\n>$"total = ($scores | reduce { |elt, acc| $acc * $elt })"<\n><\n>
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]]<\n>$teams_scores | drop column<\n># => ╭───┬───────────────────────┬───────╮<\n># => │ # │         team          │ score │<\n># => ├───┼───────────────────────┼───────┤<\n># => │ 0 │ Boston Celtics        │   311 │<\n># => │ 1 │ Golden State Warriors │   245 │<\n># => ╰───┴───────────────────────┴───────╯
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]]<\n>$teams_scores | drop column
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]]<\n>$teams_scores | drop score 
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]]<\n>$teams_scores | drop column 1 
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]]<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | drop column 2<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | drop column 1<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | drop column 2<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | select team<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | select team score<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | select {team score}<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | select (team score)<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | select team, score<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | select team score<\n>$teams_scores
+let teams_scores = [[team score plays]; ['Boston Celtics' 311 3] ['Golden State Warriors', 245 2]] | where score > 300<\n>$teams_scores
+ls
+cd tmp/
+ls
+start test.md
+helix
+ls
+julia --project=.
+cargo init
+ls
+cd src/
+ls
+cargo build
+cd ~/programming/AdventOfCode/aoc_2017_julia/input/18.input input
+cp ~/programming/AdventOfCode/aoc_2017_julia/input/18.input input
+cargo build
+cargo run   
+julia --project=.
+cd ..
+rm -rf aoc_2017_18/
+ls
+rm test.rs~
+cd programming/AdventOfCode/aoc_2017_julia/
+julia --project=.
+ls
+julia --project=.
+quarto render proposal.md
+quarto preview proposal.md
+quarto render proposal.md
+quarto render notes.md
+quarto preview notes.md
+quarto render notes.md
+quarto preview notes.md
+quarto render notes.md
+julia --project=.
+ERROR: Problem running `tlgmr update`.<\n><\n>Stack trace:<\n>    at renderFiles (file:///opt/quarto/bin/quarto.js:123721:49)<\n>    at eventLoopTick (ext:core/01_core.js:178:7)<\n>    at async render (file:///opt/quarto/bin/quarto.js:129503:19)<\n>    at async _Command.actionHandler (file:///opt/quarto/bin/quarto.js:129745:24)<\n>    at async _Command.execute (file:///opt/quarto/bin/quarto.js:9840:7)<\n>    at async _Command.parseCommand (file:///opt/quarto/bin/quarto.js:9717:14)<\n>    at async quarto (file:///opt/quarto/bin/quarto.js:175538:5)<\n>    at async file:///opt/quarto/bin/quarto.js:175566:5<\n>    at async file:///opt/quarto/bin/quarto.js:175421:14<\n>    at async mainRunner (file:///opt/quarto/bin/quarto.js:175423:5)<\n>
+sudo pacman -S texlive-polyglossia texlive-langgreek texlive-fontutils
+quarto render notes.md
+julia --project=.
+julia --project=.
+quarto render notes.md
+julia 
+quarto render notes.md
+julia 
+quarto render notes.md
+quarto render proposal.md
+quarto render notes.md
+quarto render notes-latex.md
+quarto preview notes-latex.md
+quarto preview proposal.md
+julia --project=.
+bash
+---<\n>title: Πρόταση σχεδιασμού Block Cipher βασισμένου στο AES<\n>lang: el<\n>toc: true<\n>toc-depth: 2<\n>toc-title: "Πίνακας Περιεχομένων"<\n>number-sections: true<\n>section-numbering: 1.1.1.<\n>reference-section-title: "Βιβλιογραφία"<\n>format: <\n>  html:<\n>    include-after-body:<\n>      text: |<\n>        <style><\n>        .header-section-number::after { content: "."; }<\n>        </style><\n>  docx:	default<\n>  typst:<\n>    mainfont: "Minion Pro"<\n>    fontsize: 11pt<\n>    section-numbering: 1.1.1.<\n>    columns: 1<\n>bibliography: ref.bib	<\n>csl: ieee.csl<\n>---<\n>
+# Source - https://stackoverflow.com/a<\n># Posted by Tyarel, modified by community. See post 'Timeline' for change history<\n># Retrieved 2026-01-07, License - CC BY-SA 4.0<\n><\n>opam env --shell=powershell | parse "$env:{key} = '{val}'" | transpose -rd | load-env<\n>
+opam env --shell=powershell | parse "$env:{key} = '{val}'" | transpose -rd | load-env
+opam env --shell=nushell | parse "$env:{key} = '{val}'" | transpose -rd | load-env
+opam env --shell=powershell | parse "$env:{key} = '{val}'" | transpose -rd | load-env
+fish
+@PATH
+$PATH
+echo $PATH
+echo $SHELL
+echo $env.SHELL
+echo $env.PATH
+fish
+dune 
+fish
+utop
+opam list
+opam install core
+julia --project=.
+sudo systemctl start cups.service
+lpq -PHP_LaserJet_1022
+lpq -PHP_LaserJet_1022 943
+lprm -PHP_LaserJet_1022 943
+lpq -PHP_LaserJet_1022 943
+sudo systemctl stop cups.service
+julia --project=.
+juliaup update release
+sudo pacman -Syu
+julia  
+rustup show
+rustup list
+rustup --help
+rustup update stable
+ghcup list
+ghcup rm ghc 9.10.2
+ghcup list
+stack exec -- site watch -p 8080
+stack exec -- site build --prefix=~tgaref/
+stack exec -- site build --prefix=/~tgaref
+./deploy
+cd AUR/
+cd zen-browser-bin/
+git pull
+makepkg -si
+cd ..
+pdflatex OSS3.tex
+evince OSS3.pdf
+bg
+pdflatex OSS3.tex
+jobs list
+jobs
+job list
+job unfreeze 1
+job list
+evince OSS3.pdf
+mv OSS3.pdf ~/teaching/EAP/PLH20/2025/ΟΣΣ/ΟΣΣ3/
+jod help
+job
+sudo systemctl start cups.service
+lpq -PHP_LaserJet_1022 943
+lprm -PHP_LaserJet_1022 943
+lpq -PHP_LaserJet_1022
+sudo systemctl start cups.service
+hp-setup -i
+sudo systemctl stοπ cups.service
+sudo systemctl stop cups.service
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+julia --project=.
+cd AUR/
+cd brave-bin/
+git pull
+makepkg -si
+cd ../zen-browser-bin/
+git pull
+cd 
+sudo systemctl start cups.service
+lpq -PHP_LaserJet_1022
+lprm -PHP_LaserJet_1022 948
+lpq -PHP_LaserJet_1022
+lprm -PHP_LaserJet_1022 950
+lpq -PHP_LaserJet_1022
+lprm -PHP_LaserJet_1022 951
+lpq -PHP_LaserJet_1022
+sudo systemctl stop cups.service
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+sudo systemctl start cups.service
+lpq -PHP_LaserJet_1022
+lprm -PHP_LaserJet_1022 955
+cd teaching/UOC/TMEM/undergrad/IntroLinAlg/
+ls
+cd fall25/
+ls
+lpr -PHP_LaserJet_1022 final-Jan2026.pdf
+lpq -PHP_LaserJet_1022
+lpr -PHP_LaserJet_1022 final-Jan2026.pdf
+1..10
+1..10 | each {lpr final-Jan2026.pdf} 
+lpq -PHP_LaserJet_1022
+1..10 | each {|i| lpr -PHP_LaserJet_1022 final-Jan2026.pdf} 
+lpq -PHP_LaserJet_1022
+lpr -PHP_LaserJet_1022 final-Jan2026.pdf
+0..20 | each {|i| lpr -PHP_LaserJet_1022 final-Jan2026.pdf} 
+lpq -PHP_LaserJet_1022
+sudo systemctl stop cups.service
+cd teaching/UOC/TMEM/undergrad/IntroLinAlg/fall25/
+sudo systemctl start cups.service
+0..20 | each {|i| lpr -PHP_LaserJet_1022 final-Jan2026.pdf} 
+sudo pacman -Syu
+cd teaching/UOC/TMEM/undergrad/IntroLinAlg/fall25/
+sudo systemctl start cups.service
+0..20 | each {|i| lpr -Poffice-hp final-Jan2026.pdf} 
+lpq -Poffice-hp
+lprm -PHP_LaserJet_1022 1036
+lprm -PHP_LaserJet_1022 1039
+lprm -PHP_LaserJet_1022 1040
+lprm -PHP_LaserJet_1022 1041
+lprm -PHP_LaserJet_1022 1042
+lprm -PHP_LaserJet_1022 1043
+lprm -PHP_LaserJet_1022 1044
+lprm -PHP_LaserJet_1022 1045
+lprm -PHP_LaserJet_1022 1046
+lprm -PHP_LaserJet_1022 1047
+lprm -PHP_LaserJet_1022 1048
+lprm -PHP_LaserJet_1022 1049
+lprm -PHP_LaserJet_1022 1050
+lpq -Poffice-hp
+lprm -PHP_LaserJet_1022 1051
+lprm -PHP_LaserJet_1022 1052
+sudo systemctl stop cups.service
+cd
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+cd
+julia
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+julia
+sudo systemctl stop cups.service
+sudo systemctl start cups.service
+lpq -Poffice-hp
+lprm -Poffice-hp 1079
+lprm -Poffice-hp 1080
+lpq -Poffice-hp
+sudo systemctl stop cups.service
+sudo systemctl start cups.service
+juliaup list
+juliaup self update
+juliaup list
+ghcup list
+stack build
+stack upgrade
+ghcup update stack
+ghcup upgrade stack
+ghcup list
+ghcup install stack 3.7.1
+ghcup list
+ghcup rm stack 3.3.1
+ghcup list
+ghcup install hls 2.13.0.0
+ghcup list
+ghcup install cabal 3.14.2
+ghcup list
+ghcup rm cabal 3.12.1.0
+stack build
+sudo pacman -Syu
+sudo paccache -rk 1
+julia --project=.
+cd research/Projects/KETYAK/
+ls
+cd experiments/
+ls
+zip aes_experiments/
+zip aes_experiments
+zip --help
+tar cvf aes_experiments/
+tar cvf aes_experiments/ aes_experiments.tar
+tar cvf aes_experiments.tar aes_experiments/
+cd aes_experiments/
+ls
+cd ..
+ls
+rm aes_experiments.tar
+tar cvf aes_experiments.tar aes_experiments/
+julia --project=.
+ls
+rm aes_experiments.tar
+tar cvf aes_experiments.tar aes_experiments/
+sudo pacman -Syu
+cd AUR/
+cd zen-browser-bin/
+git pull
+makepkg -si
+stack exec -- site build
+stack exec -- site watch -p 8080
+stack exec -- site build --prefix=/~tgaref
+./deploy
+cd .ssh
+ls
+cd 
+cd .ssh
+ls -la
+cat known_hosts
+rm known_hosts
+rm known_hosts.old
+cd
+cd www/site-avdou-hs/
+./deploy
+which rsync
+./deploy
+sudo pacman -Syu
+borgbackup1 
+borgbackup2 
+ls local/bin
+backup
+umount /run/media/tgaref/THEO-BACKUP/
+umount /run/media/tgaref/Sandisk
+borgbackup1
+backup
+umount /run/media/tgaref/THEO-BACKUP/
+sudo systemctl 
+systemctl --user cat swayidle.service
+systemd-inhibit --list
+systemctl --user stop swayidle.service
+systemctl --user disable swayidle.service
+ps aux | grep swayidle
+ps
+ps | get name
+ps | where name = "swayidle"
+ps | where {name = "swayidle"}
+ps | where {name == "swayidle"}
+systemctl --user list-units --type=service | lines | find "swayidle"
+systemctl --user enable --now hypridle.service
+journalctl --user -u hypridle.service -f
+systemctl --user daemon-reload
+systemctl --user list-units --type=service | lines | find "swayidle"
+systemctl --user list-units --type=service | lines | find "hypridle"
+systemctl --user disable hypridle.service
+systemctl --user add-wants niri.service hypridle.service
+journalctl --user -u hypridle.service | find "config"
+systemctl --user status hypridle.service
+juliaup self update
+juliaup list
+juliaup self update
+juliaup update release
+juliaup list
+cd AUR/zen-browser-bin/
+git pull
+makepkg -si
+cd ../brave-bin/
+git pull
+makepkg -si
+zen-browser 
+ps | where {name == "zen"}
+ps
+killall zen-browser
+zen-browser 
+cd ../zen-browser-bin/
+git pull
+which zen-browser 
+sudo systemctl start cups.service
+lpq
+lpq -Poffice-hp
+hp-plugin -i
+hp-setup -u
+sudo pacman -S --needed hplip python-pyqt5 ghostscript
+sudo systemctl restart cups
+hp-setup -u
+juliaup self update
+juliaup update release
+julia
+cpfiles -x doc tree/ submissions/
+cpfiles -x doc -r tree/ submissions/
+ls submissions/
+cpfiles tree/ submissions/ -x doc
+ls submissions/
+cpfiles tree/ submissions/ -x doc -r
+ls submissions/
+copyfiles --help
+copyfiles -help
+cpfile --help
+which cpfile
+cd ~/local/bin
+ls
+cd
+cd .local/bin
+ls
+cd 
+env.PATH
+$env.PATH
+cpfiles --help
+cpfiles tree submissions -x doc -r
+ls submissions/
+fish
+ls
+cpfiles tree submissions -r -x docx
+ls submissions/
+cpfiles tree submissions -r -x odt
+ls submissions/
+mkdir submissions/pdf
+cpfiles tree submissions/pdf -r -x pdf 
+ls submissions/pdf
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+sudo pacman -Syu
+udiskie
+ps
+ps | where {name == "udiskie"}
+ps | where name == "udiskie"
+cd /mnt
+ls
+cd /dev/
+ls
+cd
+lsblk -f
+udiskie -v
+DEBUG [2026-02-19 09:25:19,646] udiskie.config: Failed to read config file: [Errno 2] No such file or directory: '/home/tgaref/.config/udiskie/config.yml'<\n>DEBUG [2026-02-19 09:25:19,646] udiskie.config: Failed to read config file: [Errno 2] No such file or directory: '/home/tgaref/.config/udiskie/config.json'
+dmesg -w | last 20
+sudo dmesg -w | last 20
+cd /run/media/tgaref/
+ls
+cd VirtualMachine/
+ls
+cd
+umount /run/media/tgaref/VirtualMachine/
+cd /run/media/tgaref/
+ls
+cd 0BAD-86E9/
+ls
+cd photos/
+ls
+umount /run/media/tgaref/0BAD-86E9/
+cd
+umount /run/media/tgaref/0BAD-86E9/
+ps | where name == "picom"
+systemctl --user list-unit-files | find picom
+systemctl --user disable --now picom
+grep -r "picom" ~/.bashrc ~/.profile ~/.zshrc ~/.xprofile /etc/profile.d/
+grep -r "picom" ~/.bashrc ~/.zshrc ~/.xprofile /etc/profile.d/
+grep -r "picom" ~/.bashrc ~/.zshrc /etc/profile.d/
+cd /etc/xdg/autostart/
+ls
+cd
+cd .config/autostart/
+ls
+cp /etc/xdg/autostart/picom.desktop ~/.config/autostart/
+echo "Hidden=true" | save --append ~/.config/autostart/picom.desktop
+umount /run/media/tgaref/0BAD-86E9/
+cd /run/media/tgaref/
+ls
+cd 0BAD-86E9/
+ls
+rm ev-codes-decoding-talk.pdf
+cp ~/research/talks/TMEM2026/ev-codes-decoding-talk.pdf .
+rm ev-codes-decoding-talk.pdf
+umount /run/media/tgaref/0BAD-86E9/
+cd
+umount /run/media/tgaref/0BAD-86E9/
+ghcup list
+rustup show
+rustup 
+rustup check
+rustup update stable
+juliaup list
+juliaup show
+juliaup self update
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+[{'name': 'nu', 'stars': 5, 'language': 'Python'} {'name': 'mpla', 'stars': 5, 'language': 'Ocaml'}] | select language Ocaml
+[{'name': 'nu', 'stars': 5, 'language': 'Python'} {'name': 'mpla', 'stars': 5, 'language': 'Ocaml'}] | select language name
+[{'name': 'nu', 'stars': 5, 'language': 'Python'} {'name': 'mpla', 'stars': 5, 'language': 'Ocaml'}] | where {language == Ocaml}
+sudo pacman -Syu
+cd /run/media/tgaref/Sandisk/
+ls
+cd BORG/
+ls
+cd tgaref/
+ls
+cd ../..
+borgbackup2 
+cd BORG/
+ls
+cd tgaref/
+ls
+cd data/
+ls
+cd 0/
+ls
+borg mount /run/media/tgaref/Sandisk/BORG/tgaref/ ~/tmp/borg/
+borg umount ~/tmp/borg
+cd
+umount /run/media/tgaref/Sandisk/
+borgbackup1
+borgbackup1 
+backup
+umount /run/media/tgaref/THEO-BACKUP/
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+cd AUR/
+cd zen-browser-bin/
+git pull
+makepkg -si
+cd ../brave-bin/
+git pull
+makepkg -si
+cd ..
+ls
+cd wlogout/
+git pull
+cd ../zoom
+git pull
+makepkg -si
+cd ../zoom
+cd ..
+ls
+cd viber/
+git pull
+makepkg -si
+cd ..
+cd AUR/
+cd floorp-bin/
+git pull
+makepkg -si 
+cd ../opera/
+git pull
+makepkg -si 
+cd ../opera-ffmpeg-codecs-bin/
+git pull
+makepkg -si 
+sudo pacman -R vivaldi
+sudo pacman -Ss floorp
+sudo pacman -Ss thunderbird
+sudo pacman -S thunderbird
+sudo pacman -Syu
+sudo pacman -S thunderbird
+sudo pacman -S geary
+sudo pacman -R geary
+sudo pacman -Ss evolution
+sudo pacman -S evolution
+killall evolution
+sudo pacman -R evolution
+sudo pacman -R geary
+sudo pacman -Ss bluemail
+cd
+julia
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+cd AUR/
+l
+cd timeshift/
+git pull
+makepkg -si 
+cd
+ps | where name =~ "mako|dunst|swaync|fnott|wired"
+swaync-client -t -sw
+systemctl --user status swaync
+cd AUR/
+git clone  	https://aur.archlinux.org/noctalia-shell.git
+ls
+cd noctalia-shell/
+ls
+makepkg -si 
+cd ..
+git clone https://aur.archlinux.org/noctalia-qs.git
+cd noctalia-qs/
+makepkg -si 
+cd ..
+rm -rf noctalia-qs/
+rm -rf noctalia-shell/
+sudo pacman -Ss paru
+git clone https://aur.archlinux.org/paru.git
+cd paru/
+makepkg -si 
+cargo install paru
+makepkg -si 
+sudo paru -S noctalia-shell
+paru -S noctalia-shell
+sudo pacman -Syu
+paru -S noctalia-shell
+systemctl --user disable --now swaync
+pkill swaync
+ps | where name =~ "swaync"
+niri msg action check-config
+niri msg action reload-config
+niri msg action load-config-file
+qs -c noctalia-shell --no-duplicate
+pkill qs
+qs -c noctalia-shell --no-duplicate
+cd AUR/
+ls
+cd paru/
+ls
+cd src/
+ls
+cd paru-2.1.0/
+ls
+paru --gendb
+paru -S --refresh python-progress
+paru --gendb
+cd
+rm -rf AUR
+df .
+cd .cache/noctalia/
+ls
+pkill qs
+rm calendar.json
+qs -c noctalia-shell ipc call calendar refresh
+# Create the config directory if it doesn't exist<\n>mkdir ~/.config/noctalia/plugins/<\n><\n># Symlink the system plugins to your user folder<\n>ln -s /usr/share/noctalia/plugins/* ~/.config/noctalia/plugins/
+qs -c noctalia-shell reload
+# Kill any stuck processes<\n>pkill qs<\n>pkill noctalia<\n><\n># Start it manually with logging enabled<\n>qs -c noctalia-shell
+qs -c noctalia-shell --no-duplicate
+killall staem
+killall steam
+paru -S gamescope
+niri msg outputs
+pkill qs
+qs -c noctalia-shell
+sudo paru -R thunderbird
+sudo paru -S thunderbird
+sudo paru -Ss thunderbird
+ls .thunderbird/
+cd .thunderbird/
+du .
+cd ..
+rm -rf .thunderbird/
+sudo paccache -rk 1
+du .
+df .
+du .
+cd .cache/
+du .
+ls
+cd ..
+ls
+l
+ls
+cd .cargo/
+du .
+cd ../
+cd .ghcup/
+du .
+cd ..
+cd .stack/
+du .
+cd ../.ghcup/
+ls
+cd trash/
+ls
+cd ..
+cd tmp/
+ls
+du .
+cd ..
+ls
+cd ghc/
+du .
+cd
+δφ .
+df .
+sudo paccache -rk 1
+paru -Syu
+sudo pacman -Ss mullvad-browser
+paru -Syu
+paru -Ss mulvad
+paru -R mulvad-browser
+paru -R mullvad-browser-bin
+paru -Qm
+paru -R sway-scroll-stable
+paru -R sway-scroll-stable-debug
+paru -Qm
+paru -R mullvad-browser-bin
+paru -R mullvad-browser-bin-debug
+paru -R mullvad-browser-bin
+paru -Qm
+sudo pacman -Ss openssl
+pacman -Qi openssl-1.1
+pacman -Qi openssl-1.0
+paru -R openssl-1.0
+paru -Qm
+paru -R wps-office-365
+paru -R wps-office-365-fonts
+paru -R wps-office-365-fonts-xiezuo
+paru -R wps-office-365-xiezuo
+paru -Qm
+sudo pacman -Qi opera
+sudo pacman -Ss opera
+sudo systemctl start cups.service
+lpq -Poffice-hp
+sudo systemctl start cups.service
+lpq -Poffice-hp
+sudo systemctl stop cups.service
+paru -Syu
+sudo pacman -Qi python-pep
+paru -Qi python-pep
+paru -Qi python-pep517
+paru -R python-pep517
+paru -S viber
+paru -Qi imagemagic
+paru -Qi imagemagick6
+sudo pacman -S imagepagick6
+sudo pacman -S imagemagick6
+sudo pacman -Ss imagemagick6
+paru -Ss imagemagick6
+paru -R imagemagick6
+paru -Ss viber
+paru -R viber
+df .
+cd .ViberPC/
+du .
+ls
+cd data/
+du .
+cd ..
+df .
+ls
+cd WebLocalStorage/
+du .
+ls
+cd blob_storage/
+ls
+cd bb4ecfa8-3fde-4ef0-a1f5-312a553c704f/
+ls
+cd ..
+ls
+cd GPUCache/
+ls
+cd ../..
+ls
+cd data/
+ls
+cd stickers/
+ls
+cd 86/
+ls
+cd 400/
+l
+ls
+cd 
+cd .cache/
+ls
+cd `Viber Media S.à r.l/`
+ls
+cd ViberPC/
+ls
+du .
+cd qmlcache/
+ls
+cd ..
+ls
+cd
+paru -Syu
+paru -R imagemagick6
+paru -R imagemagick
+paru -Syu
+paru -Ss noctalia-qs
+paru -S libmagick6
+cd .cache/paru/
+ls
+cd clone/
+ls
+rm -rf imagemagick6/
+paru -S imagemagick6
+paru -S libmagick6
+sudo pacman -Qi imagemagick6
+sudo pacman -Qi libmagick6
+paru -R imagemagick6
+paru -R libmagick6
+paru -Syu
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+paru -Ss thunderbird
+paru -S thunderbird
+paru -Ss notmuch
+paru -Ss mbsync
+paru -Ss isync
+paru -S mu isync msmtp
+cd
+mbsync -a
+julia
+df .
+mbsync -a
+chmod 600 ~/.msmtprc
+mu index
+mbsync -a
+du .
+cd ../.cache/
+cd thunderbird/
+du .
+cd ..
+cd .thunderbird/
+cd
+cd .thunderbird/
+du 
+cd .
+du .
+mbsync -a
+killall mbsync
+mbsync -a
+mbsync -V infomaniak-account
+mbsync -V infomaniak
+ls
+killall mbsync
+rm ~/Mail/infomaniak/Trash/.mbsyncstate
+mbsync -V infomaniak
+ls
+cd ~/Mail/gmail/Trash/.mbsyncstate
+cd ~/Mail/gmail/Trash
+cd ~/Mail/gmail/
+ls
+cd '[Gmail]/'
+ls
+cd Trash/
+ls
+rm .mbsyncstate
+mbsync -a
+mbsync -V uoc
+mbsync -V infomaniak
+mbsync -V gmail
+cat ~/.msmtp.log | tail -n 20
+mbsync -V infomaniak
+cd
+kilall brave
+killall brave
+brave
+paru -Ss brave-bin
+paru -S brave-bin
+brave
+sudo systemctl start cups.service
+sudo systemctl stop cups.service
+paru -Syu
+paru -Ss duplicati
+paru -Ss duplicati-canary-bin
+paru -R duplicati-canary-bin
+paru -Syu
+paru -R pyprland-git
+paru -Syu
+paru -Qi electron17-17
+paru -Qi electron17
+paru -R electron17
+paru -Qi electron19
+paru -R electron19
+paru -Syu
+sudo paccache -rk 1
+df .
+du .cache/paru/
+paccache -rk 1 -p ~/.cache/paru/clone
+paccache -rk 1 -c ~/.cache/paru/clone
+paru -Sc
+paru -Rns $(pacman -Qdtq)
+bash
+df .
+cd /
+df .
+cd
+paru -Sc
+df .
+sudo paccache -rk 1
+sudo paru -Sc
+ls -a ~ | sort-by size | reverse | first 20
+du ~ --max-depth 2 | sort-by size | reverse | first 10
+du ~ --max-depth 4 | sort-by size | reverse | first 10
+du ~ --max-depth 6 | sort-by size | reverse | first 10
+du ~ --max-depth 6 | sort-by size | reverse | where size > 100mb
+du ~ --max-depth 6 | sort-by size | reverse | where apparent > 100mb
+du .
+du .cache
+du .cabal
+du .ghcup
+du .rustup
+du .cargo
+du .juliaup
+du .julia
+du programming
+du reading/
+du research/
+ls -a ~ <\n>| where type == dir <\n>| each { |it| <\n>    let usage = (du $it.name --max-depth 0 | get 0.size)<\n>    { name: $it.name, size: $usage }<\n>  } <\n>| sort-by size <\n>| reverse
+ls -a ~ <\n>| where type == dir <\n>| each { |it| <\n>    let usage = (du $it.name --max-depth 0 | get 0.apparent)<\n>    { name: $it.name, size: $usage }<\n>  } <\n>| sort-by size <\n>| reverse
+ls -a ~ <\n>| each { |it| <\n>    let usage = (du $it.name --max-depth 0 | get 0.apparent)<\n>    { name: $it.name, size: $usage }<\n>  } <\n>| sort-by size <\n>| reverse
+du Pictures/
+ls -a ~
+ls ~
+ls -a ~ <\n>| each { |it| <\n>    let usage = (du $it.name --max-depth 0 | get 0.size)<\n>    { name: $it.name, size: $usage }<\n>  } <\n>| sort-by size <\n>| reverse
+ls -a ~ <\n>| each { |it| <\n>    let usage = (du $it.name --max-depth 0 | get 0.disk)<\n>    { name: $it.name, size: $usage }<\n>  } <\n>| sort-by size <\n>| reverse
+ls -a ~ <\n>| where type == dir <\n>| each { |it| <\n>    let usage = (du $it.name --max-depth 0 | values | get 0.0)<\n>    { name: $it.name, usage: $usage }<\n>  } <\n>| sort-by usage <\n>| reverse
+ls -a ~ <\n>| where type == dir <\n>| each { |it| <\n>    let usage = (du $it.name --max-depth 0 | values | get 0.1)<\n>    { name: $it.name, usage: $usage }<\n>  } <\n>| sort-by usage <\n>| reverse
+ls -a ~ <\n>| where type == dir <\n>| each { |it| <\n>    let usage = (du $it.name --max-depth 6 | values | get 0.apparent)<\n>    { name: $it.name, usage: $usage }<\n>  } <\n>| sort-by usage <\n>| reverse
+ls -a ~ <\n>| where type == dir <\n>| each { |it| <\n>    let usage = (du $it.name --max-depth 6 | values | get 0.physical)<\n>    { name: $it.name, usage: $usage }<\n>  } <\n>| sort-by usage <\n>| reverse
+^du -sh --max-depth=1 ~ <\n>| lines <\n>| split column "\t" size path <\n>| upsert size { |it| $it.size | into filesize } <\n>| sort-by size -r
+cd .local
+ls
+du .
+du bin
+du lib
+du pipx
+ls
+du share
+cd share/
+ls
+du `Foxit Software/`
+cd Steam/
+ls
+cd
+du .
+df .
+bash
+cd .local/share/Trash/
+ls
+du .
+rm -rf ./*
+cd ..
+ls
+du .
+cd 
+cd .local/share/
+ls
+du okular/
+du kmail2/
+cd zed
+cd .
+cd ..
+du zed
+paru -R zed
+rm -rf zed
+ls
+du ristretto/
+du kate/
+rn -rf kate
+rm -rf kate
+paru -R kate
+df .
+sudo systemctl start cups.service
+paru -Ss helium
+paru -S helium-browser-bin
+which helium
+which helium-browser-bin
+which helium-browser
+cd
+ros list versions sbcl
+ros list 
+ros list installed
+ros install sbcl 2.6.2
+ros list versions sbcl-bin
+ros list versions sbcl
+ros list versions sbcl-bin
+ros list sbcl-bin
+ros list
+ros update
+ros update default
+ros update
+ros update quicklisp
+ros install nyxt
+ros install
+ros install atlas-engineer/nyxt
+cd .roswell/
+ls
+cd local-projects/
+ls
+git clone https://github.com/tpapp/cl-colors-ng.git ~/.roswell/local-projects/cl-colors-ng
+ls
+git clone https://github.com/tpapp/cl-colors.git ~/.roswell/local-projects/cl-colors
+ros run
+ros install atlas-engineer/nyxt
+ros run
+ros install atlas-engineer/nyxt
+ls
+rm -rf cl-colors
+git clone https://github.com/tpapp/cl-colors.git ~/.roswell/local-pr
+ls
+cd ..
+ls
+rm -rf local-pr/
+cd local-projects/
+git clone https://github.com/tpapp/cl-colors.git ~/.roswell/local-projects/cl-colors
+ros run --eval '(ql:register-local-projects)' --eval '(quit)'
+ros install atlas-engineer/nyxt
+cd cl-colors/
+ls
+ln -s cl-colors.asd cl-colors-ng.asd
+ros install atlas-engineer/nyxt
+ros run
+ls
+f cl-colors.asd
+git config --global url."https://github.com/".insteadOf git@github.com:
+# Move to your local-projects folder<\n>cd ~/.roswell/local-projects/<\n><\n># Clone the specific ones Nyxt needs right now<\n>git clone https://github.com/atlas-engineer/nsymbols.git<\n>git clone https://github.com/atlas-engineer/nkeymaps.git<\n>git clone https://github.com/atlas-engineer/nfiles.git<\n>git clone https://github.com/atlas-engineer/nclass.git
+ls
+rm -rf nsymbols/
+# Move to your local-projects folder<\n>cd ~/.roswell/local-projects/<\n><\n># Clone the specific ones Nyxt needs right now<\n>git clone https://github.com/atlas-engineer/nsymbols.git<\n>git clone https://github.com/atlas-engineer/nkeymaps.git<\n>git clone https://github.com/atlas-engineer/nfiles.git<\n>git clone https://github.com/atlas-engineer/nclass.git
+cd ~/.roswell/local-projects/<\n><\n># This command disables the credential helper for this specific clone<\n>git -c credential.helper= clone https://github.com/atlas-engineer/nclass.git
+ls
+git clone https://github.com/atlas-engineer/nclass.git
+git config --global --remove-section url."https://github.com/".insteadOf 2>/dev/null<\n>git config --global --remove-section url."git@github.com:".insteadOf 2>/dev/null
+git config --global --remove-section url."https://github.com/".insteadOf 2>/dev/null
+git config --global --unset-all url."https://github.com/".insteadOf<\n>git config --global --unset-all url."git@github.com:".insteadOf
+cd ..
+git clone https://github.com/atlas-engineer/nclass.git
+git config --global --unset credential.helper
+git clone https://github.com/atlas-engineer/nclass.git
+ros run
+ls
+rm -rf nfiles/
+rm -rf nkeymaps/
+rm -rf nsymbols/
+ls
+rm -rf cl-colors/
+rm -rf atlas-engineer/
+ls
+cd
+paru -Ss nyxt
+nyxt
+cd www/avdou-site/
+cargo run 
+cargo run --help
+cargo build
+cargo build --release
+cargo run .
+cargo run avdou-site
+cargo run 
+cargo run --help
+cargo run --release -- watch -p 8000
+cd ../AvdouSite/
+cargo run --release -- watch -p 8000
+cd
+htop
+cargo run --release -- watch -p 8000
+julia --project=~/programming/julia/Avdou
+cargo run --release -- build -pref /~tgaref
+cargo run --release -- build --pref /~tgaref
+./deploy
+ls
+./deploy
+ssh-keygen -t ed25519 -C "tgaref@gauss-2026"
+ssh-copy-id -i ~/.ssh/id_ed25519.pub tgaref@gauss.math.uoc.gr
+./deploy
+ssh-copy-id -i ~/.ssh/id_ed25519.pub tgaref@gauss.math.uoc.gr
+ssh-copy-id -i ~/.ssh/id_ed25519.pub 'tgaref@uoc.gr'@gauss.math.uoc.gr
+./deploy
+cargo install just
+cargo test
+cd www/avdou-site/
+cargo test
+just watch
+cargo run --release -- watch -p 8000
+just watch
+cd
+paru -Ss mise
+cargo install mise
+paru -S mise
+mise install racket@latest
+mise install racket@9.1
+mise plugins install racket https://github.com/asdf-community/asdf-racket.git
+cd www/avdou-site/
+mise run watch
+rustup update stable
+mise run watch
+mise install racket@9.1
+cd
+cd programming/rust/avdou/
+cargo build --release
+cd 
+cd www/avdou-site/
+cargo build --release
+cargo run --release -- watch -p 8000
+mise run watch
+mise use racket
+racket
+mise run racket
+mise run deploy
+# Run this once to set everything up<\n>let mise_path = ($nu.default-config-dir | path join "mise.nu")<\n>^mise activate nu | save -f $mise_path<\n>echo $"\nuse ($mise_path)" | save --append $nu.config-path
+mise doctor
+mkdir ($nu.default-config-dir | path join "vendor/autoload")
+^mise activate nu | save -f ($nu.default-config-dir | path join "vendor/autoload/mise.nu")
+mise doctor
+mise self-update
+cargo install mise
+which poetry
+paru -Ss poetry
+curl -sSL https://install.python-poetry.org | python3 - --uninstall
+which poetry
+paru -Ss poetry
+paru -R python-poetry-core-git
+paru -R poetry
+paru -Ss poetry
+paru -R python-poetry 
+paru -R python-poetry-plugin-export 
+paru -R python-poetry-plugin-export python-poetry
+paru -R python-poetry-plugin-export python-poetry python-poetry-core
+paru -R python-poetry-plugin-export python-poetry python-poetry-core python-poetry-core-git
+paru -R python-poetry-plugin-export python-poetry python-poetry-core
+which potry
+which poetry
+cd .local/share/
+cd .loca
+cd
+cd .local
+cd share/
+ls
+cd
+cargo install mise
+which cargo
+paru -Ss cargo
+config env
+cd .cargo/
+ls
+cd bin/
+ls
+which cargo
+cd
+config env
+$env.EDITOR = "emacsclient -c"
+config env
+emacsclient
+which emacsclient
+emacsclient -c env.nu
+config env
+cd
+racket
+raco --help
+mise plugins install guile
+mise plugin install guile https://github.com/indiebrain/asdf-guile.git
+cargo install mise
+ls
+rm ΥπεύθυνηΔήλωσηΚΕΔΑΣΥ.pdf
+mise install guile@latest
+mise use guile
+guile
+mise plugins install chezscheme https://github.com/asdf-community/asdf-chezscheme.git
+mise install chezscheme@latest
+mise use chez
+mise use chezscheme
+chezscheme
+chez 
+scheme
+mise use chez
+fish
+mise dr
+mise use guile
+ls
+guile
+cd
+mise use uv@latest
+paru -Ss chromium-widevine
+paru -S chromium-widevine
+ls /usr/lib/chromium/WidevineCdm/
+sudo ln -s /usr/lib/chromium/WidevineCdm /opt/helium-browser/WidevineCdm
+cd /opt
+ls
+sudo ln -s /usr/lib/chromium/WidevineCdm /usr/lib/helium/WidevineCdm
+ln -s /usr/lib/chromium/WidevineCdm/ ~/.config/helium/WidevineCdm/
+cd .config/helium
+cd .config
+ls
+mkdir -p ~/.config/helium/WidevineCdm
+mkdir ~/.config/helium/WidevineCdm
+ln -s /usr/lib/chromium/WidevineCdm/ ~/.config/helium/WidevineCdm/
+cd
+rm -rf .config/helium/
+paru -R chromium-widevine
+paru -S chromium-widevine
+mkdir ~/.local/lib/helium
+ln -s /usr/lib/chromium/WidevineCdm ~/.local/lib/helium/
+ls helium
+ls
+cd
+cd .local/share/
+ls
+cd
+mise which chezscheme
+mise which chez
+mise which scheme
+ros run
+cd .roswell/local-projects/
+ls
+git clone https://gitlab.common-lisp.net/asdf/asdf.git
+rm -rf ~/.cache/common-lisp/
+ls
+paru -Ss zed
+paru -Ss zed-editor
+paru -Ss zed
+sudo pacman -Ss zed
+sudo pacman -S zed
+paru -S zed
+julia
+paru -Ss chezmoi
+paru -S chezmoi
+paru -Syu
+df .
+chezmoi init
+which chezmoi
+paru -Ss chezmoi
+paru -S chezmoi
+chezmoi init
+ls .local/share/chezmoi/
+chezmoi add .config/niri
+chezmoi add .config/fish
+chezmoi add .config/alacritty/
+chezmoi add .config/fuzzel/
+chezmoi add .config/waybar/
+chezmoi add .config/polybar/
+chezmoi add .config/hypr
+chezmoi add .config/noctalia

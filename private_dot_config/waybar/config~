@@ -1,0 +1,74 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 22,
+
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["custom/lang", "cpu", "memory", "battery", "pulseaudio", "clock", "tray"],
+    "sway/mode": {
+        "format": " {}"
+    },
+    "sway/workspaces": {
+        "format": "{name}",
+        "disable-scroll": true
+    },
+    "sway/window": {
+        "max-length": 50,
+        "tooltip": false
+    },
+    "clock": {
+        "format": "{:%a %d %b %H:%M}",
+        "tooltip": false
+    },
+   "battery": {
+       "bat": "BAT0",
+       "format": "{icon} {capacity}%",
+       "format-icons": ["", "", "", "", ""],
+       "format-charging": " {capacity}%",
+       "interval": 30,
+       "states": {
+           "warning": 25,
+           "critical": 10
+       }
+    },
+    "network": {
+    // "interface": "wlp2s0", // (Optional) To force the use of this interface
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-disconnected": "Disconnected ⚠"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}",
+        "format-alt": "{icon}",
+        "format-alt-click": "click-right",
+        "format-muted": "",
+        "format-icons": {
+            "phone": [" ", " ", " ", " "],
+            "default": [""]
+        },
+        "scroll-step": 10,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+    "cpu": {
+    "format": " {usage}%",
+    "tooltip": false
+    },
+    "memory": {
+        "format": " {}%"
+    },
+    "custom/test": {
+        "format": "{}",
+        "exec": "/tmp/test blub",
+        "param": "blah",
+        "interval": 5
+    },
+    "custom/lang": {
+    "exec": "swaymsg -t get_inputs|grep -5 'active_layout_name'|tail -6|sed 's/.*: //;s/\"//g'|cut -c 1-2|tr '[a-z]' '[A-Z]'",
+    "interval": 1
+    },
+    "tray": {
+        "icon-size": 18
+    }
+}

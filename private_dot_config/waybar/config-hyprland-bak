@@ -1,0 +1,77 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 22,
+
+    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["hyprland/language", "cpu", "memory", "battery", "pulseaudio", "clock", "tray"],
+    "hyprland/mode": {
+        "format": " {}"
+    },
+    "wlr/workspaces": {
+        "format": "{name}",
+        "disable-scroll": false
+    },
+    "hyprland/window": {
+        "max-length": 50,
+        "tooltip": false
+    },
+    "clock": {
+        "format": "{:%a %d %b %H:%M}",
+        "tooltip": false
+    },
+   "battery": {
+       "bat": "BAT0",
+       "format": "{icon} {capacity}%",
+       "format-icons": ["", "", "", "", ""],
+       "format-charging": " {capacity}%",
+       "interval": 30,
+       "states": {
+           "warning": 25,
+           "critical": 10
+       }
+    },
+    "network": {
+    // "interface": "wlp2s0", // (Optional) To force the use of this interface
+    "format-wifi": " {essid} ({signalStrength}%)",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-disconnected": "Disconnected ⚠"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}",
+        "format-alt": "{icon}",
+        "format-alt-click": "click-right",
+        "format-muted": "",
+        "format-icons": {
+            "phone": [" ", " ", " ", " "],
+            "default": [""]
+        },
+        "scroll-step": 10,
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+    "cpu": {
+    "format": " {usage}%",
+    "tooltip": false
+    },
+    "memory": {
+        "format": " {}%"
+    },
+    "hyprland/language": {
+    "format": "{} \udb80\udf0c",
+    "format-en": "US",
+    "format-es": "GR",
+    "keyboard-name": "at-translated-set-2-keyboard",
+    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+  },
+    "custom/test": {
+        "format": "{}",
+        "exec": "/tmp/test blub",
+        "param": "blah",
+        "interval": 5
+    },
+    "tray": {
+        "icon-size": 18
+    }
+}

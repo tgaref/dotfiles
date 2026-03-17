@@ -1618,6 +1618,7 @@ This function is meant to be mapped to a key in `rg-mode-map'."
               mu4e-update-interval 300
               mu4e-change-filenames-when-moving t
               message-send-mail-function 'message-send-mail-with-sendmail
+              message-kill-buffer-on-exit t
               sendmail-program "/usr/bin/msmtp")
         ;; Don't add the 'T' (trash) flag, just move the file. 
         ;; This allows mbsync to handle the move naturally.

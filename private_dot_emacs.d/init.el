@@ -36,6 +36,9 @@
 
 (setq straight-use-package-by-default t)
 
+;; Load Org early to prevent version mismatch when org-babel-load-file is called
+(straight-use-package 'org)
+
 (org-babel-load-file (expand-file-name "/home/tgaref/.emacs.d/myinit.org"))
 
 (exec-path-from-shell-initialize)
@@ -44,3 +47,4 @@
 ;;(load "~/.emacs.d/myexwm")
 
 (provide 'init)
+;;; init.el ends here

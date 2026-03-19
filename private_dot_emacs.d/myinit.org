@@ -47,7 +47,6 @@
 
 #+BEGIN_SRC emacs-lisp
       (use-package org
-        :straight nil
         :init (progn
                 (bind-key "\C-cl" 'org-store-link)
                 (bind-key "\C-ca" 'org-agenda)

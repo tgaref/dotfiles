@@ -291,7 +291,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T { spawn "alacritty"; }
     Mod+E { spawn "emacsclient" "-c"; }
-//    Mod+B { spawn "firefox"; }
+//   Mod+B { spawn "firefox"; }
     Mod+B { spawn "zen-browser"; }
     
     // Noctalia specific key binds   

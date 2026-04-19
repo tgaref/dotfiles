@@ -21,4 +21,3 @@ end
 
 # opam configuration
 source /home/tgaref/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-~/.local/bin/mise activate fish | source

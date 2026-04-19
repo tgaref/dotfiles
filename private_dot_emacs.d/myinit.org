@@ -276,51 +276,47 @@ Navigate slides with =C-<= and =C->=
            :unnarrowed t)))
 #+end_src
 
+* straight
+#+BEGIN_SRC emacs-lisp
+  (setq straight-remove-unused-repos t)
+#+END_SRC
+
 * eglot
 #+begin_src emacs-lisp
   (use-package eglot
   :straight t
-  :hook (typst-ts-mode . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs
-               '(typst-ts-mode . ("tinymist"))))
+               '(typst-ts-mode . ("tinymist")))
+  ;; Suppress warning about unsupported didChangeConfiguration capability
+  (add-to-list 'eglot-ignored-server-capabilities :workspace/didChangeConfiguration))
 #+end_src
 
 * Typst
 #+BEGIN_SRC emacs-lisp
 
-  (straight-use-package
-  '(typst-ts-mode :type git :host codeberg :repo "meow_king/typst-ts-mode"))
-
   (use-package typst-ts-mode
+    :straight (:type git :host codeberg :repo "meow_king/typst-ts-mode")
     :mode "\\.typ\\'"
-    :hook (typst-ts-mode . font-lock-mode)
+    :hook (typst-ts-mode . (lambda ()
+                             (setq-local treesit-font-lock-level 4)
+                             (font-lock-mode 1)
+                             (font-lock-ensure)
+                             (electric-indent-local-mode -1)
+                             (eglot-ensure)))
     :bind (:map typst-ts-mode-map
-              ("C-c C-c" . typst-ts-mode-compile)
-              ("C-c C-p" . typst-ts-mode-preview))
+                ("C-c C-c" . typst-ts-compile)
+                ("C-c C-p" . typst-ts-preview))
     :init
-      (add-to-list 'treesit-language-source-alist
-                   '(typst "https://github.com/uben0/tree-sitter-typst"))
-    :config
-    ;(setq typst-ts-compile-executable-location "typst")
-    ;(setq typst-ts-watch-options "--open")
-      ;; Setup Tree-sitter grammar      
-      (setq treesit-font-lock-level 4)
-      (setq-default indent-tabs-mode nil) ; Use spaces instead of tabs
-      (electric-indent-mode -1)           ; Disable auto-indent on newline
-      ;; Connect to Tinymist (the LSP)
-      (add-hook 'typst-ts-mode-hook #'eglot-ensure)
-      (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-ts-mode)))  
+    (setq treesit-font-lock-level 4)
+    (add-to-list 'treesit-language-source-alist
+                 '(typst "https://github.com/uben0/tree-sitter-typst"))
+    ;; Ensure Emacs can find the tree-sitter grammar
+    (add-to-list 'treesit-extra-load-path (expand-file-name "tree-sitter" user-emacs-directory))
+    ;; Explicitly prefer typst-ts-mode for .typ files
+    (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-ts-mode)))
 
-  ;; Register the tinymist executable with Eglot
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               '(typst-ts-mode . ("tinymist"))))
-
-;  (straight-use-package
-;  '(typst-preview :type git :host github :repo "havarddj/typst-preview.el"))
-
- +END_SRC
+#+END_SRC
 
 * denote
 #+BEGIN_SRC emacs-lisp
@@ -1540,35 +1536,32 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 * OpenWith
 
 #+BEGIN_SRC emacs-lisp
-(use-package openwith
-  :straight t)
+  (use-package openwith
+    :straight t)
 
-(when (require 'openwith nil 'noerror)
-      (setq openwith-associations
-            (list
-             (list (openwith-make-extension-regexp
-                    '("mpg" "mpeg" "mp3" "mp4"
-                      "avi" "wmv" "wav" "mov" "flv"
-                      "ogm" "ogg" "mkv"))
-                   "mpv"
-                   '(file))
-             (list (openwith-make-extension-regexp
-                    '("xbm" "pbm" "pgm" "ppm" "pnm"
-                      "gif" "bmp" "tif" "jpeg" "jpg"))
-                   "ristretto"
-                   '(file))
-             (list (openwith-make-extension-regexp '("doc" "docx" "odt"))
-                  "libreoffice" '("--writer" file))
-            (list (openwith-make-extension-regexp '("ods" "xls" "xlsx"))
-                  "libreoffice" '("--calc" file))
-            (list (openwith-make-extension-regexp '("odp" "pps" "ppt" "pptx"))
-                  "libreoffice" '("--impress" file))            
-             (list (openwith-make-extension-regexp
-                    '("pdf" "ps" "ps.gz" "dvi" "djvu"))
-                   "evince"
-                   '(file))
-             ))
-      (openwith-mode 1))
+  (when (require 'openwith nil 'noerror)
+        (setq openwith-associations
+              (list
+               (list (openwith-make-extension-regexp
+                      '("mpg" "mpeg" "mp3" "mp4"
+                        "avi" "wmv" "wav" "mov" "flv"
+                        "ogm" "ogg" "mkv"))
+                     "mpv"
+                     '(file))
+               (list (openwith-make-extension-regexp
+                      '("xbm" "pbm" "pgm" "ppm" "pnm"
+                        "gif" "bmp" "tif" "jpeg" "jpg"))
+                     "ristretto"
+                     '(file))
+  	     (list (openwith-make-extension-regexp 
+  		    '("doc" "docx" "odt" "ods" "xls" "xlsx" "odp" "pps" "ppt" "pptx"))
+  		   "xdg-open" '(file))
+               (list (openwith-make-extension-regexp
+                      '("pdf" "ps" "ps.gz" "dvi" "djvu"))
+                     "evince"
+                     '(file))
+               ))
+        (openwith-mode 1))
 #+END_SRC
 * vterm
 #+BEGIN_SRC emacs-lisp
@@ -1577,7 +1570,7 @@ This function is meant to be mapped to a key in `rg-mode-map'."
      :commands vterm
      :config
       (setq vterm-max-scrollback 10000)
-      (setq vterm-shell "nu"))
+      (setq vterm-shell "fish"))
 
     (use-package multi-vterm 
       :straight t

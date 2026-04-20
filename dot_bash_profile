@@ -1,0 +1,6 @@
+# ~/.bash_profile
+#
+
+# Standard bash profile sourcing
+[[ -f ~/.profile ]] && . ~/.profile
+[[ -f ~/.bashrc ]] && . ~/.bashrc

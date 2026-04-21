@@ -1,6 +1,29 @@
 # ~/.bash_profile
 #
 
+# Helper function to add to PATH idempotently
+add_to_path() {
+    case ":$PATH:" in
+        *":$1:"*) : ;;
+        *) export PATH="$1:$PATH" ;;
+    esac
+}
+
+# 1. System/Local bins
+add_to_path "$HOME/.local/bin"
+add_to_path "$HOME/local/bin"
+
+# 2. Programming Language Toolchains
+add_to_path "$HOME/.cargo/bin"
+add_to_path "$HOME/.juliaup/bin"
+add_to_path "$HOME/.ghcup/bin"
+add_to_path "$HOME/.cabal/bin"
+add_to_path "$HOME/.pyenv/bin"
+
+# 3. Opam configuration (Standard POSIX init)
+# We do this here so it's inherited by all shells
+test -r "$HOME/.opam/opam-init/init.sh" && . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
+
 # Standard bash profile sourcing
 [[ -f ~/.profile ]] && . ~/.profile
 [[ -f ~/.bashrc ]] && . ~/.bashrc

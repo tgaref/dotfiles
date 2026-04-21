@@ -1,9 +1,14 @@
+# ~/.profile
+#
+
 # Helper function to add to PATH idempotently
 add_to_path() {
-    case ":$PATH:" in
-        *":$1:"*) : ;;
-        *) export PATH="$1:$PATH" ;;
-    esac
+    if [ -d "$1" ]; then
+        case ":$PATH:" in
+            *":$1:"*) : ;;
+            *) export PATH="$1:$PATH" ;;
+        esac
+    fi
 }
 
 # 1. System/Local bins
@@ -15,8 +20,13 @@ add_to_path "$HOME/.cargo/bin"
 add_to_path "$HOME/.juliaup/bin"
 add_to_path "$HOME/.ghcup/bin"
 add_to_path "$HOME/.cabal/bin"
-add_to_path "$HOME/.pyenv/bin"
 
-# 3. Opam configuration (Standard POSIX init)
-# We do this here so it's inherited by all shells
-test -r "$HOME/.opam/opam-init/init.sh" && . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
+# 3. Opam configuration
+# Only source if the opam bin dir is not already in PATH
+if ! echo "$PATH" | grep -q "$HOME/.opam/5.4.1/bin"; then
+    test -r "$HOME/.opam/opam-init/init.sh" && . "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null || true
+fi
+
+# 4. Final deduplication (Cleans any inherited duplicates)
+PATH=$(echo "$PATH" | awk -v RS=: -v ORS=: '!a[$0]++' | sed 's/:$//')
+export PATH

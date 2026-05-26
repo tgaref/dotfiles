@@ -715,11 +715,13 @@ Navigate slides with =C-<= and =C->=
       :config 
       (setq shell-switcher-mode t)
       (define-key shell-switcher-mode-map (kbd "C-'")
-	'shell-switcher-switch-buffer)
+  	'shell-switcher-switch-buffer)
       (define-key shell-switcher-mode-map (kbd "C-x 4 '")
-	'shell-switcher-switch-buffer-other-window)
+  	'shell-switcher-switch-buffer-other-window)
       (define-key shell-switcher-mode-map (kbd "C-M-'")
-	'shell-switcher-new-shell))
+  	'shell-switcher-new-shell)
+      (add-hook 'eshell-first-time-mode-hook
+          #'eat-eshell-visual-command-mode))
 
 #+END_SRC
 ** prompt
@@ -1583,6 +1585,17 @@ This function is meant to be mapped to a key in `rg-mode-map'."
        (setq multi-vterm-dedicated-window-height 50))
 #+END_SRC
 
+* eat
+#+BEGIN_SRC emacs-lisp
+ (use-package eat
+      :straight (:host codeberg
+		 :repo "akib/emacs-eat"
+		 :files ("*.el" ("term" "term/*.el") "*.texi" "*.org" "terminfo"))
+      :bind ("C-c t" . eat)  ; Optional: Bind eat to "C-c t" for quick launch
+      :config
+      ;; Enable mouse support inside the terminal
+      (add-hook 'eat-mode-hook #'eat-enable-mouse))
+#+END_SRC      
 * Weblorg
 #+BEGIN_SRC emacs-lisp
   (use-package weblorg

@@ -1587,14 +1587,29 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 
 * eat
 #+BEGIN_SRC emacs-lisp
- (use-package eat
-      :straight (:host codeberg
-		 :repo "akib/emacs-eat"
-		 :files ("*.el" ("term" "term/*.el") "*.texi" "*.org" "terminfo"))
-      :bind ("C-c t" . eat)  ; Optional: Bind eat to "C-c t" for quick launch
-      :config
-      ;; Enable mouse support inside the terminal
-      (add-hook 'eat-mode-hook #'eat-enable-mouse))
+  (use-package eat
+    :straight (:host codeberg
+               :repo "akib/emacs-eat"
+               :files ("*.el" ("term" "term/*.el") "*.texi" "*.org" "terminfo"))
+    :bind (("C-c t" . eat)
+           ("C-c n" . my/eat-new-instance))
+    :config
+    ;; Note: eat-enable-mouse is a boolean variable, not a function!
+    ;; It is enabled by default, so we don't need to add it to eat-mode-hook.
+
+    (defun my/eat-new-instance ()
+      "Spawn a fresh, fully functional, uniquely named instance of Eat."
+      (interactive)
+      ;; Rename any existing *eat* buffer first to free the namespace
+      (let ((existing-buffer (get-buffer "*eat*")))
+        (when existing-buffer
+          (with-current-buffer existing-buffer
+            (rename-buffer (generate-new-buffer-name "*eat*")))))
+      ;; Spawn the new session
+      (eat)
+      ;; Rename the new session immediately
+      (when (string= (buffer-name) "*eat*")
+        (rename-buffer (generate-new-buffer-name "*eat*")))))
 #+END_SRC      
 * Weblorg
 #+BEGIN_SRC emacs-lisp

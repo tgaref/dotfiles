@@ -52,20 +52,20 @@ foreground = "0xf5f2ea"
 
 [font]
 # scale_with_dpi = true
-size = 17.0
+size = 14.0
 
 [font.bold]
-family = "Iosevka SS03"
+family = "monospace"
 
 [font.glyph_offset]
 x = 0
 y = 0
 
 [font.italic]
-family = "Iosevka SS03"
+family = "monospace"
 
 [font.normal]
-family = "Iosevka SS03"
+family = "monospace"
 style = "Medium"
 
 [font.offset]

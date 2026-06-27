@@ -1579,8 +1579,8 @@ This function is meant to be mapped to a key in `rg-mode-map'."
       :init
        (bind-key "C-c r v" 'multi-vterm)
        (bind-key "C-`" 'multi-vterm-dedicated-toggle)
-       (bind-key "C-<prior>" 'multi-vterm-next) ; Control - PageUp
-       (bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
+       (bind-key "C-/" 'multi-vterm-next) ; Control - PageUp
+       ;(bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
       :config
        (setq multi-vterm-dedicated-window-height 50))
 #+END_SRC

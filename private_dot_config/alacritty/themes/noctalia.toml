@@ -36,14 +36,14 @@ background = '#8fcdff'
  
  
 [colors.normal]
-black = '#181818' 
+black = '#222527' 
 red = '#ffb4ab' 
-green = '#8fcdff' 
-yellow = '#006494' 
+green = '#8ee0a3' 
+yellow = '#eed48f' 
 blue = '#8fcdff' 
 magenta = '#d0c0e8' 
 cyan = '#b8c8d9' 
-white = '#BAC2DE' 
+white = '#e2e2e5' 
  
  
 [colors.bright]

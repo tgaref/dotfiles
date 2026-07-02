@@ -318,11 +318,6 @@ binds {
     XF86MonBrightnessUp   { spawn "noctalia" "msg" "brightness-up"; }
     XF86MonBrightnessDown { spawn "noctalia" "msg" "brightness-down"; }
 
-    // Power profile shortcuts
-    Mod+Shift+S { spawn "powerprofilesctl" "set" "power-saver"; }
-    Mod+Shift+B { spawn "powerprofilesctl" "set" "balanced"; }
-    Mod+Shift+P { spawn "powerprofilesctl" "set" "performance"; }
-
     // Niri specific binds
 
     // Mod+B { spawn "vivaldi"; }
@@ -468,7 +463,12 @@ binds {
     Alt+Print { screenshot-window; }
 
     Mod+Shift+E { quit; }
-//    Mod+Shift+P { power-off-monitors; }
+    // Mod+Shift+P { power-off-monitors; }
+
+    // Power profile shortcuts
+    Mod+Shift+S { spawn "powerprofilesctl" "set" "power-saver"; }
+    Mod+Shift+B { spawn "powerprofilesctl" "set" "balanced"; }
+    Mod+Shift+P { spawn "powerprofilesctl" "set" "performance"; }
 
     Mod+Shift+Ctrl+T { toggle-debug-tint; }
     Mod+O { toggle-overview; }

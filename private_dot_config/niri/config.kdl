@@ -233,7 +233,7 @@ layout {
 // spawn-at-startup "alacritty" "-e" "fish"
 
 
-spawn-at-startup "emacs" "--daemon"
+// spawn-at-startup "emacs" "--daemon" // Managed by systemd user service instead
 spawn-at-startup "udiskie"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "noctalia" "--daemon"
@@ -290,7 +290,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T { spawn "alacritty"; }
     Mod+E { spawn "emacsclient" "-c"; }
-   Mod+B { spawn "flatpak" "run" "org.mozilla.firefox"; }
+    Mod+B { spawn "flatpak" "run" "org.mozilla.firefox"; }
 //    Mod+B { spawn "zen-browser"; }
     
     // Noctalia specific key binds   

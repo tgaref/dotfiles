@@ -448,19 +448,14 @@ Navigate slides with =C-<= and =C->=
 
       ;; Enable rich annotations using the Marginalia package
       (use-package marginalia
-        :straight nil
+        :straight t
         ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
         ;; available in the *Completions* buffer, add it to the
         ;; `completion-list-mode-map'.
         :bind (:map minibuffer-local-map
                     ("M-A" . marginalia-cycle))
 
-        ;; The :init section is always executed.
-        :init
-
-        ;; Marginalia must be activated in the :init section of use-package such that
-        ;; the mode gets enabled right away. Note that this forces loading the
-        ;; package.
+        :config
         (marginalia-mode))
 
     (use-package consult
@@ -543,6 +538,8 @@ Navigate slides with =C-<= and =C->=
       ;; Configure other variables and modes in the :config section,
       ;; after lazily loading the package.
       :config
+      (require 'bookmark)
+      (require 'recentf)
 
       ;; Optionally configure preview. The default value
       ;; is 'any, such that any key triggers the preview.
@@ -555,8 +552,8 @@ Navigate slides with =C-<= and =C->=
        consult-theme :preview-key '(:debounce 0.2 any)
        consult-ripgrep consult-git-grep consult-grep
        consult-bookmark consult-recent-file consult-xref
-       consult--source-bookmark consult--source-file-register
-       consult--source-recent-file consult--source-project-recent-file
+       consult-source-bookmark consult-source-file-register
+       consult-source-recent-file consult-source-project-recent-file
        ;; :preview-key "M-."
        :preview-key '(:debounce 0.4 any))
 
@@ -675,29 +672,25 @@ Navigate slides with =C-<= and =C->=
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x C-b") 'ibuffer)
   (setq ibuffer-saved-filter-groups
-    '(("home"
-      ("code" (filename . "programming"))
+    '(("Home"
+      ("Code" (filename . "programming"))
       ("LaTeX" (mode . latex-mode))
       ("Org" (or (mode . org-mode)
                    (filename . "org")))
       ("Eshell" (name . "^\\*eshell\\*.*$"))
-      ("Terminal" (name . "^Alacritty.*$\\|^\\*vterminal.*$"))
-      ("dired" (mode . dired-mode))
-      ("emacs" (or (name . "^\\*scratch\\*$")
+      ("Terminal" (or (mode . ghostel-mode)
+                       (mode . eat-mode)
+                       (name . "^Alacritty.*$\\|^\\*vterminal.*$\\|^\\*ghostel.*$\\|^\\*eat.*$")))
+      ("Dired" (mode . dired-mode))
+      ("Emacs" (or (name . "^\\*scratch\\*$")
                    (name . "^\\*Messages\\*$")))
-      ("emacs-config" (or (filename . ".emacs.d")
-                            (filename . "emacs-config")
-                          (name . "\\.emacs")
-                          (name . "myinit.org")
-                          (name . "myexwm.el")
-                          (name . "\\.init.el")))
       ("Help" (or (name . "\*Help\*")
                     (name . "\*Apropos\*")
                     (name . "\*info\*"))))))
   (add-hook 'ibuffer-mode-hook
            '(lambda ()
               (ibuffer-auto-mode 1)
-              (ibuffer-switch-to-saved-filter-groups "home")))
+              (ibuffer-switch-to-saved-filter-groups "Home")))
   (setq ibuffer-expert t)
   (setq ibuffer-show-empty-filter-groups nil)
   (setq ibuffer-deletion-face 'dired-flagged)
@@ -1009,7 +1002,7 @@ Navigate slides with =C-<= and =C->=
 #+END_SRC
 
 * Common Lisp
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   ;(use-package slime
   ; :straight t
   ; :config (load (expand-file-name "~/.roswell/helper.el")))
@@ -1027,28 +1020,25 @@ Navigate slides with =C-<= and =C->=
 
   (use-package lsp-haskell
    :straight t
+   :after haskell-mode
    :config 
-    (add-hook 'haskell-mode-hook #'lsp)
-    (add-hook 'haskell-literate-mode-hook #'lsp) 
-    (setq lsp-haskell-server-path "/home/tgaref/.ghcup/hls/2.10.0.0/bin/haskell-language-server-9.6.7"))
-    ;;(setq lsp-haskell-server-path "/home/tgaref/.ghcup/bin/haskell-language-server-wrapper"))
+    (setq lsp-haskell-server-path "/home/tgaref/.local/bin/haskell-language-server-wrapper"))
 
   (use-package hindent
    :straight t
-   :config 
-    (add-hook 'haskell-mode-hook #'hindent-mode))
+   :hook (haskell-mode . hindent-mode))
 
   (use-package haskell-mode
    :straight t
-   :init (add-hook 'haskell-mode-hook 'haskell-decl-scan-mode)
-         (add-hook 'haskell-mode-hook #'lsp)
-         (require 'haskell-interactive-mode)
-         (require 'haskell-process)
-         (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+   :hook ((haskell-mode . haskell-decl-scan-mode)
+          (haskell-mode . lsp)
+          (haskell-mode . interactive-haskell-mode))
    :bind (:map haskell-mode-map
            ("C-c h" . hoogle)
            ("C-c s" . haskell-mode-stylish-buffer))
-   :config  (add-to-list 'exec-path "/home/tgaref/.ghcup/bin")
+   :config  (require 'haskell-interactive-mode)
+            (require 'haskell-process)
+            (add-to-list 'exec-path "/home/tgaref/.ghcup/bin")
             (message "Loaded haskell-mode")
             (setq haskell-mode-stylish-haskell-path "~/.local/bin/fourmolu")
             (setq haskell-hoogle-url "https://hoogle.haskell.org/?hoogle=%s")
@@ -1145,7 +1135,9 @@ Navigate slides with =C-<= and =C->=
 #+BEGIN_SRC emacs-lisp
   (use-package flycheck
     :straight t
-    :hook (prog-mode . flycheck-mode))
+    :hook (prog-mode . flycheck-mode)
+    :config
+    (setq-default flycheck-disabled-checkers '(haskell-ghc haskell-stack-ghc haskell-cabal)))
 
   (use-package company
     :straight t
@@ -1384,7 +1376,8 @@ Navigate slides with =C-<= and =C->=
     :config (global-set-key (kbd "C-=") 'er/expand-region))
 
   (use-package iedit
-    :straight t)
+    :straight t
+    :bind (("C-c ;" . iedit-mode)))
 
 #+END_SRC
 
@@ -1567,25 +1560,22 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 #+END_SRC
 * vterm
 #+BEGIN_SRC emacs-lisp
-  (use-package vterm
-   :straight t
-   :commands vterm
-   :config
-    (setq vterm-max-scrollback 10000)
-    (setq vterm-shell "fish"))
+    (use-package vterm
+     :straight t
+     :commands vterm
+     :config
+      (setq vterm-max-scrollback 10000)
+      (setq vterm-shell "fish"))
 
-  (use-package multi-vterm 
-    :straight t
-    :init
-     (bind-key "C-c r v" 'multi-vterm)
-     (bind-key "C-`" 'multi-vterm-dedicated-toggle)
-     (bind-key "C-/" 'multi-vterm-next) ; Control - PageUp
-     ;(bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
-    :config
-     (setq multi-vterm-dedicated-window-height 50))
-
-  (with-eval-after-load 'vterm
-      (define-key vterm-mode-map (kbd "C-q") #'vterm-send-next-key))
+    (use-package multi-vterm 
+      :straight t
+      :init
+       (bind-key "C-c r v" 'multi-vterm)
+       (bind-key "C-`" 'multi-vterm-dedicated-toggle)
+       ;(bind-key "C-/" 'multi-vterm-next) ; Control - PageUp
+       ;(bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
+      :config
+       (setq multi-vterm-dedicated-window-height 50))
 #+END_SRC
 
 * eat
@@ -1595,10 +1585,15 @@ This function is meant to be mapped to a key in `rg-mode-map'."
                :repo "akib/emacs-eat"
                :files ("*.el" ("term" "term/*.el") "*.texi" "*.org" "terminfo"))
     :bind (("C-c t" . eat)
-           ("C-c n" . my/eat-new-instance))
+           ("C-c n" . my/eat-new-instance)
+           ("C-." . my/eat-cycle))
     :config
     ;; Note: eat-enable-mouse is a boolean variable, not a function!
     ;; It is enabled by default, so we don't need to add it to eat-mode-hook.
+
+    (add-to-list 'eat-semi-char-non-bound-keys [?\C-.])
+    (when (fboundp 'eat-update-semi-char-mode-map)
+      (eat-update-semi-char-mode-map))
 
     (defun my/eat-new-instance ()
       "Spawn a fresh, fully functional, uniquely named instance of Eat."
@@ -1613,7 +1608,62 @@ This function is meant to be mapped to a key in `rg-mode-map'."
       ;; Rename the new session immediately
       (when (string= (buffer-name) "*eat*")
         (rename-buffer (generate-new-buffer-name "*eat*")))))
+
+    (defun my/eat-cycle ()
+      "Cycle through existing Eat buffers."
+      (interactive)
+      (require 'cl-lib)
+      (let* ((buffers (cl-remove-if-not
+                       (lambda (buf)
+                         (with-current-buffer buf
+                           (eq major-mode 'eat-mode)))
+                       (buffer-list)))
+             (current (current-buffer))
+             (pos (cl-position current buffers)))
+        (if (and pos (> (length buffers) 1))
+            (let ((next-pos (mod (1+ pos) (length buffers))))
+              (switch-to-buffer (nth next-pos buffers)))
+          (if buffers
+              (switch-to-buffer (car buffers))
+            (eat)))))
 #+END_SRC      
+
+* Ghostel
+#+BEGIN_SRC emacs-lisp
+  (use-package ghostel
+    :straight (:host github :repo "dakra/ghostel")
+    :bind (;;("C-c g" . ghostel)
+           ("C-c g" . my/ghostel-new-instance)
+           ("C-/" . my/ghostel-cycle))
+    :init
+    (defun my/ghostel-new-instance ()
+      "Spawn a fresh, uniquely named instance of Ghostel."
+      (interactive)
+      (ghostel t))
+
+    (defun my/ghostel-cycle ()
+      "Cycle through existing Ghostel buffers."
+      (interactive)
+      (require 'cl-lib)
+      (let* ((buffers (cl-remove-if-not
+                       (lambda (buf)
+                         (with-current-buffer buf
+                           (eq major-mode 'ghostel-mode)))
+                       (buffer-list)))
+             (current (current-buffer))
+             (pos (cl-position current buffers)))
+        (if (and pos (> (length buffers) 1))
+            (let ((next-pos (mod (1+ pos) (length buffers))))
+              (switch-to-buffer (nth next-pos buffers)))
+          (if buffers
+              (switch-to-buffer (car buffers))
+            (ghostel)))))
+    :config
+    (setq ghostel-shell (executable-find "fish"))
+    (add-to-list 'ghostel-keymap-exceptions "C-/")
+    (ghostel--rebuild-semi-char-keymap))
+#+END_SRC
+
 * Weblorg
 #+BEGIN_SRC emacs-lisp
   (use-package weblorg
@@ -1624,7 +1674,7 @@ This function is meant to be mapped to a key in `rg-mode-map'."
 
 #+END_SRC
 * mu4e
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
       ;; 1. Pre-load the path so Emacs knows where to look
       (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e/")
 

@@ -271,9 +271,30 @@ Navigate slides with =C-<= and =C->=
         :unnarrowed t)
       ("n" "Note" plain
            (file "/home/tgaref/notes/org-roam-templates/note.tmpl")
-           :target (file "${slug}.org")
+           :target (file "%<%Y%m%d%H%M%S>-${slug}.org")
            :empty-lines-before 1    
            :unnarrowed t)))
+
+  (use-package consult-org-roam
+    :straight t
+    :after (consult org-roam)
+    :init
+    (consult-org-roam-mode 1)
+    :custom
+    (consult-org-roam-grep-func #'consult-ripgrep)
+    :bind
+    ("C-c n f" . consult-org-roam-file-find)
+    ("C-c n b" . consult-org-roam-backlinks)
+    ("C-c n s" . consult-org-roam-search))
+
+  (use-package org-roam-ui
+    :straight t
+    :after org-roam
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start nil))
 #+end_src
 
 * straight
@@ -673,14 +694,14 @@ Navigate slides with =C-<= and =C->=
   (global-set-key (kbd "C-x C-b") 'ibuffer)
   (setq ibuffer-saved-filter-groups
     '(("Home"
+      ("Terminal" (or (mode . ghostel-mode)
+                       (mode . eat-mode)
+                       (name . "^Alacritty.*$\\|^\\*vterminal.*$\\|^\\*ghostel.*$\\|^\\*eat.*$")))
+      ("Eshell" (name . "^\\*eshell\\*.*$"))
       ("Code" (filename . "programming"))
       ("LaTeX" (mode . latex-mode))
       ("Org" (or (mode . org-mode)
                    (filename . "org")))
-      ("Eshell" (name . "^\\*eshell\\*.*$"))
-      ("Terminal" (or (mode . ghostel-mode)
-                       (mode . eat-mode)
-                       (name . "^Alacritty.*$\\|^\\*vterminal.*$\\|^\\*ghostel.*$\\|^\\*eat.*$")))
       ("Dired" (mode . dired-mode))
       ("Emacs" (or (name . "^\\*scratch\\*$")
                    (name . "^\\*Messages\\*$")))
@@ -706,15 +727,16 @@ Navigate slides with =C-<= and =C->=
     (use-package shell-switcher
       :straight t
       :config 
+      (setq shell-switcher-shells '(eshell-mode))
       (setq shell-switcher-mode t)
       (define-key shell-switcher-mode-map (kbd "C-'")
   	'shell-switcher-switch-buffer)
       (define-key shell-switcher-mode-map (kbd "C-x 4 '")
   	'shell-switcher-switch-buffer-other-window)
-      (define-key shell-switcher-mode-map (kbd "C-M-'")
+      (define-key shell-switcher-mode-map (kbd "C-c e")
   	'shell-switcher-new-shell)
       (add-hook 'eshell-first-time-mode-hook
-          #'eat-eshell-visual-command-mode))
+  	#'eat-eshell-visual-command-mode))
 
 #+END_SRC
 ** prompt
@@ -761,20 +783,16 @@ Navigate slides with =C-<= and =C->=
 	   (propertize (format-time-string "%H:%M:%S" (current-time)) 'face `(:foreground "#fffee5" :weight bold))
 	   (propertize "] " 'face `(:foreground "#fffee5" :weight bold))
            (propertize (concat (user-login-name) "@" (system-name)) 'face `(:foreground "deep sky blue" :weight bold))
-	   (propertize (concat " " (eshell/pwd) "\n") 'face `(:foreground "spring green"))
+	   (propertize (concat " " (eshell/pwd) "\n") 'face `(:foreground "#80d4ff" :weight bold))
 	   (if (= 0 (eshell-prompt-last-command-status))
-                (propertize "❱" 'face `(:foreground "spring green" :weight bold))
+                (propertize "❱" 'face `(:foreground "#8ee0a3" :weight bold))
                 (propertize "❱" 'face `(:foreground "red" :weight bold)))
            (propertize " " 'face `(:foreground "white")))))
 
   (setq eshell-highlight-prompt t)
+  (setq eshell-prompt-face nil)
 
   (setq eshell-prompt-regexp "^❱ ")
-
-(defun eshell-new()
-  "Open a new instance of eshell."
-  (interactive)
-  (eshell 'N))
 
 (use-package fish-completion
   :straight t
@@ -1446,43 +1464,41 @@ Navigate slides with =C-<= and =C->=
 * Ripgrep
 
 #+BEGIN_SRC emacs-lisp
-(use-package rg
-  :straight t
-  :after wgrep
-  :config
-  (setq rg-group-result t)
-  (setq rg-hide-command t)
-  (setq rg-show-columns nil)
-  (setq rg-show-header t)
-  (setq rg-custom-type-aliases nil)
-  (setq rg-default-alias-fallback "all")
+  (use-package rg
+    :straight t
+    :after wgrep
+    :config
+    (setq rg-group-result t)
+    (setq rg-hide-command t)
+    (setq rg-show-columns nil)
+    (setq rg-show-header t)
+    (setq rg-custom-type-aliases nil)
+    (setq rg-default-alias-fallback "all")
+    (rg-define-search tgaref/grep-vc-or-dir
+      :query ask
+      :format regexp
+      :files "everything"
+      :dir (let ((vc (vc-root-dir)))
+             (if vc
+                 vc                         ; search root project dir
+               default-directory))          ; or from the current dir
+      :confirm prefix
+      :flags ("--hidden -g !.git"))
 
-  (rg-define-search tgaref/grep-vc-or-dir
-    :query ask
-    :format regexp
-    :files "everything"
-    :dir (let ((vc (vc-root-dir)))
-           (if vc
-               vc                         ; search root project dir
-             default-directory))          ; or from the current dir
-    :confirm prefix
-    :flags ("--hidden -g !.git"))
-
-  (defun tgaref/rg-save-search-as-name ()
-    "Save `rg' buffer, naming it after the current search query.
-
-This function is meant to be mapped to a key in `rg-mode-map'."
-    (interactive)
-    (let ((pattern (car rg-pattern-history)))
-      (rg-save-search-as-name (concat "«" pattern "»"))))
-
-  :bind (("M-s g" . tgaref/grep-vc-or-dir)
-         :map rg-mode-map
-         ("M-s s" . tgaref/rg-save-search-as-name)
-         ("C-n" . next-line)
-         ("C-p" . previous-line)
-         ("M-n" . rg-next-file)
-         ("M-p" . rg-prev-file)))
+    (defun tgaref/rg-save-search-as-name ()
+      "Save `rg' buffer, naming it after the current search query.
+  This function is meant to be mapped to a key in `rg-mode-map'."
+      (interactive)
+      (let ((pattern (car rg-pattern-history)))
+        (rg-save-search-as-name (concat "«" pattern "»"))))
+    
+    :bind (("M-s g" . tgaref/grep-vc-or-dir)
+           :map rg-mode-map
+           ("M-s s" . tgaref/rg-save-search-as-name)
+           ("C-n" . next-line)
+           ("C-p" . previous-line)
+           ("M-n" . rg-next-file)
+           ("M-p" . rg-prev-file)))
 #+END_SRC
 
 * Magit
@@ -1565,7 +1581,7 @@ This function is meant to be mapped to a key in `rg-mode-map'."
      :commands vterm
      :config
       (setq vterm-max-scrollback 10000)
-      (setq vterm-shell "fish"))
+      (setq vterm-shell "nu"))
 
     (use-package multi-vterm 
       :straight t
@@ -1585,7 +1601,7 @@ This function is meant to be mapped to a key in `rg-mode-map'."
                :repo "akib/emacs-eat"
                :files ("*.el" ("term" "term/*.el") "*.texi" "*.org" "terminfo"))
     :bind (("C-c t" . eat)
-           ("C-c n" . my/eat-new-instance)
+           ;; ("C-c e" . my/eat-new-instance)
            ("C-." . my/eat-cycle))
     :config
     ;; Note: eat-enable-mouse is a boolean variable, not a function!
@@ -1633,8 +1649,8 @@ This function is meant to be mapped to a key in `rg-mode-map'."
   (use-package ghostel
     :straight (:host github :repo "dakra/ghostel")
     :bind (;;("C-c g" . ghostel)
-           ("C-c g" . my/ghostel-new-instance)
-           ("C-/" . my/ghostel-cycle))
+  	 ("C-/" . my/ghostel-cycle)
+           ("C-c g" . my/ghostel-new-instance))
     :init
     (defun my/ghostel-new-instance ()
       "Spawn a fresh, uniquely named instance of Ghostel."
@@ -1659,9 +1675,21 @@ This function is meant to be mapped to a key in `rg-mode-map'."
               (switch-to-buffer (car buffers))
             (ghostel)))))
     :config
-    (setq ghostel-shell (executable-find "fish"))
+    (setq ghostel-shell (executable-find "nu"))
+    (setq ghostel-scroll-on-input t)
+    (add-to-list 'ghostel-keymap-exceptions "C-x")
+    (add-to-list 'ghostel-keymap-exceptions "C-c")
     (add-to-list 'ghostel-keymap-exceptions "C-/")
-    (ghostel--rebuild-semi-char-keymap))
+    (ghostel--rebuild-semi-char-keymap)
+
+    (add-hook 'ghostel-mode-hook
+              (lambda ()
+                (add-hook 'window-selection-change-functions
+                          (lambda (win)
+                            (when (and (eq win (selected-window))
+                                       (derived-mode-p 'ghostel-mode))
+                              (goto-char (point-max))))
+                          nil t))))
 #+END_SRC
 
 * Weblorg
@@ -1809,19 +1837,3 @@ This function is meant to be mapped to a key in `rg-mode-map'."
   (define-key message-mode-map (kbd "C-c s") #'my-insert-signature-choice))
 
 #+END_SRC        
-* agent-shell
-#+BEGIN_SRC emacs-lisp
-;; 1. Install the protocol handler
-(straight-use-package '(acp :host github :repo "xenodium/acp.el"))
-
-;; 2. Install the shell utility
-(straight-use-package 'shell-maker)
-
-;; 3. Install agent-shell itself
-(use-package agent-shell
-  :straight (:host github :repo "xenodium/agent-shell")
-  :after (acp shell-maker)
-  :config
-  (setq agent-shell-google-authentication 
-        (agent-shell-google-make-authentication :login t)))
-#+END_SRC

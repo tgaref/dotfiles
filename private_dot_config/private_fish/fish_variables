@@ -19,8 +19,8 @@ SETUVAR __fish_initialized:4300
 SETUVAR _fish_abbr_clr:clear
 SETUVAR _fish_abbr_dired:emacsclient\x20\x2dt\x20\x2de\x20\x22\x28dired\x20\x5c\x22\x24PWD\x5c\x22\x29\x22
 SETUVAR _fish_abbr_ec:emacsclient\x20\x2dnw
-SETUVAR _fish_abbr_ll:exa\x20\x2d\x2dcolor\x20always\x20\x2d\x2dgroup\x2ddirectories\x2dfirst\x20\x2dl
-SETUVAR _fish_abbr_ls:exa\x20\x2d\x2dcolor\x20always\x20\x2d\x2dgroup\x2ddirectories\x2dfirst
+SETUVAR _fish_abbr_ll:eza\x20\x2d\x2dcolor\x20always\x20\x2d\x2dgroup\x2ddirectories\x2dfirst\x20\x2dl
+SETUVAR _fish_abbr_ls:eza\x20\x2d\x2dcolor\x20always\x20\x2d\x2dgroup\x2ddirectories\x2dfirst
 SETUVAR _fish_abbr_td:tdrop\x20\x2dma\x20\x2dw\x2070\x25\x20\x2dh\x2070\x25\x20\x2dy\x204\x25\x20\x2dx\x2015\x25\x20\x2ds\x20dropdown\x20alacritty
 SETUVAR _fisher_jorgebucaran_2F_fish_2D_bax_files:/home/tgaref/\x2econfig/fish/functions/bax\x2efish\x1e/home/tgaref/\x2econfig/fish/functions/replay\x2efish\x1e/home/tgaref/\x2econfig/fish/completions/replay\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/tgaref/\x2econfig/fish/functions/fisher\x2efish\x1e/home/tgaref/\x2econfig/fish/completions/fisher\x2efish

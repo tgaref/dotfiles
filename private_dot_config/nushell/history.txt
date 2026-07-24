@@ -3736,3 +3736,17 @@ chezmoi add .config/waybar/
 chezmoi add .config/polybar/
 chezmoi add .config/hypr
 chezmoi add .config/noctalia
+which dune
+opam switch 5.5.0
+opam switch 5.5.0+options
+which dune
+opam switch 5.2.0+ox
+which dune
+echo $env.PATH
+distrobox enter dev-box
+cd .config/
+ls
+chezmoi add .config/
+cd
+chezmoi add .config/
+chezmoi-add-config

@@ -28,7 +28,7 @@ input {
     // Omitting settings disables them, or leaves them at their default values.
     touchpad {
         tap
-        // dwt
+        dwt
         natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
@@ -81,7 +81,7 @@ output "eDP-1" {
     // off
 
     // Scale is a floating-point number, but at the moment only integer values work.
-    scale 2.0
+    scale 1.75
 
     // Resolution and, optionally, refresh rate of the output.
     // The format is "<width>x<height>" or "<width>x<height>@<refresh rate>".
@@ -233,7 +233,7 @@ layout {
 // spawn-at-startup "alacritty" "-e" "fish"
 
 
-spawn-at-startup "emacs" "--daemon"
+// spawn-at-startup "emacs" "--daemon" // Managed by systemd user service instead
 spawn-at-startup "udiskie"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "noctalia" "--daemon"
@@ -290,7 +290,7 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T { spawn "alacritty"; }
     Mod+E { spawn "emacsclient" "-c"; }
-   Mod+B { spawn "flatpak" "run" "org.mozilla.firefox"; }
+    Mod+B { spawn "flatpak" "run" "org.mozilla.firefox"; }
 //    Mod+B { spawn "zen-browser"; }
     
     // Noctalia specific key binds   
@@ -463,10 +463,28 @@ binds {
     Alt+Print { screenshot-window; }
 
     Mod+Shift+E { quit; }
-    Mod+Shift+P { power-off-monitors; }
+    // Mod+Shift+P { power-off-monitors; }
+
+    // Power profile shortcuts
+    Mod+Shift+S { spawn "powerprofilesctl" "set" "power-saver"; }
+    Mod+Shift+B { spawn "powerprofilesctl" "set" "balanced"; }
+    Mod+Shift+P { spawn "powerprofilesctl" "set" "performance"; }
 
     Mod+Shift+Ctrl+T { toggle-debug-tint; }
     Mod+O { toggle-overview; }
+}
+
+window-rule {
+    match title=r#"^(Open|Save|Select|Choose) (File|Document|Folder|As)"#
+    match title="^Open Document$"
+    match title="^Open File$"
+    match title="^Save File$"
+    match title="^Save Document$"
+    match title="^Select Folder$"
+    match title="^Save As$"
+    match app-id=r#"^org\.gnome\.Nautilus$"# title=r#"^(Open|Save|Select|Choose|Browse)"#
+    
+    open-floating true
 }
 
 // Settings for debugging. Not meant for normal use.

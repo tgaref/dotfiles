@@ -18,7 +18,7 @@ fish_add_path --global "$HOME/.ghcup/bin"
 fish_add_path --global "$HOME/.cabal/bin"
 
 # 3. Opam configuration (Guard against double-initialization)
-if not contains "$HOME/.opam/5.4.1/bin" $PATH
+if not contains "$HOME/.opam/5.5.0/bin" $PATH
     source /home/tgaref/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 end
 
@@ -35,3 +35,7 @@ function vterm_printf;
         printf "\e]%s\e\\" "$argv"
     end
 end
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/tgaref/.local/bin" $PATH

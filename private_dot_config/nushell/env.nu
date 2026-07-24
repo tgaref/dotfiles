@@ -23,42 +23,6 @@ $env.PROMPT_MULTILINE_INDICATOR = "::: "
 $env.EDITOR = "/usr/bin/emacsclient"
 $env.VISUAL = "/usr/bin/emacsclient"
 
-# --- OCaml / Opam Environment ---
-
-$env.OPAM_SWITCH_PREFIX = "/home/tgaref/.opam/5.4.1"
-$env.OCAML_TOPLEVEL_PATH = "/home/tgaref/.opam/5.4.1/lib/toplevel"
-
-# Lists for easier management in Nushell
-$env.OCAMLTOP_INCLUDE_PATH = [
-    "/home/tgaref/.opam/5.4.1/lib/toplevel"
-]
-
-$env.CAML_LD_LIBRARY_PATH = [
-    "/home/tgaref/.opam/5.4.1/lib/stublibs"
-    "/home/tgaref/.opam/5.4.1/lib/ocaml/stublibs"
-    "/home/tgaref/.opam/5.4.1/lib/ocaml"
-]
-
-# Update PATH (idempotent addition)
-$env.PATH = (
-    $env.PATH 
-    | split row (char esep)
-    | append "/home/tgaref/.opam/5.4.1/bin"
-    | uniq
-)
-
-# Update MANPATH
-if "MANPATH" in $env {
-    $env.MANPATH = (
-        $env.MANPATH 
-        | split row (char esep)
-        | append "/home/tgaref/.opam/5.4.1/man"
-        | uniq
-    )
-} else {
-    $env.MANPATH = ["/home/tgaref/.opam/5.4.1/man"]
-}
-
 # --- Other Toolchains ---
 $env.PATH = (
     $env.PATH 

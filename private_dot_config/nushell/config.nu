@@ -30,4 +30,27 @@ def ll [d? = "."] {
     ls -l $d | sort-by type
 }
 
-use /home/tgaref/.config/nushell/mise.nu
+
+# OCaml / OPAM environment integration
+def --env opam-env [] {
+    $env.PATH = ($env.PATH | where { |p| not ($p | str contains "/.opam/") })
+    let vars = (^opam env --sexp | lines | parse -r '\(\s*"(?<key>[^"]+)"\s+"(?<val>[^"]+)"' | select key val | transpose -r -d)
+    let vars = (if "PATH" in $vars { $vars | update PATH {|r| $r.PATH | split row (char esep)} } else { $vars })
+    $vars | load-env
+    $env.PATH = ($env.PATH | uniq)
+}
+
+def --env opam [...args: string] {
+    ^opam ...$args
+    if ($args | get 0?) == "switch" {
+        opam-env
+    }
+}
+
+opam-env
+
+# Add all ~/.config subdirectories to chezmoi (skipping ~/.config/chezmoi)
+def chezmoi-add-config [] {
+    ^chezmoi add ...(ls ~/.config | where name !~ "chezmoi" | get name)
+}
+

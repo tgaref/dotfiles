@@ -1,0 +1,36 @@
+# chezmoi configuration directory & internal state
+.config/chezmoi
+
+# History files
+**/*history*
+**/.bash_history
+**/.zsh_history
+.config/nushell/history.txt
+
+# Cache directories and files
+**/.cache
+**/cache
+**/Cache
+**/Caches
+**/*.cache
+
+# Log files and directories
+**/*.log
+**/logs
+**/log
+
+# Temporary and editor backup files
+**/*.tmp
+**/*.swp
+**/*.swo
+**/*~
+**/.DS_Store
+
+# Sockets and runtime PID files
+**/*.socket
+**/*.pid
+**/*.db-journal
+
+# Build & dependency artifacts
+**/node_modules
+**/target

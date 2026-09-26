@@ -2,7 +2,7 @@
 # Ported from Alacritty & Noctalia theme
 
 # --- Shell ---
-command = nu
+command = /usr/bin/fish
 
 # --- Font ---
 font-family = "monospace"

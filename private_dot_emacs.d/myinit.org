@@ -2,6 +2,7 @@
 
 * Quality of life
 #+BEGIN_SRC emacs-lisp
+  ;;; myinit.el --- User configuration  -*- lexical-binding: t; -*-
 
   ;; Move customization variables to a separate file and load it
   (setq custom-file (locate-user-emacs-file "custom-vars.el"))
@@ -17,6 +18,11 @@
 
   (setq frame-title-format "%b - emacs")
   (setq frame-resize-pixelwise t)
+
+  ;; Set default browser via xdg-open (handles Flatpak Firefox)
+  (setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "xdg-open")
+
 
 #+END_SRC
 
@@ -113,8 +119,8 @@
     (setq org-agenda-default-appointment-duration 60)
     (setq org-icalendar-store-UID t)
     (setq org-agenda-files
-          (quote
-           ("~/notes/agenda/uoc.org" "~/notes/agenda/eap.org" "~/notes/agenda/personal.org" "~/notes/agenda/notes.org")))
+          (seq-filter #'file-exists-p
+           '("~/notes/agenda/uoc.org" "~/notes/agenda/eap.org" "~/notes/agenda/personal.org" "~/notes/agenda/notes.org")))
     (setq org-capture-templates
           (quote
            (("e" "ΕΑΠ templates")
@@ -221,6 +227,10 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
+    (setq org-preview-latex-default-process 'dvisvgm)
+    (setq org-format-latex-options (plist-put org-format-latex-options :scale 0.9))
+    (setq org-startup-with-latex-preview nil)
+
 #+END_SRC
 
 * org-mermaid
@@ -319,6 +329,9 @@ Navigate slides with =C-<= and =C->=
   (use-package typst-ts-mode
     :straight (:type git :host codeberg :repo "meow_king/typst-ts-mode")
     :mode "\\.typ\\'"
+    :custom
+    (typst-ts-preview-function (lambda (file)
+                                 (start-process "evince" nil "evince" file)))
     :hook (typst-ts-mode . (lambda ()
                              (setq-local treesit-font-lock-level 4)
                              (font-lock-mode 1)
@@ -837,7 +850,7 @@ Navigate slides with =C-<= and =C->=
 #+begin_src emacs-lisp
   (use-package doom-themes 
     :straight t
-    :init
+    :config
       (load-theme 'doom-snazzy t)
       ;(load-theme 'doom-palenight t)
       ;(load-theme 'doom-gruvbox t)
@@ -1042,10 +1055,6 @@ Navigate slides with =C-<= and =C->=
    :config 
     (setq lsp-haskell-server-path "/home/tgaref/.local/bin/haskell-language-server-wrapper"))
 
-  (use-package hindent
-   :straight t
-   :hook (haskell-mode . hindent-mode))
-
   (use-package haskell-mode
    :straight t
    :hook ((haskell-mode . haskell-decl-scan-mode)
@@ -1087,25 +1096,24 @@ Navigate slides with =C-<= and =C->=
 #+BEGIN_SRC emacs-lisp 
   (use-package tuareg
     :straight t
+    :hook (tuareg-mode . lsp-deferred)
     :config (add-hook 'tuareg-mode-hook #'electric-pair-local-mode)
-         ;; (add-hook 'tuareg-mode-hook 'tuareg-imenu-set-imenu)
             (setq auto-mode-alist
                   (append '(("\\.ml[ily]?$" . tuareg-mode)
                             ("\\.topml$" . tuareg-mode))
                           auto-mode-alist))
             (setq tuareg-indent-align-with-first-arg t))
 
-  ;; Merlin configuration
-
-  (use-package merlin
+  ;; ocamlformat integration
+  (use-package ocamlformat
     :straight t
-    :config
-    (add-hook 'tuareg-mode-hook 'merlin-mode)
-    (add-hook 'merlin-mode-hook 'company-mode)
-    (setq merlin-error-after-save nil))
+    :custom
+    (ocamlformat-show-errors 'buffer)
+    :hook (tuareg-mode . (lambda ()
+                           (define-key tuareg-mode-map (kbd "C-c C-f") #'ocamlformat)
+                           (add-hook 'before-save-hook #'ocamlformat-before-save nil t))))
 
   ;; utop configuration
-
   (use-package utop
     :straight t
     :config
@@ -1165,7 +1173,6 @@ Navigate slides with =C-<= and =C->=
 
   (use-package lsp-mode
     :straight t
-    :hook (haskell-mode . lsp)
     :commands lsp    
     :custom
     ;; what to use when checking on-save. "check" is default, I prefer clippy
@@ -1581,14 +1588,14 @@ Navigate slides with =C-<= and =C->=
      :commands vterm
      :config
       (setq vterm-max-scrollback 10000)
-      (setq vterm-shell "nu"))
+      (setq vterm-shell "fish"))
 
     (use-package multi-vterm 
       :straight t
       :init
        (bind-key "C-c r v" 'multi-vterm)
        (bind-key "C-`" 'multi-vterm-dedicated-toggle)
-       ;(bind-key "C-/" 'multi-vterm-next) ; Control - PageUp
+       (bind-key "C-/" 'multi-vterm-next) ; Control - PageUp
        ;(bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
       :config
        (setq multi-vterm-dedicated-window-height 50))
@@ -1649,7 +1656,7 @@ Navigate slides with =C-<= and =C->=
   (use-package ghostel
     :straight (:host github :repo "dakra/ghostel")
     :bind (;;("C-c g" . ghostel)
-  	 ("C-/" . my/ghostel-cycle)
+  	 ;;("C-/" . my/ghostel-cycle)
            ("C-c g" . my/ghostel-new-instance))
     :init
     (defun my/ghostel-new-instance ()
@@ -1675,7 +1682,7 @@ Navigate slides with =C-<= and =C->=
               (switch-to-buffer (car buffers))
             (ghostel)))))
     :config
-    (setq ghostel-shell (executable-find "nu"))
+    (setq ghostel-shell (executable-find "fish"))
     (setq ghostel-scroll-on-input t)
     (add-to-list 'ghostel-keymap-exceptions "C-x")
     (add-to-list 'ghostel-keymap-exceptions "C-c")
@@ -1702,7 +1709,7 @@ Navigate slides with =C-<= and =C->=
 
 #+END_SRC
 * mu4e
-#+BEGIN_SRC emacs-lisp :tangle no
+#+BEGIN_SRC emacs-lisp
       ;; 1. Pre-load the path so Emacs knows where to look
       (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e/")
 
@@ -1724,6 +1731,11 @@ Navigate slides with =C-<= and =C->=
         ;; Don't add the 'T' (trash) flag, just move the file. 
         ;; This allows mbsync to handle the move naturally.
         (setq mu4e-trash-folder-uses-trash-flag nil)
+
+        ;; Default sender identity
+        (setq user-full-name "Theodoulos Garefalakis"
+              user-mail-address "tgaref@uoc.gr"
+              mu4e-compose-context-policy 'ask)
 
         ;; --- Contexts ---
         ;; We use `(list ...) with make-mu4e-context inside the config 
@@ -1759,19 +1771,20 @@ Navigate slides with =C-<= and =C->=
 
         ;; Shortcuts for jumping to inboxes (Press 'j' then 'g', 'i', or 'u')
         (setq mu4e-maildir-shortcuts
-              '(("/gmail/Inbox"      . ?g)
-                ("/infomaniak/Inbox" . ?i)
-                ("/uoc/Inbox"        . ?u)))
-        (local-set-key (kbd "C-c ") 'message-send-and-exit)
-        ;; Force mu4e to show plain text if possible
-        (setq mu4e-view-prefer-html nil)
-        ;; If mu4e still shows HTML because the text part is too short, 
-        ;; you can disable that "heuristic" entirely:
-        (setq mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum)
-        (set-face-attribute 'variable-pitch nil 
-                        :font "Fira Sans" 
-                        :height 152)
-        ;;(set-face-attribute 'variable-pitch nil :height 0.85) ; 90% of the default size
+              '((:maildir "/gmail/Inbox"      :key ?g :name "Gmail")
+                (:maildir "/infomaniak/Inbox" :key ?i :name "Infomaniak")
+                (:maildir "/uoc/Inbox"        :key ?u :name "UoC")))
+        ;; Set evince as the default PDF viewer for email attachments
+        (with-eval-after-load 'mailcap
+          (mailcap-add-mailcap-entry "application" "pdf"
+                                     '((viewer . "evince %s")
+                                       (type . "application/pdf")
+                                       (test . window-system))))
+        ;; Render HTML emails using standard fixed-width (monospace) font
+        (setq shr-use-fonts nil)
+        ;; (set-face-attribute 'variable-pitch nil 
+        ;;                 :font "Fira Sans" 
+        ;;                 :height 120)
 
         ;; 1. The "Sterile" Send Function
         (defun my-mu4e-safe-send-and-exit ()
@@ -1789,6 +1802,10 @@ Navigate slides with =C-<= and =C->=
         
         (setq mu4e-attachment-dir "~/Downloads")
         (setq mu4e-headers-show-threads t)
+        (setq mu4e-search-threads t)
+        (setq mu4e-search-include-related t)
+        (setq mu4e-search-sort-field :date)
+        (setq mu4e-search-sort-direction 'descending)
         (setq mu4e-headers-omit-prefix nil)
         (setq mu4e-use-fancy-chars t)
         ;; 2. Fix the thread lines/folding background
@@ -1802,10 +1819,9 @@ Navigate slides with =C-<= and =C->=
         (setq mu4e-headers-fields
               '((:human-date      .  10)
                 (:flags           .  6)
-                (:from-or-to      .  20)
-                (:mailing-list    .  8)
-                (:labels          .  12)
-                (:subject  .  nil)))
+                (:from-or-to      .  22)
+                (:tags            .  15)
+                (:subject         .  nil)))
         (setq mu4e-view-fields
               '(:from :date :to :cc :bcc :subject
                       :flags
@@ -1816,24 +1832,25 @@ Navigate slides with =C-<= and =C->=
 
     ;; Signature setup
 
-  (defvar my-signature-alist
-  '(("Work"     . "Theodoulos Garefalakis\nDepartment of Mathematics\nand Applied Mathematics\nUniversity of Crete\nGR-70013 Heraklion, Greece\n\nTel. (+30) 2810-393845\nWeb: www.math.uoc.gr/~tgaref")
+  (setq my-signature-alist
+  '(("Work"     . "Theodoulos Garefalakis\nDepartment of Mathematics and Applied Mathematics\nUniversity of Crete\nGR-70013 Heraklion, Greece\n\nTel. (+30) 2810-393845\nWeb: www.math.uoc.gr/~tgaref")
     ("Personal" . "")
     ("Short"    . "")
-    ("None"     . ""))
-  "An alist of signatures for mu4e.")
+    ("None"     . "")))
 
 (defun my-insert-signature-choice ()
-  "Prompt for a signature from my-signature-alist and insert it at point."
+  "Prompt for a signature from my-signature-alist and insert it at point (before quotes)."
   (interactive)
   (let* ((choices (mapcar #'car my-signature-alist))
          (selection (completing-read "Choose signature: " choices))
          (sig (cdr (assoc selection my-signature-alist))))
     (when (and sig (not (string-empty-p sig)))
-      (insert "\n-- \n" sig "\n")))) 
+      (insert "\n-- \n" sig "\n"))))
 
-;; Ensure it binds to the correct map
+;; Ensure it binds to both message-mode-map and mu4e-compose-mode-map
 (with-eval-after-load 'message
   (define-key message-mode-map (kbd "C-c s") #'my-insert-signature-choice))
+(with-eval-after-load 'mu4e-compose
+  (define-key mu4e-compose-mode-map (kbd "C-c s") #'my-insert-signature-choice))
 
 #+END_SRC        

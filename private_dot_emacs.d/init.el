@@ -1,4 +1,4 @@
-;;; package --- Summary
+;;; init.el --- Emacs init file  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;(require 'package)
 

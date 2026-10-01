@@ -331,7 +331,7 @@ Navigate slides with =C-<= and =C->=
     :mode "\\.typ\\'"
     :custom
     (typst-ts-preview-function (lambda (file)
-                                 (start-process "evince" nil "evince" file)))
+                                 (start-process "papers" nil "papers" file)))
     :hook (typst-ts-mode . (lambda ()
                              (setq-local treesit-font-lock-level 4)
                              (font-lock-mode 1)
@@ -383,8 +383,8 @@ Navigate slides with =C-<= and =C->=
 
 * org-babel
 #+BEGIN_SRC emacs-lisp
-    (use-package ob-julia-vterm
-      :straight t)
+;; (use-package ob-julia-vterm
+    ;;   :straight t)
     ;; active Babel languages
     (org-babel-do-load-languages
      'org-babel-load-languages
@@ -395,13 +395,13 @@ Navigate slides with =C-<= and =C->=
        (ruby        . t)
        (css         . t)
        (restclient  . t)
-       (julia-vterm . t)
+       ;; (julia-vterm . t)
        (latex       . t)
        (mermaid     . t)
        (scheme      . t)))
 
-  (defalias 'org-babel-execute:julia 'org-babel-execute:julia-vterm)
-  (defalias 'org-babel-variable-assignments:julia 'org-babel-variable-assignments:julia-vterm)
+  ;; (defalias 'org-babel-execute:julia 'org-babel-execute:julia-vterm)
+  ;; (defalias 'org-babel-variable-assignments:julia 'org-babel-variable-assignments:julia-vterm)
 
     (setq org-confirm-babel-evaluate nil)
 #+END_SRC
@@ -1008,7 +1008,16 @@ Navigate slides with =C-<= and =C->=
   (use-package exec-path-from-shell
     :straight t)
   (when (daemonp)
-    (exec-path-from-shell-initialize))
+    (dolist (var '("WAYLAND_DISPLAY" "DISPLAY" "XDG_RUNTIME_DIR" "DBUS_SESSION_BUS_ADDRESS"))
+      (add-to-list 'exec-path-from-shell-variables var))
+    (exec-path-from-shell-initialize)
+
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+                (when-let* ((env (frame-parameter frame 'environment)))
+                  (dolist (var '("WAYLAND_DISPLAY" "DISPLAY" "DBUS_SESSION_BUS_ADDRESS"))
+                    (when-let* ((entry (seq-find (lambda (e) (string-prefix-p (concat var "=") e)) env)))
+                      (setenv var (substring entry (1+ (length var))))))))))
 #+END_SRC
 
 * AUCTex
@@ -1134,10 +1143,10 @@ Navigate slides with =C-<= and =C->=
               ("C-c C-n" . 'julia-snail))
   :hook (julia-mode . julia-snail-mode))
 
-  (use-package julia-vterm
-      :straight t
-      :config
-      (add-hook 'julia-mode-hook #'julia-vterm-mode))
+;;  (use-package julia-vterm
+;;      :straight t
+;;      :config
+;;      (add-hook 'julia-mode-hook #'julia-vterm-mode))
 #+END_SRC
 
 * Scheme
@@ -1576,7 +1585,7 @@ Navigate slides with =C-<= and =C->=
   		   "xdg-open" '(file))
                (list (openwith-make-extension-regexp
                       '("pdf" "ps" "ps.gz" "dvi" "djvu"))
-                     "evince"
+                     "papers"
                      '(file))
                ))
         (openwith-mode 1))
@@ -1600,6 +1609,7 @@ Navigate slides with =C-<= and =C->=
       :config
        (setq multi-vterm-dedicated-window-height 50))
 #+END_SRC
+
 
 * eat
 #+BEGIN_SRC emacs-lisp
@@ -1656,8 +1666,8 @@ Navigate slides with =C-<= and =C->=
   (use-package ghostel
     :straight (:host github :repo "dakra/ghostel")
     :bind (;;("C-c g" . ghostel)
-  	 ;;("C-/" . my/ghostel-cycle)
-           ("C-c g" . my/ghostel-new-instance))
+  	 ;("C-/" . my/ghostel-cycle)
+       ("C-c g" . my/ghostel-new-instance))
     :init
     (defun my/ghostel-new-instance ()
       "Spawn a fresh, uniquely named instance of Ghostel."
@@ -1774,10 +1784,10 @@ Navigate slides with =C-<= and =C->=
               '((:maildir "/gmail/Inbox"      :key ?g :name "Gmail")
                 (:maildir "/infomaniak/Inbox" :key ?i :name "Infomaniak")
                 (:maildir "/uoc/Inbox"        :key ?u :name "UoC")))
-        ;; Set evince as the default PDF viewer for email attachments
+        ;; Set papers as the default PDF viewer for email attachments
         (with-eval-after-load 'mailcap
           (mailcap-add-mailcap-entry "application" "pdf"
-                                     '((viewer . "evince %s")
+                                     '((viewer . "papers %s")
                                        (type . "application/pdf")
                                        (test . window-system))))
         ;; Render HTML emails using standard fixed-width (monospace) font

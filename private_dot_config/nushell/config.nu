@@ -47,8 +47,6 @@ def --env opam [...args: string] {
     }
 }
 
-opam-env
-
 # Add all ~/.config subdirectories to chezmoi (skipping ~/.config/chezmoi)
 def chezmoi-add-config [] {
     ^chezmoi add ...(ls ~/.config | where name !~ "chezmoi" | get name)

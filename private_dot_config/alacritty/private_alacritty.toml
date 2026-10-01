@@ -55,17 +55,19 @@ foreground = "0xf5f2ea"
 size = 14.0
 
 [font.bold]
-family = "monospace"
+family = "JetBrains Mono"
+style = "Bold"
 
 [font.glyph_offset]
 x = 0
 y = 0
 
 [font.italic]
-family = "monospace"
+family = "JetBrains Mono"
+style = "Italic"
 
 [font.normal]
-family = "monospace"
+family = "JetBrains Mono"
 style = "Medium"
 
 [font.offset]
@@ -596,8 +598,8 @@ multiplier = 3
 save_to_clipboard = false
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[terminal]
-shell = "fish"
+[terminal.shell]
+program = "/usr/bin/fish"
 
 [window]
 decorations = "full"
@@ -613,7 +615,6 @@ x = 2
 y = 2
 
 [general]
-import = ["~/.config/alacritty/themes/noctalia.toml"]
 # custom_cursor_colors = true
 # hide_cursor_when_typing = false
 live_config_reload = true

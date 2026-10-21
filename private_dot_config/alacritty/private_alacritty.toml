@@ -599,12 +599,12 @@ save_to_clipboard = false
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [terminal.shell]
-program = "/usr/bin/fish"
+program = "fish"
 
 [window]
 decorations = "full"
 dynamic_title = true
-opacity = 0.9
+opacity = 1.0
 
 [window.dimensions]
 columns = 80

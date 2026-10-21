@@ -740,7 +740,6 @@ Navigate slides with =C-<= and =C->=
     (use-package shell-switcher
       :straight t
       :config 
-      (setq shell-switcher-shells '(eshell-mode))
       (setq shell-switcher-mode t)
       (define-key shell-switcher-mode-map (kbd "C-'")
   	'shell-switcher-switch-buffer)
@@ -748,6 +747,12 @@ Navigate slides with =C-<= and =C->=
   	'shell-switcher-switch-buffer-other-window)
       (define-key shell-switcher-mode-map (kbd "C-c e")
   	'shell-switcher-new-shell)
+
+      ;; Automatically register third-party terminals with shell-switcher
+      (add-hook 'vterm-mode-hook #'shell-switcher-manually-register-shell)
+      (add-hook 'ghostel-mode-hook #'shell-switcher-manually-register-shell)
+      (add-hook 'eat-mode-hook #'shell-switcher-manually-register-shell)
+
       (add-hook 'eshell-first-time-mode-hook
   	#'eat-eshell-visual-command-mode))
 
@@ -834,6 +839,71 @@ Navigate slides with =C-<= and =C->=
   ;; :hook (eshell-mode-hook . esh-autosuggest-mode)
   :straight t)
 #+END_SRC
+** ls colors (inherit from Dired & Diredful)
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'em-ls
+    (require 'dired)
+
+    ;; Inherit standard Dired faces for directories, symlinks, etc.
+    (set-face-attribute 'eshell-ls-directory nil
+                        :inherit 'dired-directory
+                        :foreground 'unspecified
+                        :weight 'unspecified)
+    (set-face-attribute 'eshell-ls-symlink nil
+                        :inherit 'dired-symlink
+                        :foreground 'unspecified
+                        :weight 'unspecified)
+    (set-face-attribute 'eshell-ls-missing nil
+                        :inherit (if (facep 'dired-broken-symlink)
+                                     'dired-broken-symlink
+                                   'error)
+                        :foreground 'unspecified)
+    (set-face-attribute 'eshell-ls-backup nil
+                        :inherit (if (facep 'dired-ignored)
+                                     'dired-ignored
+                                   'font-lock-comment-face)
+                        :foreground 'unspecified))
+
+  (defun my/sync-diredful-to-eshell ()
+    "Sync file extension colors from `diredful' into `eshell/ls'."
+    (when (featurep 'diredful)
+      (when (and (null diredful-alist) (fboundp 'diredful-settings-load))
+        (diredful-settings-load))
+      (when (bound-and-true-p diredful-alist)
+        (require 'em-ls)
+        (setq eshell-ls-highlight-alist
+              (delq nil
+                    (mapcar
+                     (lambda (rule)
+                       (let* ((face (nth 1 rule))
+                              (pattern (nth 2 rule))
+                              (type (nth 3 rule))
+                              (regex
+                               (cond
+                                ;; Space-separated file extensions (e.g. "png jpg mp4")
+                                ((null type)
+                                 (concat "\\.\\("
+                                         (mapconcat #'regexp-quote (split-string pattern) "\\|")
+                                         "\\)$"))
+                                ;; Exact filenames
+                                ((eq type t)
+                                 (concat "^\\("
+                                         (mapconcat #'regexp-quote (split-string pattern) "\\|")
+                                         "\\)$"))
+                                (t nil))))
+                         (when regex
+                           (cons (apply-partially
+                                  (lambda (re file _attrs) (string-match-p re file))
+                                  regex)
+                                 face))))
+                     diredful-alist))))))
+
+  ;; Sync whenever diredful is loaded or an Eshell buffer starts
+  (with-eval-after-load 'diredful
+    (my/sync-diredful-to-eshell))
+
+  (add-hook 'eshell-mode-hook #'my/sync-diredful-to-eshell)
+#+END_SRC
 
 * Yasnippet
 #+BEGIN_SRC emacs-lisp
@@ -870,6 +940,7 @@ Navigate slides with =C-<= and =C->=
 ;  :custom (fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
 ;  :hook prog-mode) ;; Enables fira-code-mode automatically for programming major modes
 #+end_src
+
 
 * Ligatures
 #+begin_src emacs-lisp
@@ -1432,36 +1503,62 @@ Navigate slides with =C-<= and =C->=
 
 * All the icons
  #+BEGIN_SRC emacs-lisp
-   (use-package all-the-icons
-     :straight t
-     :defer 0.5)
+;;   (use-package all-the-icons
+;;     :straight t
+;;     :defer 0.5)
 
-   (use-package all-the-icons-completion     
-     :straight t
-     :after all-the-icons
-     :config
-     (all-the-icons-completion-mode)
-     (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
+;;   (use-package all-the-icons-completion     
+;;     :straight t
+;;     :after all-the-icons
+;;     :config
+;;     (all-the-icons-completion-mode)
+;;     (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
 
-   (use-package all-the-icons-ivy
-     :straight t
-     :after (all-the-icons ivy)
-     :custom (all-the-icons-ivy-buffer-commands '(ivy-switch-buffer-other-window ivy-switch-buffer))
-     :config 
-     (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
-     (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
-     (all-the-icons-ivy-setup))
+;;   (use-package all-the-icons-ivy
+;;     :straight t
+;;     :after (all-the-icons ivy)
+;;     :custom (all-the-icons-ivy-buffer-commands '(ivy-switch-buffer-other-window ivy-switch-buffer))
+;;     :config 
+;;     (add-to-list 'all-the-icons-ivy-file-commands 'counsel-dired-jump)
+;;     (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
+;;     (all-the-icons-ivy-setup))
 
-   (use-package all-the-icons-dired
-     :straight t
-     :config
-     (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+;;   (use-package all-the-icons-dired
+;;     :straight t
+;;     :config
+;;     (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
  #+END_SRC 
 
 * nerd-icons
 #+begin_src emacs-lisp
   (use-package nerd-icons
     :straight t)
+
+  (use-package nerd-icons-dired
+    :straight t
+    :hook (dired-mode . nerd-icons-dired-mode))
+
+  (use-package nerd-icons-completion
+    :straight t
+    :after marginalia
+    :config
+    (nerd-icons-completion-mode)
+    (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+
+  (use-package nerd-icons-ivy-rich
+    :straight t
+    :after ivy
+    :config
+    (nerd-icons-ivy-rich-mode 1))
+
+  (defun my/setup-nerd-fontsets (&optional frame)
+    "Configure fontset to display Nerd Font symbols in vterm and buffers."
+    (set-fontset-font t '(#xe000 . #xf8ff) "Symbols Nerd Font Mono" frame 'prepend)
+    (set-fontset-font t '(#xf0000 . #xffffd) "Symbols Nerd Font Mono" frame 'prepend)
+    (set-fontset-font t '(#x100000 . #x10fffd) "Symbols Nerd Font Mono" frame 'prepend))
+
+  (my/setup-nerd-fontsets)
+  (add-hook 'after-make-frame-functions #'my/setup-nerd-fontsets)
 #+end_src
 * Counsel linux app
 
@@ -1532,22 +1629,56 @@ Navigate slides with =C-<= and =C->=
 
 * Dashboard
 #+BEGIN_SRC emacs-lisp
-  (use-package dashboard
-    :straight t
-    :init
-    (progn
-      (setq dashboard-banner-logo-title "Γειά σου Θεόδουλε!")
-      (setq dashboard-startup-banner 'logo)
-      (setq dashboard-items '((recents  . 8)
-                          (bookmarks . 4)
-                          (agenda . 3)
-                          (registers . 5)))
-      (setq dashboard-icon-type 'all-the-icons) ;; use `all-the-icons' package
-      (setq dashboard-set-heading-icons t)      
-      (setq dashboard-set-file-icons t)
-      (setq dashboard-center-content t))    
-   :config (dashboard-setup-startup-hook))
-  (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+;;   (use-package dashboard
+;;     :straight t
+;;     :init
+;;     (progn
+;;       (setq dashboard-banner-logo-title "Γειά σου Θεόδουλε!")
+;;       (setq dashboard-startup-banner 'logo)
+;;       (setq dashboard-items '((recents  . 8)
+;;                           (bookmarks . 4)
+;;                           (agenda . 3)
+;;                           (registers . 5)))
+;;       (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
+;;       (setq dashboard-set-heading-icons t)      
+;;       (setq dashboard-set-file-icons t)
+;;       (setq dashboard-center-content t))    
+;;    :config (dashboard-setup-startup-hook))
+;;   (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+#+END_SRC
+
+* Scratch Home
+#+BEGIN_SRC emacs-lisp
+  (setq initial-buffer-choice (lambda () (get-buffer-create "*scratch*")))
+
+  (setq initial-scratch-message
+        (concat
+         ";;; -*- lexical-binding: t; -*-\n"
+         ";; =========================================================\n"
+         ";;  Καλωσόρισες, Θεόδουλε!\n"
+         ";;  GNU Emacs " emacs-version "\n"
+         ";;\n"
+         ";;  Quick Shortcuts:\n"
+         ";;    C-x C-f   : Find / Open File\n"
+         ";;    C-x b     : Switch Buffer\n"
+         ";;    C-x g     : Magit Status\n"
+         ";;    C-c r v   : Open vterm (multi-vterm)\n"
+         ";;    C-c s     : Switch to *scratch*\n"
+         ";;    M-x       : Execute Command\n"
+         ";; =========================================================\n\n"))
+
+  (defun my/switch-to-scratch ()
+    "Switch to *scratch* buffer, recreating it with banner if killed."
+    (interactive)
+    (let ((buf (get-buffer "*scratch*")))
+      (if buf
+          (switch-to-buffer buf)
+        (switch-to-buffer (get-buffer-create "*scratch*"))
+        (lisp-interaction-mode)
+        (when initial-scratch-message
+          (insert initial-scratch-message)))))
+
+  (global-set-key (kbd "C-c s") #'my/switch-to-scratch)
 #+END_SRC
 * Eterm-256color
 
@@ -1592,17 +1723,27 @@ Navigate slides with =C-<= and =C->=
 #+END_SRC
 * vterm
 #+BEGIN_SRC emacs-lisp
+    (defvar vterm-shell)
+    (defun my/vterm-devbox ()
+      "Spawn a vterm terminal inside the dev-box container."
+      (interactive)
+      (let ((vterm-shell "distrobox enter dev-box -- nu"))
+        (vterm (generate-new-buffer-name "*vterm-devbox*"))))
+
     (use-package vterm
      :straight t
      :commands vterm
      :config
       (setq vterm-max-scrollback 10000)
-      (setq vterm-shell "fish"))
+      (setq vterm-shell (or (executable-find (expand-file-name "/var/home/tgaref/.cargo/bin/nu"))
+                            (executable-find "nu")))
+      (define-key vterm-mode-map (kbd "C-'") #'shell-switcher-switch-buffer))
 
     (use-package multi-vterm 
       :straight t
       :init
-       (bind-key "C-c r v" 'multi-vterm)
+       (bind-key "C-c v v" 'multi-vterm)
+       (bind-key "C-c v d" 'my/vterm-devbox)
        (bind-key "C-`" 'multi-vterm-dedicated-toggle)
        (bind-key "C-/" 'multi-vterm-next) ; Control - PageUp
        ;(bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
@@ -1610,21 +1751,32 @@ Navigate slides with =C-<= and =C->=
        (setq multi-vterm-dedicated-window-height 50))
 #+END_SRC
 
-
 * eat
 #+BEGIN_SRC emacs-lisp
   (use-package eat
     :straight (:host codeberg
                :repo "akib/emacs-eat"
                :files ("*.el" ("term" "term/*.el") "*.texi" "*.org" "terminfo"))
-    :bind (("C-c t" . eat)
+    :bind (("C-c t t" . eat)
+           ("C-c t d" . my/eat-devbox)
            ;; ("C-c e" . my/eat-new-instance)
            ("C-." . my/eat-cycle))
+    :init
+    (defvar eat-buffer-name)
+    (defun my/eat-devbox ()
+      "Spawn an Eat terminal inside the dev-box container."
+      (interactive)
+      (let ((eat-buffer-name "*eat-devbox*"))
+        (eat "distrobox enter dev-box -- nu" t)))
     :config
+    (setq eat-shell (or (executable-find (expand-file-name "/var/home/tgaref/.cargo/bin/nu"))
+                        (executable-find "nu")))
+
     ;; Note: eat-enable-mouse is a boolean variable, not a function!
     ;; It is enabled by default, so we don't need to add it to eat-mode-hook.
 
     (add-to-list 'eat-semi-char-non-bound-keys [?\C-.])
+    (add-to-list 'eat-semi-char-non-bound-keys [?\C-'])
     (when (fboundp 'eat-update-semi-char-mode-map)
       (eat-update-semi-char-mode-map))
 
@@ -1661,18 +1813,28 @@ Navigate slides with =C-<= and =C->=
             (eat)))))
 #+END_SRC      
 
-* Ghostel
+* Ghostedld
 #+BEGIN_SRC emacs-lisp
   (use-package ghostel
     :straight (:host github :repo "dakra/ghostel")
     :bind (;;("C-c g" . ghostel)
   	 ;("C-/" . my/ghostel-cycle)
-       ("C-c g" . my/ghostel-new-instance))
+       ("C-c g g" . my/ghostel-new-instance)
+       ("C-c g d" . my/ghostel-devbox))
     :init
     (defun my/ghostel-new-instance ()
       "Spawn a fresh, uniquely named instance of Ghostel."
       (interactive)
       (ghostel t))
+
+    (defvar ghostel-shell)
+    (defvar ghostel-buffer-name)
+    (defun my/ghostel-devbox ()
+      "Spawn a Ghostel terminal inside the dev-box container."
+      (interactive)
+      (let ((ghostel-shell (list (executable-find "distrobox") "enter" "dev-box" "--" "nu"))
+            (ghostel-buffer-name "*ghostel-devbox*"))
+        (ghostel t)))
 
     (defun my/ghostel-cycle ()
       "Cycle through existing Ghostel buffers."
@@ -1692,11 +1854,13 @@ Navigate slides with =C-<= and =C->=
               (switch-to-buffer (car buffers))
             (ghostel)))))
     :config
-    (setq ghostel-shell (executable-find "fish"))
+    (setq ghostel-shell (or (executable-find (expand-file-name "/var/home/tgaref/.cargo/bin/nu"))
+                            (executable-find "nu")))
     (setq ghostel-scroll-on-input t)
     (add-to-list 'ghostel-keymap-exceptions "C-x")
     (add-to-list 'ghostel-keymap-exceptions "C-c")
     (add-to-list 'ghostel-keymap-exceptions "C-/")
+    (add-to-list 'ghostel-keymap-exceptions "C-'")
     (ghostel--rebuild-semi-char-keymap)
 
     (add-hook 'ghostel-mode-hook
@@ -1719,7 +1883,7 @@ Navigate slides with =C-<= and =C->=
 
 #+END_SRC
 * mu4e
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
       ;; 1. Pre-load the path so Emacs knows where to look
       (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e/")
 

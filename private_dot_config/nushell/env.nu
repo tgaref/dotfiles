@@ -3,6 +3,17 @@
 # Installed by:
 # version = "0.105.1"
 
+$env.ENV_CONVERSIONS = {
+    "PATH": {
+        from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
+        to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
+    }
+    "Path": {
+        from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
+        to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
+    }
+}
+
 $env.STARSHIP_SHELL = "nu"
 
 def create_left_prompt [] {
@@ -24,14 +35,9 @@ $env.EDITOR = "/usr/bin/emacsclient"
 $env.VISUAL = "/usr/bin/emacsclient"
 
 # --- Other Toolchains ---
-$env.PATH = (
-    $env.PATH 
-    | append [
-        "/home/tgaref/.ghcup/bin"
-        "/home/tgaref/.juliaup/bin"
-        "/home/tgaref/.cargo/bin"
-        "/home/tgaref/local/bin"
-        "/home/tgaref/.local/bin"
-    ]
-    | uniq
-)
+use std "path add"
+path add $"($env.HOME)/.local/bin"
+path add $"($env.HOME)/local/bin"
+path add $"($env.HOME)/.cargo/bin"
+path add $"($env.HOME)/.juliaup/bin"
+path add $"($env.HOME)/.ghcup/bin"

@@ -204,7 +204,7 @@ layout {
     // default-column-width {}
 
     // Set gaps around windows in logical pixels.
-    gaps 4
+    gaps 2
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
     // You can think of them as a kind of outer gaps. They are set in logical pixels.
@@ -238,6 +238,7 @@ spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "DI
 spawn-at-startup "udiskie"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "noctalia" "--daemon"
+spawn-at-startup "/var/home/tgaref/.dropbox-dist/dropboxd"
 
 //spawn-at-startup "nm-applet" "--indicator"
 //spawn-at-startup "waybar"
@@ -292,8 +293,8 @@ binds {
     Mod+T { spawn "alacritty"; }
 //    Mod+T { spawn "ghostty"; }	 
     Mod+E { spawn "emacsclient" "-c"; }
-    Mod+B { spawn "flatpak" "run" "org.mozilla.firefox"; }
-//    Mod+B { spawn "zen-browser"; }
+//    Mod+B { spawn "flatpak" "run" "org.mozilla.firefox"; }
+    Mod+B { spawn "flatpak" "run" "app.zen_browser.zen"; }
     
     // Noctalia specific key binds   
     // Launcher

@@ -40,13 +40,6 @@ def --env opam-env [] {
     $env.PATH = ($env.PATH | uniq)
 }
 
-def --env opam [...args: string] {
-    ^opam ...$args
-    if ($args | get 0?) == "switch" {
-        opam-env
-    }
-}
-
 # Add all ~/.config subdirectories to chezmoi (skipping ~/.config/chezmoi)
 def chezmoi-add-config [] {
     ^chezmoi add ...(ls ~/.config | where name !~ "chezmoi" | get name)

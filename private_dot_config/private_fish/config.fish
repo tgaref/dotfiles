@@ -35,3 +35,31 @@ function vterm_printf;
         printf "\e]%s\e\\" "$argv"
     end
 end
+
+function dotsave --description "Sync and push dotfiles with chezmoi"
+    set -l msg "Update configs"
+    if test (count $argv) -gt 0
+        set msg "$argv"
+    end
+    chezmoi re-add
+    and chezmoi git -- add -A
+    if not chezmoi git -- diff --cached --quiet
+        chezmoi git -- commit -m "$msg"
+        and chezmoi git -- push
+    else
+        echo "No changes to commit."
+    end
+end
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /var/home/tgaref/miniconda3/bin/conda
+    eval /var/home/tgaref/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+else
+    if test -f "/var/home/tgaref/miniconda3/etc/fish/conf.d/conda.fish"
+        . "/var/home/tgaref/miniconda3/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH "/var/home/tgaref/miniconda3/bin" $PATH
+    end
+end
+# <<< conda initialize <<<
+

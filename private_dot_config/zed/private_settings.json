@@ -9,15 +9,18 @@
 {
   "cursor_shape": "block",
   "buffer_line_height": "standard",
-  "buffer_font_family": "Iosevka Term SS14",
+  "buffer_font_family": "JetBrains Mono",
   "terminal": {
-    "font_family": "Iosevka Term SS14",
-    "font_size": 20.0
+    "shell": {
+      "program": "nu"
+    },
+    "font_family": "JetBrains Mono",
+    "font_size": 18.0
   },
   "cursor_blink": false,
   "agent_ui_font_size": 18.0,
   "agent_buffer_font_size": 18.0,
-  "ui_font_family": "Iosevka Term SS14",
+  "ui_font_family": "Cascadia Code",
   "icon_theme": {
     "mode": "dark",
     "light": "Zed (Default)",
@@ -25,10 +28,10 @@
   },
   "base_keymap": "Emacs",
   "ui_font_size": 20.0,
-  "buffer_font_size": 22.0,
+  "buffer_font_size": 18.0,
   "theme": {
     "mode": "dark",
     "light": "Gruvbox Light Hard",
-    "dark": "JetBrains Dark"
+    "dark": "One Dark"
   }
 }

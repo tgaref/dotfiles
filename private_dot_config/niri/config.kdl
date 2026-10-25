@@ -469,10 +469,15 @@ binds {
     Mod+Shift+E { quit; }
     // Mod+Shift+P { power-off-monitors; }
 
-    // Power profile shortcuts
-    Mod+Shift+S { spawn "powerprofilesctl" "set" "power-saver"; }
-    Mod+Shift+B { spawn "powerprofilesctl" "set" "balanced"; }
-    Mod+Shift+P { spawn "powerprofilesctl" "set" "performance"; }
+    // Power profile shortcuts (openSUSE TW / power-profiles-daemon)
+    // Mod+Shift+S { spawn "powerprofilesctl" "set" "power-saver"; }
+    // Mod+Shift+B { spawn "powerprofilesctl" "set" "balanced"; }
+    // Mod+Shift+P { spawn "powerprofilesctl" "set" "performance"; }
+
+    // Power profile shortcuts (Bluefin / Fedora / TuneD)
+    Mod+Shift+S { spawn "tuned-adm" "profile" "powersave"; }
+    Mod+Shift+B { spawn "tuned-adm" "profile" "balanced"; }
+    Mod+Shift+P { spawn "tuned-adm" "profile" "throughput-performance"; }
 
     Mod+Shift+Ctrl+T { toggle-debug-tint; }
     Mod+O { toggle-overview; }

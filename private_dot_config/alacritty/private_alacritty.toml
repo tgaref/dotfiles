@@ -47,7 +47,7 @@ white = "0xffffff"
 yellow = "0xe6c547"
 
 [colors.primary]
-background = "0x151e2d"
+background = "0x1e293b"
 foreground = "0xf5f2ea"
 
 [font]
@@ -599,7 +599,7 @@ save_to_clipboard = false
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [terminal.shell]
-program = "fish"
+program = "nu"
 
 [window]
 decorations = "full"

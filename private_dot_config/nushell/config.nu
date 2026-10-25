@@ -44,4 +44,17 @@ def --env opam-env [] {
 def chezmoi-add-config [] {
     ^chezmoi add ...(ls ~/.config | where name !~ "chezmoi" | get name)
 }
-
+
+# Sync and push dotfiles with chezmoi
+def dotsave [...msg: string] {
+    let commit_msg = if ($msg | is-empty) { "Update configs" } else { $msg | str join " " }
+    ^chezmoi re-add
+    ^chezmoi git -- add -A
+    let has_changes = ((do { ^chezmoi git -- diff --cached --quiet } | complete).exit_code != 0)
+    if $has_changes {
+        ^chezmoi git -- commit -m $commit_msg
+        ^chezmoi git -- push
+    } else {
+        print "No changes to commit."
+    }
+}

@@ -234,11 +234,12 @@ layout {
 
 
 // spawn-at-startup "emacs" "--daemon" // Managed by systemd user service instead
-spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "DISPLAY" "XDG_CURRENT_DESKTOP" "NIRI_SOCKET"
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "--all"
 spawn-at-startup "udiskie"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "noctalia" "--daemon"
 spawn-at-startup "/var/home/tgaref/.dropbox-dist/dropboxd"
+
 
 //spawn-at-startup "nm-applet" "--indicator"
 //spawn-at-startup "waybar"

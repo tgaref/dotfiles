@@ -47,7 +47,7 @@ white = "0xffffff"
 yellow = "0xe6c547"
 
 [colors.primary]
-background = "0x1e293b"
+background = "0x0f172a"
 foreground = "0xf5f2ea"
 
 [font]

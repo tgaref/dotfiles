@@ -58,3 +58,19 @@ def dotsave [...msg: string] {
         print "No changes to commit."
     }
 }
+
+# Autocomplete available distrobox containers
+def distrobox-boxes [] {
+    ^distrobox list --no-color 2>/dev/null
+    | lines
+    | skip 1
+    | split column '|' id name status image
+    | get name
+    | str trim
+}
+
+# Enter a Distrobox / Apx container running nushell (works on Vanilla OS, Bluefin, etc.)
+def enter-box [box: string@distrobox-boxes] {
+    ^distrobox enter $box -- nu
+}
+

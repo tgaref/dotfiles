@@ -10,6 +10,7 @@ end
 set -gx PATH $new_path
 
 # 2. Add local binaries (fish_add_path is idempotent)
+fish_add_path --global "$HOME/.local/share/mise/shims"
 fish_add_path --global "$HOME/.local/bin"
 fish_add_path --global "$HOME/local/bin"
 fish_add_path --global "$HOME/.cargo/bin"
@@ -50,6 +51,17 @@ function dotsave --description "Sync and push dotfiles with chezmoi"
         echo "No changes to commit."
     end
 end
+
+function enter-box --description "Enter a Distrobox / Apx container running nushell"
+    if test (count $argv) -eq 0
+        echo "Usage: enter-box <container-name>"
+        return 1
+    end
+    distrobox enter $argv[1] -- nu
+end
+
+complete -c enter-box -f -a "(distrobox list --no-color 2>/dev/null | tail -n +2 | awk -F'|' '{print \$2}' | string trim)"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 if test -f /var/home/tgaref/miniconda3/bin/conda

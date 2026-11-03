@@ -6,6 +6,9 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/share/mise/shims" ]]; then
+    PATH="$HOME/.local/share/mise/shims:$PATH"
+fi
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
@@ -23,7 +26,6 @@ if [ -d ~/.bashrc.d ]; then
     done
 fi
 unset rc
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 # >>> juliaup initialize >>>
 
@@ -57,4 +59,8 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+if command -v starship &> /dev/null; then
+    eval "$(starship init bash)"
+fi
 

@@ -36,6 +36,7 @@ $env.VISUAL = "/usr/bin/emacsclient"
 
 # --- Other Toolchains ---
 use std "path add"
+path add $"($env.HOME)/.local/share/mise/shims"
 path add $"($env.HOME)/.local/bin"
 path add $"($env.HOME)/local/bin"
 path add $"($env.HOME)/.cargo/bin"

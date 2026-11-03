@@ -599,7 +599,7 @@ save_to_clipboard = false
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [terminal.shell]
-program = "nu"
+program = "/home/tgaref/.local/share/mise/shims/nu"
 
 [window]
 decorations = "full"

@@ -1,0 +1,8 @@
+[tools]
+borg = "latest"
+chezmoi = "latest"
+eza = "latest"
+nu = "latest"
+pandoc = "latest"
+starship = "latest"
+typst = "latest"

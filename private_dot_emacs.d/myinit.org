@@ -828,7 +828,7 @@ Navigate slides with =C-<= and =C->=
 #+END_SRC
 ** exec-path
 #+BEGIN_SRC emacs-lisp
-(setq my-path-list '("home/tgaref/sbcl/bin/" "/home/tgaref/.local/bin/" "/home/tgaref/racket/bin/" "/home/tgaref/bin" "/home/tgaref/local/bin" "/home/tgaref/.cargo/bin" "/home/tgaref/julia/bin" "/home/tgaref/.opam/4.08.0/bin" ))
+(setq my-path-list '("home/tgaref/sbcl/bin/" "/home/tgaref/.local/share/mise/shims" "/home/tgaref/.local/bin/" "/home/tgaref/racket/bin/" "/home/tgaref/bin" "/home/tgaref/local/bin" "/home/tgaref/.cargo/bin" "/home/tgaref/julia/bin" "/home/tgaref/.opam/4.08.0/bin" ))
 (dolist (path my-path-list exec-path) (add-to-list 'exec-path path))
 #+END_SRC
 ** esh-autosuggest
@@ -1739,7 +1739,7 @@ Navigate slides with =C-<= and =C->=
      :commands vterm
      :config
       (setq vterm-max-scrollback 10000)
-      (setq vterm-shell (or (executable-find (expand-file-name "/var/home/tgaref/.cargo/bin/nu"))
+      (setq vterm-shell (or (executable-find (expand-file-name "~/.local/share/mise/shims/nu"))
                             (executable-find "nu")))
       (define-key vterm-mode-map (kbd "C-'") #'shell-switcher-switch-buffer))
 
@@ -1773,7 +1773,7 @@ Navigate slides with =C-<= and =C->=
       (let ((eat-buffer-name "*eat-devbox*"))
         (eat "distrobox enter dev-box -- nu" t)))
     :config
-    (setq eat-shell (or (executable-find (expand-file-name "/var/home/tgaref/.cargo/bin/nu"))
+    (setq eat-shell (or (executable-find (expand-file-name "~/.local/share/mise/shims/nu"))
                         (executable-find "nu")))
 
     ;; Note: eat-enable-mouse is a boolean variable, not a function!
@@ -1817,7 +1817,7 @@ Navigate slides with =C-<= and =C->=
             (eat)))))
 #+END_SRC      
 
-* Ghostedld
+* Ghostel
 #+BEGIN_SRC emacs-lisp
   (use-package ghostel
     :straight (:host github :repo "dakra/ghostel")
@@ -1858,7 +1858,7 @@ Navigate slides with =C-<= and =C->=
               (switch-to-buffer (car buffers))
             (ghostel)))))
     :config
-    (setq ghostel-shell (or (executable-find (expand-file-name "/var/home/tgaref/.cargo/bin/nu"))
+    (setq ghostel-shell (or (executable-find (expand-file-name "~/.local/share/mise/shims/nu"))
                             (executable-find "nu")))
     (setq ghostel-scroll-on-input t)
     (add-to-list 'ghostel-keymap-exceptions "C-x")

@@ -1,0 +1,8 @@
+name: debian-box
+base: debian:latest
+pkgmanager: apt
+packages:
+  - texlive-latex-recommended
+  - texlive-fonts-recommended
+  - texlive-xetex
+  - latexmk

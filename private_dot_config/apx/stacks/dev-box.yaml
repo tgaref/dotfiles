@@ -1,0 +1,15 @@
+name: dev-box
+base: ghcr.io/vanilla-os/pico:latest
+pkgmanager: apt
+packages:
+  - build-essential
+  - curl
+  - git
+  - autoconf
+  - automake
+  - m4
+  - pkg-config
+  - libffi-dev
+  - libgmp-dev
+  - libncurses-dev
+  - zlib1g-dev

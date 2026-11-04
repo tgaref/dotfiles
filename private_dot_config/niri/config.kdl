@@ -435,8 +435,8 @@ binds {
     Mod+Period { expel-window-from-column; }
     Mod+L { toggle-column-tabbed-display; }	   
     Mod+R { switch-preset-column-width; }
-    Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
+    Mod+M { maximize-column; }
+    Mod+Shift+M { fullscreen-window; }
     Mod+C { center-column; }
 
     // Finer width adjustments.

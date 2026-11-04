@@ -828,8 +828,11 @@ Navigate slides with =C-<= and =C->=
 #+END_SRC
 ** exec-path
 #+BEGIN_SRC emacs-lisp
-(setq my-path-list '("home/tgaref/sbcl/bin/" "/home/tgaref/.local/share/mise/shims" "/home/tgaref/.local/bin/" "/home/tgaref/racket/bin/" "/home/tgaref/bin" "/home/tgaref/local/bin" "/home/tgaref/.cargo/bin" "/home/tgaref/julia/bin" "/home/tgaref/.opam/4.08.0/bin" ))
-(dolist (path my-path-list exec-path) (add-to-list 'exec-path path))
+(setq my-path-list '("/home/tgaref/sbcl/bin/" "/home/tgaref/.local/share/mise/shims" "/home/tgaref/.local/bin/" "/home/tgaref/racket/bin/" "/home/tgaref/bin" "/home/tgaref/local/bin" "/home/tgaref/.cargo/bin" "/home/tgaref/julia/bin"))
+(dolist (path my-path-list)
+  (add-to-list 'exec-path path)
+  (unless (string-match-p (regexp-quote path) (getenv "PATH"))
+    (setenv "PATH" (concat path ":" (getenv "PATH")))))
 #+END_SRC
 ** esh-autosuggest
 #+BEGIN_SRC emacs-lisp

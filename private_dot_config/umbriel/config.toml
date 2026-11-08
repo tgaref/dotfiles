@@ -162,7 +162,12 @@ radius = 3
 # [input]
 #
 [input.keyboard]
+layout = "us,gr"
+options = "ctrl:nocaps,compose:ralt"
 numlock_toggle = true
+
+[input.touchpad]
+natural_scroll = true
 
 # Focus can follow the pointer across tiled, floating, and pinned windows.
 #
@@ -196,6 +201,9 @@ numlock_toggle = true
 # "Mod+B" = "spawn flatpak run org.mozilla.firefox"
 "Mod+B" = "spawn flatpak run app.zen_browser.zen"
 
+# Keyboard layout
+"Mod+Space" = { action = "keyboard-layout-next", repeat = false }
+
 
 # "Mod+Escape" = "session-quit"
 # "Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
@@ -211,6 +219,11 @@ numlock_toggle = true
 "XF86AudioPrev" = { action = "spawn noctalia msg media previous", allow_when_locked = true }
 "XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true }
 "XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true }
+
+"Mod+Shift+S" = "spawn powerprofilesctl set power-saver"
+"Mod+Shift+B" = "spawn powerprofilesctl set balanced"
+"Mod+Shift+P" = "spawn powerprofilesctl set performance"
+
 
 # Focus and movement
 "Mod+Left" = "window-focus-left"

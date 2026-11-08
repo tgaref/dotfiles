@@ -47,7 +47,7 @@ white = "0xffffff"
 yellow = "0xe6c547"
 
 [colors.primary]
-background = "0x0f172a"
+background = "0x282a36"
 foreground = "0xf5f2ea"
 
 [font]
@@ -604,7 +604,7 @@ program = "/home/tgaref/.local/share/mise/shims/nu"
 [window]
 decorations = "full"
 dynamic_title = true
-opacity = 1.0
+opacity = 0.85
 
 [window.dimensions]
 columns = 80

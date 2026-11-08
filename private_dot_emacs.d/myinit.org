@@ -1749,8 +1749,8 @@ Navigate slides with =C-<= and =C->=
     (use-package multi-vterm 
       :straight t
       :init
-       (bind-key "C-c v v" 'multi-vterm)
-       (bind-key "C-c v d" 'my/vterm-devbox)
+       (bind-key "C-c v" 'multi-vterm)
+       ;(bind-key "C-c v d" 'my/vterm-devbox)
        (bind-key "C-`" 'multi-vterm-dedicated-toggle)
        (bind-key "C-/" 'multi-vterm-next) ; Control - PageUp
        ;(bind-key "C-<next>" 'multi-vterm-prev)  ; Control - PageDown
@@ -1826,8 +1826,7 @@ Navigate slides with =C-<= and =C->=
     :straight (:host github :repo "dakra/ghostel")
     :bind (;;("C-c g" . ghostel)
   	 ;("C-/" . my/ghostel-cycle)
-       ("C-c g g" . my/ghostel-new-instance)
-       ("C-c g d" . my/ghostel-devbox))
+       ("C-c g" . my/ghostel-new-instance))
     :init
     (defun my/ghostel-new-instance ()
       "Spawn a fresh, uniquely named instance of Ghostel."

@@ -18,6 +18,7 @@ fish_add_path --global "$HOME/.juliaup/bin"
 fish_add_path --global "$HOME/.ghcup/bin"
 fish_add_path --global "$HOME/.cabal/bin"
 
+
 # 3. Opam environment
 if command -q opam; and test -f "$HOME/.opam/opam-init/init.fish"
     source "$HOME/.opam/opam-init/init.fish" > /dev/null 2> /dev/null; or true

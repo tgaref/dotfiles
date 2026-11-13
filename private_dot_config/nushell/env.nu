@@ -42,3 +42,4 @@ path add $"($env.HOME)/local/bin"
 path add $"($env.HOME)/.cargo/bin"
 path add $"($env.HOME)/.juliaup/bin"
 path add $"($env.HOME)/.ghcup/bin"
+
